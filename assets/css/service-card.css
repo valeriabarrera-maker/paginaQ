@@ -7,7 +7,7 @@
 /* ========== VARIABLES ========== */
 .service-card {
   --sc-width: 384px;
-  --sc-min-height: 533px;
+  --sc-min-height: 638px;
   --sc-radius: 32px;
   --sc-bg: #FFFFFF;
   --sc-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
@@ -162,6 +162,7 @@
 /* ========== CTA BUTTON (within service-card) ========== */
 .service-card .btn {
   width: 100%;
+  margin-top: auto;
 }
 
 /* ========== IMAGE VARIANTS ==========
