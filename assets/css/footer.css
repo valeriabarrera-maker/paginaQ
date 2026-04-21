@@ -24,10 +24,10 @@
   position: relative;
 }
 
-/* Sello Vigilado — rotado a la izquierda, absolute para no ocupar espacio en columnas */
+/* Sello Vigilado — rotado a la izquierda, absolute dentro del área de contenido (después del padding lateral) */
 .footer-vigilado {
   position: absolute;
-  left: 0;
+  left: 32px;
   top: 50%;
   transform: translateY(-50%);
   width: 51px;
