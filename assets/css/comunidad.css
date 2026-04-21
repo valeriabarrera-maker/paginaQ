@@ -79,12 +79,19 @@ body {
   display: flex;
   gap: 24px;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .com-stat {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .com-stat-number {
