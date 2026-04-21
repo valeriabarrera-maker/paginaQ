@@ -60,7 +60,7 @@
           ${buildNavLinks(currentPage)}
         </div>
       </nav>
-      <a href="#" class="btn btn--primary">Contactanos</a>
+      <a href="#" class="btn btn--primary">Contáctanos</a>
       <button class="hamburger-btn" aria-label="Menu" aria-expanded="false">
         ${HAMBURGER_SVG}
       </button>
@@ -70,7 +70,7 @@
         ${CLOSE_SVG}
       </button>
       ${buildMobileNavLinks(currentPage)}
-      <a href="#" class="btn btn--primary">Contactanos</a>
+      <a href="#" class="btn btn--primary">Contáctanos</a>
     </div>`;
   }
 
