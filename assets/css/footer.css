@@ -18,20 +18,21 @@
 }
 
 .footer-inner {
-  max-width: 1440px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 40px;
   position: relative;
+  display: grid;
+  grid-template-columns: 51px 1fr;
+  column-gap: 40px;
+  align-items: stretch;
 }
 
-/* Sello Vigilado — rotado a la izquierda, absolute dentro del área de contenido (después del padding lateral) */
+/* Sello Vigilado — columna izquierda que ocupa el alto de footer-top + footer-bottom */
 .footer-vigilado {
-  position: absolute;
-  left: 32px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 51px;
-  height: 394px;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  position: relative;
   overflow: hidden;
   pointer-events: none;
 }
@@ -48,15 +49,27 @@
   display: block;
 }
 
+.footer-top,
+.footer-bottom {
+  grid-column: 2;
+}
+
 @media (max-width: 1023px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+
   .footer-vigilado {
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
-    width: 100%;
+    grid-column: 1;
+    grid-row: auto;
+    order: 10;
     height: 51px;
-    margin-top: 24px;
+  }
+
+  .footer-top,
+  .footer-bottom {
+    grid-column: 1;
   }
 
   .footer-vigilado img {
@@ -159,8 +172,7 @@
 }
 
 .footer-col {
-  flex: 0 0 186px;
-  width: 186px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
