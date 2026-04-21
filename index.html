@@ -24,7 +24,7 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background: linear-gradient(155deg, #ffffff 0%, #fff7ed 100%);
       min-height: 100vh;
       overflow-x: hidden;
@@ -101,6 +101,7 @@
       font-family: 'Century Gothic', 'Montserrat', sans-serif;
       font-size: 45px;
       font-weight: 700;
+      line-height: 50px;
       color: #000;
     }
 
@@ -108,6 +109,7 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 18px;
       font-weight: 400;
+      line-height: 26px;
       color: #000;
     }
 
@@ -134,6 +136,7 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 14px;
       font-weight: 600;
+      line-height: 18px;
       background: transparent;
       color: #000;
       transition: all 0.3s ease;
@@ -476,10 +479,10 @@
     }
 
     .testimonios-left h2 {
-      font-family: 'Century Gothic', 'Poppins', 'Inter', sans-serif;
-      font-size: 56px;
+      font-family: 'Century Gothic', 'Montserrat', sans-serif;
+      font-size: 45px;
       font-weight: 700;
-      line-height: 68px;
+      line-height: 50px;
       color: #000;
       margin: 0;
     }
@@ -583,19 +586,26 @@
     /* ===== COMMUNITY SECTION ===== */
     .section-comunidad {
       position: relative;
-      margin: 140px 100px 0;
+      max-width: 1240px;
+      margin: 140px auto 0;
       border-radius: 32px;
       text-align: center;
       z-index: 1;
-      padding: 32px 0 0;
+      padding: 32px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
     }
 
     .section-comunidad h2 {
+      font-family: 'Century Gothic', 'Montserrat', sans-serif;
       font-size: 72px;
       font-weight: 700;
       color: #000;
-      line-height: 1.1;
-      margin-bottom: 16px;
+      line-height: 86px;
+      max-width: 1000px;
+      margin: 0;
     }
 
     .section-comunidad h2 span {
@@ -603,18 +613,22 @@
     }
 
     .section-comunidad .comunidad-subtitle {
+      font-family: 'Montserrat', sans-serif;
       font-size: 18px;
-      color: #4A5565;
-      line-height: 1.5;
-      margin-bottom: 24px;
+      font-weight: 400;
+      color: #000;
+      line-height: 26px;
+      max-width: 1000px;
+      margin: 0;
     }
 
     .section-comunidad .btn {
-      margin-bottom: 40px;
+      margin: 0;
     }
 
     .community-gallery-wrapper {
       position: relative;
+      width: 100%;
       margin: 0 -54px;
       min-height: 460px;
       overflow: visible;
@@ -732,18 +746,20 @@
     }
 
     .hero-content h1 {
+      font-family: 'Century Gothic', 'Montserrat', sans-serif;
       font-size: 45px;
       font-weight: 700;
-      line-height: 1.11;
+      line-height: 50px;
       color: #000;
       margin-bottom: 32px;
     }
 
     .hero-content .subtitle {
+      font-family: 'Montserrat', sans-serif;
       font-size: 18px;
       font-weight: 400;
       color: #000;
-      line-height: 1.44;
+      line-height: 26px;
       margin-bottom: 32px;
     }
 
@@ -763,15 +779,26 @@
       margin-bottom: 32px;
     }
 
+    .hero-stats .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
     .stat .stat-number {
+      font-family: 'Montserrat', sans-serif;
       font-size: 28px;
       font-weight: 700;
+      line-height: 32px;
       color: #FF4E00;
     }
 
     .stat .stat-label {
+      font-family: 'Montserrat', sans-serif;
       font-size: 14px;
       font-weight: 400;
+      line-height: 18px;
       color: #565656;
     }
 
@@ -801,7 +828,7 @@
       height: 596px;
       border-radius: 28px;
       border: 1px solid #f5f5f5;
-      overflow: visible;
+      overflow: hidden;
       position: relative;
       opacity: 0;
       visibility: hidden;
@@ -842,8 +869,10 @@
     }
 
     .floating-card .card-text {
+      font-family: 'Inter', sans-serif;
       font-size: 16px;
       font-weight: 600;
+      line-height: 24px;
       color: #000;
     }
 
@@ -940,10 +969,11 @@
     }
 
     .entrar-iz .razones-subtitle {
+      font-family: 'Montserrat', sans-serif;
       font-size: 18px;
       font-weight: 400;
       color: #000;
-      line-height: 1.44;
+      line-height: 26px;
       margin: 0 0 32px 0;
     }
 
@@ -1093,7 +1123,7 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 18px;
       font-weight: 600;
-      line-height: 27px;
+      line-height: 28px;
       color: #565656;
     }
 
@@ -2018,24 +2048,6 @@
 
       <div class="hero-image-wrapper">
         <img class="hero-img" src="assets/images/hero/hero-image.png" alt="Protección para mascotas" />
-        <div class="floating-card top-right">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#FF4E00" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-          </div>
-          <span class="card-text">Protección Total</span>
-        </div>
-        <div class="floating-card bottom-left">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#FF4E00" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-            </svg>
-          </div>
-          <span class="card-text">Activación Instantánea</span>
-        </div>
       </div>
 
       <!-- Carousel arrows -->
@@ -2108,8 +2120,8 @@
     <section class="section-products" id="sectionProducts">
       <div class="products-sticky">
         <div class="products-header">
-          <h2>Nuestros Seguros</h2>
-          <p class="products-subtitle">Elige la protección perfecta para lo que más valoras</p>
+          <h2>Seguros por internet con el<br>respaldo de <span style="color: #ff6600;">La Equidad Seguros</span></h2>
+          <p class="products-subtitle">Descubre una forma más simple de proteger lo que más te importa. En Qbrete encuentras opciones como<br>seguro de mascotas y seguro para bicicletas, con una experiencia 100% digital, clara y pensada para ti.</p>
         </div>
 
         <div class="products-tabs" id="productsTabs">
@@ -2133,31 +2145,31 @@
                 <span class="pc-chip">Popular</span>
               </div>
               <div class="pc-content">
-                <h3>Seguro para Mascotas</h3>
-                <p class="pc-desc">Cuida de tu mejor amigo con la mejor cobertura</p>
+                <h3>Seguro Garritas</h3>
+                <p class="pc-desc">Seguro de mascotas con asistencia y bienestar para su día a día.</p>
                 <div class="pc-features">
                   <div class="pc-feature">
                     <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#7E60FE" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                    Consultas veterinarias ilimitadas
+                    Gastos veterinarios por accidente o enfermedad.
                   </div>
                   <div class="pc-feature">
                     <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#7E60FE" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                    Cirugías y hospitalización
+                    Consulta veterinaria en casa por enfermedad o accidente.
                   </div>
                   <div class="pc-feature">
                     <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#7E60FE" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                    Vacunas y tratamientos preventivos
+                    Gastos de cremación o entierro.
                   </div>
                   <div class="pc-feature">
                     <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#7E60FE" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                    Medicamentos cubiertos al 100%
+                    Certificado para viaje en avión.
                   </div>
                   <div class="pc-feature">
                     <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#7E60FE" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                    Responsabilidad civil incluida
+                    Guardería por enfermedad o viaje del propietario.
                   </div>
                 </div>
-                <a href="#" class="btn btn--primary pc-btn">Cotizar ahora</a>
+                <a href="#" class="btn btn--primary pc-btn">Conoce más aquí.</a>
               </div>
             </div>
           </div>
@@ -2171,31 +2183,31 @@
                 <span class="pc-chip">Popular</span>
               </div>
               <div class="pc-content">
-                <h3>Seguro para Bicicletas</h3>
-                <p class="pc-desc">Cuida de tu mejor amigo con la mejor cobertura</p>
+                <h3>Seguro Enruta</h3>
+                <p class="pc-desc">Seguro para bicicletas con respaldo para cada trayecto.</p>
                 <div class="pc-features">
                   <div class="pc-feature">
                     <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1E3D8B" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                    Consultas veterinarias ilimitadas
+                    Cobertura por hurto calificado en el plan Elite.
                   </div>
                   <div class="pc-feature">
                     <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1E3D8B" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                    Cirugías y hospitalización
+                    Protección por invalidez total y permanente.
                   </div>
                   <div class="pc-feature">
                     <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1E3D8B" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                    Vacunas y tratamientos preventivos
+                    Cobertura por muerte por accidente.
                   </div>
                   <div class="pc-feature">
                     <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1E3D8B" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                    Medicamentos cubiertos al 100%
+                    Reembolso de gastos médicos por accidente.
                   </div>
                   <div class="pc-feature">
                     <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1E3D8B" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                    Responsabilidad civil incluida
+                    Cobertura por pérdida de piezas dentales por accidente.
                   </div>
                 </div>
-                <a href="#" class="btn btn--primary pc-btn">Cotizar ahora</a>
+                <a href="#" class="btn btn--primary pc-btn">Conoce más aquí.</a>
               </div>
             </div>
           </div>
@@ -2205,11 +2217,10 @@
 
     <!-- COMUNIDAD -->
     <section class="section-comunidad">
-      <h2>¿Listo para la <span>revolución</span><br>del seguro?</h2>
-      <p class="comunidad-subtitle">Únete a los miles de colombianos que ya protegen<br>lo que aman de forma inteligente
-      </p>
+      <h2>Una comunidad con apoyo real para tu <span>día a día</span></h2>
+      <p class="comunidad-subtitle">En Mi Comunidad encuentras contenido, redes de apoyo y experiencias compartidas para acompañarte más allá del seguro. Porque en Qbrete creemos en una protección más cercana, útil y conectada contigo.</p>
       <a href="#" class="btn btn--secondary">
-        Ir a comunidad
+        Ir a mi Comunidad
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
@@ -2235,7 +2246,7 @@
         <path d="M1440 834.744C1273.94 774.166 1013 735.125 719.551 735.125C426.632 735.125 166.097 774.027 0 834.418V0.326172C166.097 60.7176 426.631 99.6201 719.551 99.6201C1013 99.6201 1273.94 60.5779 1440 0V834.744Z"/>
       </svg>
       <div class="testimonios-left">
-        <h2>Lo que dicen nuestros <span>clientes</span></h2>
+        <h2><span>Todo lo que debes<br>saber</span> sobre Qbrete</h2>
         <p class="section-subtitle">Miles de dueños de mascotas confían en Qbrete para proteger a sus compañeros peludos
         </p>
       </div>
@@ -2404,9 +2415,8 @@
     <section class="section-about" id="sectionAbout">
       <div class="about-container">
         <div class="about-left">
-          <h2>Todo lo que necesitas <span style="color: #FF4E00">saber</span></h2>
-          <p class="about-desc">Resolvemos tus dudas sobre Qbrete, la plataforma digital de La Equidad Seguros que te protege de manera fácil, rápida y segura</p>
-          <p class="about-sub">¿No Qbrimos tus inquitudes ?</p>
+          <h2><span style="color: #FF4E00">Todo lo que debes saber</span> sobre Qbrete</h2>
+          <p class="about-desc">Resuelve tus dudas sobre nuestra plataforma, conoce cómo funciona y encuentra la información que necesitas para acceder a tus seguros de manera simple y confiable.</p>
           <a href="#" class="btn btn--primary">
             Ver más preguntas aquí
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg>
