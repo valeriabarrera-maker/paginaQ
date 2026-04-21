@@ -8,7 +8,7 @@
     { label: 'Inicio', href: 'index.html' },
     { label: 'Servicios', href: 'servicios.html' },
     { label: 'Mi comunidad', href: 'comunidad.html' },
-    { label: 'Beneficios', href: '#' },
+    { label: 'Beneficios', href: 'beneficios.html' },
     { label: 'PQRS', href: '#' },
     { label: 'Reporta tu siniestro', href: '#' },
   ];
