@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noticias - Qbrete</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/header.css" />
+  <link rel="stylesheet" href="assets/css/button.css" />
+  <link rel="stylesheet" href="assets/css/footer.css" />
+  <link rel="stylesheet" href="assets/css/news-card.css" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    .page-wrapper {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 10px 100px 0;
+      position: relative;
+    }
+
+    .brand-orange {
+      color: #FF4E00;
+    }
+
+    .deco-vector {
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      width: 479px;
+      height: 885px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .deco-vector path {
+      fill: #FF4E00;
+      fill-opacity: 0.2;
+    }
+
+    .news-main {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      margin-top: 70px;
+      padding-bottom: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .news-page-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 21px;
+    }
+
+    .news-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 16px;
+      height: 72px;
+      border-radius: 16px;
+    }
+
+    .news-badge-icon {
+      width: 40px;
+      height: 40px;
+      background: #FFF2E5;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .news-badge-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .news-badge span {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 28px;
+      color: #101828;
+    }
+
+    .news-page-header h1 {
+      margin: 0;
+      font-family: 'Century Gothic', 'Montserrat', sans-serif;
+      font-size: 45px;
+      font-weight: 700;
+      line-height: 50px;
+      color: #000;
+      text-align: center;
+      max-width: 1000px;
+    }
+
+    .news-desc {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 26px;
+      color: #000;
+      text-align: center;
+      max-width: 1000px;
+    }
+
+    /* ===== FILTER TABS ===== */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .news-tabs {
+      display: inline-flex;
+      align-items: center;
+      gap: 32px;
+      background: #fff;
+      border-radius: 9999px;
+      padding: 8px 12px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .news-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 24px;
+      height: 41px;
+      border: none;
+      border-radius: 9999px;
+      background: transparent;
+      color: #000;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .news-tab.active {
+      background: linear-gradient(to bottom, #FF4E00 0%, #FF8A5C 100%);
+      color: #fff;
+    }
+
+    /* ===== NEWS GRID ===== */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      width: 100%;
+      max-width: 1216px;
+      justify-items: center;
+    }
+
+    /* ===== ANIMATIONS (header + tabs) ===== */
+    .news-page-header .news-badge,
+    .news-page-header h1,
+    .news-page-header .news-desc,
+    .news-list .news-tabs {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .news-page-header.is-visible .news-badge { opacity: 1; transform: none; transition-delay: 0.05s; }
+    .news-page-header.is-visible h1          { opacity: 1; transform: none; transition-delay: 0.15s; }
+    .news-page-header.is-visible .news-desc  { opacity: 1; transform: none; transition-delay: 0.25s; }
+    .news-list.is-visible .news-tabs         { opacity: 1; transform: none; transition-delay: 0.05s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .news-page-header .news-badge,
+      .news-page-header h1,
+      .news-page-header .news-desc,
+      .news-list .news-tabs {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .page-wrapper { padding: 10px 40px 0; }
+      .news-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 767px) {
+      .page-wrapper { padding: 10px 16px 0; }
+
+      .news-main {
+        gap: 48px;
+        margin-top: 40px;
+      }
+
+      .news-page-header h1 {
+        font-size: 28px;
+        line-height: 34px;
+      }
+
+      .news-desc {
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      .news-grid { grid-template-columns: 1fr; }
+      .news-tabs { gap: 8px; }
+      .news-tab { padding: 0 16px; font-size: 13px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER (global component) -->
+  <div id="header-root"></div>
+  <script src="assets/js/header.js"></script>
+
+  <div class="page-wrapper">
+    <img src="assets/images/decorative/deco-right.svg" class="deco-vector" alt="" aria-hidden="true" />
+    <main class="news-main">
+
+      <!-- PAGE HEADER -->
+      <section class="news-page-header">
+        <div class="news-badge">
+          <div class="news-badge-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 21C4.45 21 3.97917 20.8042 3.5875 20.4125C3.19583 20.0208 3 19.55 3 19V5C3 4.45 3.19583 3.97917 3.5875 3.5875C3.97917 3.19583 4.45 3 5 3H16L21 8V19C21 19.55 20.8042 20.0208 20.4125 20.4125C20.0208 20.8042 19.55 21 19 21H5ZM5 19H19V9H15V5H5V19ZM7 17H17V15H7V17ZM7 9H12V7H7V9ZM7 13H17V11H7V13Z" fill="#FF4E00"/>
+            </svg>
+          </div>
+          <span>Noticias</span>
+        </div>
+        <h1><span class="brand-orange">Noticias y novedades</span><br>de la comunidad Qbrete</h1>
+        <p class="news-desc">Descubre contenidos, historias y noticias de interés para la comunidad Qbrete. Un espacio para mantenerte al día con información relevante, cercana y pensada para quienes buscan proteger lo que más valoran.</p>
+      </section>
+
+      <!-- NEWS LIST -->
+      <section class="news-list" id="newsList">
+        <!-- Filter Tabs -->
+        <div class="news-tabs" id="newsTabs">
+          <button class="news-tab active" data-tab="todas" type="button">Todas</button>
+          <button class="news-tab" data-tab="mascotas" type="button">Mascotas</button>
+          <button class="news-tab" data-tab="bicicletas" type="button">Bicicletas</button>
+          <button class="news-tab" data-tab="comunidad" type="button">Comunidad</button>
+        </div>
+
+        <!-- News Grid (rendered by NewsCard component) -->
+        <div class="news-grid" id="newsGrid"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-wrapper">
+    <svg class="footer-curve" viewBox="0 0 1440 100" preserveAspectRatio="none" fill="#3A3A3A">
+      <path d="M0 100 C166 35 427 0 720 0 C1013 0 1274 35 1440 100 Z" />
+    </svg>
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-vigilado">
+          <img src="assets/images/footer/vigilado.png" alt="Vigilado Superintendencia Financiera" />
+        </div>
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="brand-logos">
+              <img src="assets/logos/logo-qbrete-white.svg" alt="Qbrete" class="brand-logo" />
+              <span class="brand-divider" aria-hidden="true"></span>
+              <img src="assets/images/footer/capa-1.svg" alt="La Equidad Seguros" class="brand-logo-partner" />
+            </div>
+            <p class="brand-desc">Tu seguro digital para mascotas. Protección integral con tecnología y amor. Respaldado por La <strong>Equidad Seguros.</strong></p>
+            <div class="footer-socials">
+              <a href="#" class="footer-social" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg></a>
+              <a href="#" class="footer-social" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg></a>
+              <a href="#" class="footer-social" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" /></svg></a>
+            </div>
+          </div>
+          <div class="footer-columns">
+            <div class="footer-col">
+              <div class="col-title">Accesos directos</div>
+              <div class="col-links">
+                <a href="index.html" class="col-link">Inicio</a>
+                <a href="comunidad.html" class="col-link">Mi comunidad</a>
+                <a href="beneficios.html" class="col-link">Beneficios</a>
+                <a href="noticias.html" class="col-link">Noticias</a>
+                <a href="preguntas-frecuentes.html" class="col-link">Preguntas frecuentes</a>
+              </div>
+            </div>
+            <div class="footer-col">
+              <div class="col-title">Servicios</div>
+              <div class="col-links">
+                <a href="servicios.html" class="col-link">Seguro para Mascotas</a>
+                <a href="servicios.html" class="col-link">Seguro para Bicicletas</a>
+              </div>
+            </div>
+            <div class="footer-col">
+              <div class="col-title">Legal</div>
+              <div class="col-links">
+                <a href="#" class="col-link">Politica de tratamientos de datos</a>
+                <a href="#" class="col-link">Políticas de cookies</a>
+              </div>
+            </div>
+            <div class="footer-col">
+              <div class="col-title">Contacto</div>
+              <div class="col-links">
+                <div class="footer-contact-item">
+                  <div class="footer-contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg></div>
+                  <a href="mailto:info@qbrete.com" class="col-link">info@qbrete.com</a>
+                </div>
+                <div class="footer-contact-item">
+                  <div class="footer-contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg></div>
+                  <a href="tel:+570000000000" class="col-link">+57 000 000 000</a>
+                </div>
+                <div class="footer-contact-item">
+                  <div class="footer-contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg></div>
+                  <span class="col-link">Bogotá, Colombia</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copyright">&copy; 2026 Qbrete. Todos los derechos reservados para Linktic S.A.S 2024</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/news-card.js"></script>
+  <script>
+    // News data (contenido y assets de Figma 723:4165)
+    var FIG_IMG_A = 'assets/images/noticias/fig-card1.jpg';
+    var FIG_IMG_B = 'assets/images/noticias/fig-card2.jpg';
+    var FIG_TITLE = 'Lorem ipsum dolor sit amet';
+    var FIG_CHIPS = ['Mascotas', 'Cuidados', 'Familia'];
+    var FIG_EXCERPT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet nibh pretium aliquet dictum.';
+    var FIG_DATE = 'Enero 11, 2026';
+    var FIG_AUTHOR = 'Autor: Valeria Barrera Serrano';
+
+    var NEWS_DATA = [
+      { category: 'mascotas',   image: FIG_IMG_A, alt: 'Familia con mascota', title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR, href: '#' },
+      { category: 'comunidad',  image: FIG_IMG_B, alt: 'Comunidad Qbrete',    title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR, href: '#' },
+      { category: 'mascotas',   image: FIG_IMG_A, alt: 'Familia con mascota', title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR, href: '#' },
+      { category: 'bicicletas', image: FIG_IMG_B, alt: 'Comunidad Qbrete',    title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR, href: '#' },
+      { category: 'comunidad',  image: FIG_IMG_A, alt: 'Familia con mascota', title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR, href: '#' },
+      { category: 'bicicletas', image: FIG_IMG_B, alt: 'Comunidad Qbrete',    title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR, href: '#' }
+    ];
+
+    // Render cards from data
+    NewsCard.render('#newsGrid', NEWS_DATA);
+
+    // Filter tabs
+    function filterNews(category) {
+      document.querySelectorAll('.news-card').forEach(function (card) {
+        var matches = category === 'todas' || card.dataset.category === category;
+        card.hidden = !matches;
+      });
+    }
+
+    document.querySelectorAll('.news-tab').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.news-tab').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        filterNews(btn.dataset.tab);
+      });
+    });
+
+    // Entrance animations
+    (function () {
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var sections = document.querySelectorAll('.news-page-header, .news-list');
+      var cards = document.querySelectorAll('.news-card');
+
+      if (reduceMotion) {
+        sections.forEach(function (s) { s.classList.add('is-visible'); });
+        cards.forEach(function (c) { c.classList.add('is-visible'); });
+        return;
+      }
+
+      if (sections.length) {
+        var ioSection = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              ioSection.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+        sections.forEach(function (s) { ioSection.observe(s); });
+      }
+
+      if (cards.length) {
+        var ioCards = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              ioCards.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        cards.forEach(function (c) { ioCards.observe(c); });
+      }
+    })();
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

@@ -10,6 +10,10 @@
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 
+.benefit-card[hidden] {
+  display: none;
+}
+
 /* Media (top image area) */
 .benefit-card-media {
   position: relative;
@@ -25,35 +29,44 @@
   display: block;
 }
 
-/* Discount pill — top-left corner */
+/* Discount badge — flush with top-left corner, diagonal rounded corners */
 .benefit-card-discount {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  display: inline-flex;
+  top: 0;
+  left: 0;
+  width: 93px;
+  height: 60px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6px;
-  height: 32px;
-  padding: 0 14px;
-  background: linear-gradient(90deg, #FF4E00 0%, #FF8A5C 100%);
-  border-radius: 9999px;
+  justify-content: center;
+  gap: 4px;
+  background: linear-gradient(180deg, #FF4E00 0%, #FF8A5C 100%);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 0;
   color: #fff;
+  text-align: center;
 }
 
 .benefit-card-discount-num {
   font-family: 'Century Gothic', 'Montserrat', sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
-  line-height: 18px;
+  line-height: 22px;
   color: #fff;
+  text-align: center;
 }
 
 .benefit-card-discount-label {
   font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 16px;
+  line-height: 18px;
   color: #fff;
+  text-align: center;
 }
 
 /* Body (bottom content area) */
