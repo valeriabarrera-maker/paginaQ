@@ -1,0 +1,364 @@
+/* ==========================================
+   QBRETE — Noticia / Blog Detail page
+   Figma: 718:3452 "Blogs interna"
+   Specs: 1440 wide, padding 100 horizontal (content 1240)
+   ========================================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(180deg, #fff 51%, #FFF7ED 100%);
+  overflow-x: hidden;
+}
+
+.detalle-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 10px 100px 0;
+  position: relative;
+}
+
+.detalle-deco {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  width: 479px;
+  height: 885px;
+  pointer-events: none;
+  z-index: 0;
+}
+.detalle-deco path { fill: #FF4E00; fill-opacity: 0.2; }
+
+.detalle-main {
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+  margin-top: 70px;
+  padding-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== BOTÓN REGRESAR — usa .btn .btn--ghost del sistema (button.css)
+   Figma "Botón sombreado" 723:4827: 144×40, padding 10/20, radius 16, gap 12,
+   bg transparente, texto orange-main #FF4E00, sombra solo en hover.
+   ========================================== */
+.detalle-back {
+  align-self: flex-start;
+  color: var(--orange-main);
+}
+.detalle-back:hover { color: var(--orange-dark); }
+.detalle-back svg { width: 18px; height: 18px; }
+
+/* ===== HERO (título + desc + chips) — centrado horizontal
+   Figma 718:3456: counterAxis CENTER, título+desc textAlign CENTER.
+   ========================================== */
+.detalle-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 21px;
+  text-align: center;
+}
+.detalle-title {
+  margin: 0;
+  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 50px;
+  color: #000;
+  max-width: 983px;
+  text-align: center;
+}
+.detalle-title .brand-orange { color: #FF4E00; }
+.detalle-lead {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #000;
+  max-width: 591px;
+  text-align: center;
+}
+.detalle-chips {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.detalle-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 16px;
+  background: linear-gradient(to top, #FFF2E5 10%, #fff 70%);
+  color: #FF4E00;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+/* ===== IMAGEN HERO ===== */
+.detalle-image {
+  width: 100%;
+  height: 421px;
+  border-radius: 32px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* ===== ARTÍCULO (side panel + contenido)
+   Figma 718:3472: Frame 47 contiene Frame 46 (hero + lead) y Frame 44 (body),
+   centrado horizontal (counter CENTER) con ancho de contenido 922.
+   ========================================== */
+.detalle-article {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  width: 922px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.detalle-article-top {
+  display: flex;
+  gap: 52px;
+  align-items: center;
+}
+
+/* Side panel — Frame 48: 261×211, bg blanco, radius 32, shadow 0 4 30 rgba(0,0,0,0.08),
+   padding 32, contenido primary CENTER + counter CENTER, itemSpacing 32. */
+.detalle-side {
+  width: 261px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  padding: 32px;
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+}
+
+.detalle-side-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  width: 100%;
+}
+.detalle-side-date {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #000;
+}
+.detalle-side-name {
+  margin: 0;
+  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 31px;
+  color: #000;
+}
+.detalle-side-role {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #000;
+}
+
+/* Share — Figma 718:3663: 3 botones 36×36 con borde + icono embebidos en el SVG
+   (Iconoir facebook/whatsapp/X con stroke #FF4E00 y radius 12 dentro del path) */
+.detalle-share {
+  display: flex;
+  gap: 12px;
+}
+.detalle-share-btn {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+.detalle-share-btn:hover { transform: scale(1.08); }
+.detalle-share-btn svg { width: 36px; height: 36px; display: block; }
+
+/* Lead del artículo — centrado vertical respecto al side panel
+   (Figma Frame 46: counter CENTER en el eje transversal) */
+.detalle-content-lead {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  min-width: 0;
+  align-self: center;
+}
+.detalle-subtitle {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #000;
+}
+.detalle-intro {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #000;
+}
+
+/* Body largo */
+.detalle-body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #000;
+}
+.detalle-body p { margin: 0 0 16px; }
+.detalle-body p:last-child { margin-bottom: 0; }
+
+/* ===== CTA PRODUCTO — product-panel Mascotas (morado) del sistema.
+   Figma Container 728:3243 corresponde a product-panel (1240×562).
+   Mismo wrapper panels-stack que usa index.html para que el panel
+   absoluto tenga un contenedor relativo con dimensiones. */
+.detalle-main .panels-stack {
+  position: relative;
+  width: 1240px;
+  max-width: 100%;
+  height: 562px;
+  margin: 0 auto;
+}
+
+
+/* ===== BLOGS RELACIONADOS ===== */
+.detalle-related {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.detalle-related-title {
+  margin: 0;
+  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 31px;
+  color: #000;
+}
+.detalle-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  justify-items: center;
+}
+
+/* ===== ANIMATIONS — entrada en cascada con IntersectionObserver ===== */
+.detalle-back,
+.detalle-hero .detalle-title,
+.detalle-hero .detalle-lead,
+.detalle-hero .detalle-chips,
+.detalle-image,
+.detalle-article .detalle-side,
+.detalle-article .detalle-content-lead,
+.detalle-article .detalle-body,
+.panels-stack,
+.detalle-related .detalle-related-title,
+.detalle-related .detalle-related-grid {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.detalle-back.is-visible  { opacity: 1; transform: none; transition-delay: 0.05s; }
+
+.detalle-hero.is-visible .detalle-title { opacity: 1; transform: none; transition-delay: 0.10s; }
+.detalle-hero.is-visible .detalle-lead  { opacity: 1; transform: none; transition-delay: 0.20s; }
+.detalle-hero.is-visible .detalle-chips { opacity: 1; transform: none; transition-delay: 0.30s; }
+
+.detalle-image.is-visible { opacity: 1; transform: none; transition-delay: 0.10s; }
+
+.detalle-article.is-visible .detalle-side         { opacity: 1; transform: none; transition-delay: 0.10s; }
+.detalle-article.is-visible .detalle-content-lead { opacity: 1; transform: none; transition-delay: 0.20s; }
+.detalle-article.is-visible .detalle-body         { opacity: 1; transform: none; transition-delay: 0.30s; }
+
+.panels-stack.is-visible { opacity: 1; transform: none; transition-delay: 0.10s; }
+
+.detalle-related.is-visible .detalle-related-title { opacity: 1; transform: none; transition-delay: 0.05s; }
+.detalle-related.is-visible .detalle-related-grid  { opacity: 1; transform: none; transition-delay: 0.15s; }
+
+.detalle-related .news-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.detalle-related.is-visible .news-card                    { opacity: 1; transform: none; transition-delay: 0.25s; }
+.detalle-related.is-visible .news-card:nth-of-type(2)     { transition-delay: 0.35s; }
+.detalle-related.is-visible .news-card:nth-of-type(3)     { transition-delay: 0.45s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .detalle-back,
+  .detalle-hero .detalle-title,
+  .detalle-hero .detalle-lead,
+  .detalle-hero .detalle-chips,
+  .detalle-image,
+  .detalle-article .detalle-side,
+  .detalle-article .detalle-content-lead,
+  .detalle-article .detalle-body,
+  .panels-stack,
+  .detalle-related .detalle-related-title,
+  .detalle-related .detalle-related-grid,
+  .detalle-related .news-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1200px) {
+  .detalle-wrapper { padding: 10px 40px 0; }
+  .detalle-article { width: 100%; }
+  .detalle-article-top { flex-direction: column; gap: 24px; }
+  .detalle-side { width: 100%; padding: 0; }
+  .detalle-cta { grid-template-columns: 1fr; }
+  .detalle-cta-img { min-height: 300px; }
+  .detalle-related-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 767px) {
+  .detalle-wrapper { padding: 10px 16px 0; }
+  .detalle-main { gap: 48px; margin-top: 40px; }
+  .detalle-title { font-size: 28px; line-height: 34px; }
+  .detalle-lead, .detalle-intro, .detalle-body { font-size: 16px; line-height: 24px; }
+  .detalle-subtitle { font-size: 22px; line-height: 28px; }
+  .detalle-image { height: 260px; border-radius: 24px; }
+  .detalle-related-grid { grid-template-columns: 1fr; }
+}

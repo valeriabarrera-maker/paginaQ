@@ -365,13 +365,26 @@
     var FIG_AUTHOR = 'Autor: Valeria Barrera Serrano';
 
     var NEWS_DATA = [
-      { category: 'mascotas',   image: FIG_IMG_A, alt: 'Familia con mascota', title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR, href: '#' },
-      { category: 'comunidad',  image: FIG_IMG_B, alt: 'Comunidad Qbrete',    title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR, href: '#' },
-      { category: 'mascotas',   image: FIG_IMG_A, alt: 'Familia con mascota', title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR, href: '#' },
-      { category: 'bicicletas', image: FIG_IMG_B, alt: 'Comunidad Qbrete',    title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR, href: '#' },
-      { category: 'comunidad',  image: FIG_IMG_A, alt: 'Familia con mascota', title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR, href: '#' },
-      { category: 'bicicletas', image: FIG_IMG_B, alt: 'Comunidad Qbrete',    title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR, href: '#' }
+      { category: 'mascotas',   image: FIG_IMG_A, alt: 'Familia con mascota', title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR },
+      { category: 'comunidad',  image: FIG_IMG_B, alt: 'Comunidad Qbrete',    title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR },
+      { category: 'mascotas',   image: FIG_IMG_A, alt: 'Familia con mascota', title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR },
+      { category: 'bicicletas', image: FIG_IMG_B, alt: 'Comunidad Qbrete',    title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR },
+      { category: 'comunidad',  image: FIG_IMG_A, alt: 'Familia con mascota', title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR },
+      { category: 'bicicletas', image: FIG_IMG_B, alt: 'Comunidad Qbrete',    title: FIG_TITLE, chips: FIG_CHIPS, excerpt: FIG_EXCERPT, date: FIG_DATE, author: FIG_AUTHOR }
     ];
+
+    // Build detalle URL per item
+    NEWS_DATA.forEach(function (item) {
+      var q = new URLSearchParams({
+        title: item.title,
+        excerpt: item.excerpt,
+        date: item.date,
+        author: item.author,
+        image: item.image,
+        chips: (item.chips || []).join(',')
+      });
+      item.href = 'noticia-detalle.html?' + q.toString();
+    });
 
     // Render cards from data
     NewsCard.render('#newsGrid', NEWS_DATA);

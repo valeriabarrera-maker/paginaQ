@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalle de noticia - Qbrete</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/header.css" />
+  <link rel="stylesheet" href="assets/css/button.css" />
+  <link rel="stylesheet" href="assets/css/footer.css" />
+  <link rel="stylesheet" href="assets/css/news-card.css" />
+  <link rel="stylesheet" href="assets/css/product-card.css" />
+  <link rel="stylesheet" href="assets/css/noticia-detalle.css" />
+</head>
+
+<body>
+  <div id="header-root"></div>
+  <script src="assets/js/header.js"></script>
+
+  <div class="detalle-wrapper">
+    <img src="assets/images/decorative/deco-right.svg" class="detalle-deco" alt="" aria-hidden="true" />
+    <main class="detalle-main">
+
+      <!-- Botón Regresar (Figma: "Botón sombreado" → .btn .btn--ghost) -->
+      <a href="noticias.html" class="btn btn--ghost detalle-back" aria-label="Regresar a noticias">
+        <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M11.25 4.5L6.75 9l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>Regresar</span>
+      </a>
+
+      <!-- Hero: título + descripción + chips (Figma 718:3456, centrado) -->
+      <section class="detalle-hero">
+        <h1 class="detalle-title" id="detTitle">Lorem <span class="brand-orange">ipsum</span> dolor sit amet</h1>
+        <p class="detalle-lead" id="detLead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet nibh pretium aliquet dictum.</p>
+        <div class="detalle-chips" id="detChips">
+          <span class="detalle-chip">Mascotas</span>
+          <span class="detalle-chip">Cuidados</span>
+          <span class="detalle-chip">Familia</span>
+        </div>
+      </section>
+
+      <!-- Imagen hero -->
+      <div class="detalle-image" id="detImage" style="background-image:url('assets/images/noticias/fig-hero.jpg')" role="img" aria-label="Imagen de la noticia"></div>
+
+      <!-- Artículo: side + contenido -->
+      <section class="detalle-article">
+        <div class="detalle-article-top">
+          <aside class="detalle-side">
+            <div class="detalle-side-meta">
+              <p class="detalle-side-date" id="detDate">Enero 11, 2026</p>
+              <p class="detalle-side-name" id="detAuthor">Nombre autor</p>
+              <p class="detalle-side-role" id="detRole">Lorem ipsum dolor</p>
+            </div>
+            <div class="detalle-share" aria-label="Compartir">
+              <a href="#" class="detalle-share-btn" aria-label="Compartir en Facebook">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                  <path d="M12 0.5H24C30.3513 0.5 35.5 5.64873 35.5 12V24C35.5 30.3513 30.3513 35.5 24 35.5H12C5.64873 35.5 0.5 30.3513 0.5 24V12C0.5 5.64873 5.64873 0.5 12 0.5Z" stroke="#FF4E00"/>
+                  <path d="M22 10H19.5455C18.4605 10 17.4199 10.4214 16.6527 11.1716C15.8856 11.9217 15.4545 12.9391 15.4545 14V16.4H13V19.6H15.4545V26H18.7273V19.6H21.1818L22 16.4H18.7273V14C18.7273 13.7878 18.8135 13.5843 18.9669 13.4343C19.1204 13.2843 19.3285 13.2 19.5455 13.2H22V10Z" fill="#FF4E00"/>
+                </svg>
+              </a>
+              <a href="#" class="detalle-share-btn" aria-label="Compartir en WhatsApp">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                  <path d="M12 0.5H24C30.3513 0.5 35.5 5.64873 35.5 12V24C35.5 30.3513 30.3513 35.5 24 35.5H12C5.64873 35.5 0.5 30.3513 0.5 24V12C0.5 5.64873 5.64873 0.5 12 0.5Z" stroke="#FF4E00"/>
+                  <path d="M24.3769 11.619C23.5475 10.7857 22.5597 10.125 21.4711 9.67537C20.3825 9.22573 19.2148 8.99616 18.0362 9.00005C13.0975 9.00005 9.07236 13.005 9.07236 17.919C9.07236 19.494 9.48844 21.024 10.2663 22.374L9 27L13.7487 25.758C15.0603 26.469 16.5347 26.847 18.0362 26.847C22.9749 26.847 27 22.842 27 17.928C27 15.543 26.0683 13.302 24.3769 11.619ZM18.0362 25.335C16.6975 25.335 15.3859 24.975 14.2372 24.3L13.9658 24.138L11.1437 24.876L11.8945 22.14L11.7136 21.861C10.9696 20.6794 10.5747 19.3134 10.5739 17.919C10.5739 13.833 13.9206 10.503 18.0271 10.503C20.0171 10.503 21.8894 11.277 23.2915 12.681C23.9858 13.3685 24.536 14.1863 24.9102 15.087C25.2844 15.9877 25.4752 16.9534 25.4714 17.928C25.4894 22.014 22.1427 25.335 18.0362 25.335ZM22.1246 19.791C21.8985 19.683 20.795 19.143 20.596 19.062C20.3879 18.99 20.2432 18.954 20.0894 19.17C19.9357 19.395 19.5106 19.899 19.3839 20.043C19.2573 20.196 19.1216 20.214 18.8955 20.097C18.6693 19.989 17.9457 19.746 17.0955 18.99C16.4261 18.396 15.9829 17.667 15.8472 17.442C15.7206 17.217 15.8291 17.1 15.9467 16.983C16.0462 16.884 16.1729 16.722 16.2814 16.596C16.3899 16.47 16.4352 16.371 16.5075 16.227C16.5799 16.074 16.5437 15.948 16.4894 15.84C16.4352 15.732 15.9829 14.634 15.802 14.184C15.6211 13.752 15.4312 13.806 15.2955 13.797H14.8613C14.7075 13.797 14.4724 13.851 14.2643 14.076C14.0653 14.301 13.4864 14.841 13.4864 15.939C13.4864 17.037 14.2915 18.099 14.4 18.243C14.5085 18.396 15.9829 20.646 18.2261 21.609C18.7598 21.843 19.1759 21.978 19.5015 22.077C20.0352 22.248 20.5236 22.221 20.9126 22.167C21.3467 22.104 22.2422 21.627 22.4231 21.105C22.6131 20.583 22.6131 20.142 22.5497 20.043C22.4864 19.944 22.3508 19.899 22.1246 19.791Z" fill="#FF4E00"/>
+                </svg>
+              </a>
+              <a href="#" class="detalle-share-btn" aria-label="Compartir en X">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                  <path d="M12 0.5H24C30.3513 0.5 35.5 5.64873 35.5 12V24C35.5 30.3513 30.3513 35.5 24 35.5H12C5.64873 35.5 0.5 30.3513 0.5 24V12C0.5 5.64873 5.64873 0.5 12 0.5Z" stroke="#FF4E00"/>
+                  <path d="M23.175 9.84351H25.9354L19.9054 16.7529L27 26.1566H21.4457L17.0923 20.4545L12.1166 26.1566H9.35357L15.8027 18.7638L9 9.84479H14.6957L18.6249 15.0558L23.175 9.84351ZM22.2043 24.5006H23.7343L13.86 11.4134H12.2194L22.2043 24.5006Z" fill="#FF4E00"/>
+                </svg>
+              </a>
+            </div>
+          </aside>
+
+          <div class="detalle-content-lead">
+            <h2 class="detalle-subtitle" id="detSubtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+            <p class="detalle-intro" id="detIntro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet nibh pretium aliquet dictum. Aliquam id sapien vel erat porttitor rutrum non et urna. Donec a ante dictum, congue nulla in, pharetra tortor.</p>
+          </div>
+        </div>
+
+        <div class="detalle-body" id="detBody">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet nibh pretium aliquet dictum. Aliquam id sapien vel erat porttitor rutrum non et urna. Donec a ante dictum, congue nulla in, pharetra tortor. Curabitur a faucibus mauris. Maecenas pharetra odio sit amet nunc mattis elementum. Nulla elementum nulla non nibh egestas laoreet. Duis in nisl eget velit sollicitudin faucibus. Pellentesque felis diam, tempus vel felis et, ultricies luctus lorem. Cras tincidunt ac neque quis consequat. Nulla nec eleifend enim. Etiam aliquam massa sit amet malesuada commodo. Curabitur elit leo, rutrum non ullamcorper in, consequat ac libero.</p>
+          <p>Sed tincidunt semper pharetra. Pellentesque vestibulum consequat nulla ut gravida. In hac habitasse platea dictumst. Aenean placerat sem suscipit vestibulum mollis. Proin imperdiet nec justo sed consectetur. Suspendisse malesuada cursus turpis, vel rutrum tellus porttitor sit amet. Donec in risus ut sapien interdum consequat quis quis ex. Donec ac vehicula enim, sit amet facilisis ipsum. In hac habitasse platea dictumst.</p>
+          <p>Nam eget tempus sapien. Nulla congue posuere dui condimentum fermentum. Ut a consequat odio. Curabitur mauris turpis, mollis quis mi in, tincidunt sodales velit. Suspendisse eu pharetra mauris. Nunc quam ipsum, feugiat eu volutpat et, commodo nec neque. Donec risus velit, luctus efficitur arcu et, pellentesque pellentesque libero. Curabitur nec sem nisl. Sed luctus diam magna, convallis fermentum lectus rhoncus id.</p>
+        </div>
+      </section>
+
+      <!-- CTA Producto: product-panel Mascotas del sistema (Figma 728:3242)
+           Contenido e imagen exactos del nodo 728:3244 "Product Card" -->
+      <div class="panels-stack">
+      <div class="product-panel product-panel--mascotas">
+        <img src="assets/images/products/product-mascotas-detalle.png" class="product-image" alt="Seguro para Mascotas" />
+        <div class="product-card">
+          <div class="pc-header">
+            <div class="pc-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M20 36s13.3-6.7 13.3-16.7V8.3L20 2.7 6.7 8.3v11c0 10 13.3 16.7 13.3 16.7z" stroke="#7E60FE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="pc-chip">Popular</span>
+          </div>
+          <div class="pc-content">
+            <h3>Seguro Garritas</h3>
+            <p class="pc-desc">Seguro de mascotas con asistencia y bienestar para su día a día.</p>
+            <div class="pc-features">
+              <div class="pc-feature">
+                <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#7E60FE" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                Gastos veterinarios por accidente o enfermedad.
+              </div>
+              <div class="pc-feature">
+                <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#7E60FE" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                Consulta veterinaria en casa por enfermedad o accidente.
+              </div>
+              <div class="pc-feature">
+                <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#7E60FE" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                Gastos de cremación o entierro.
+              </div>
+              <div class="pc-feature">
+                <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#7E60FE" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                Certificado para viaje en avión.
+              </div>
+              <div class="pc-feature">
+                <div class="pc-check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#7E60FE" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                Guardería por enfermedad o viaje del propietario.
+              </div>
+            </div>
+            <a href="servicios.html" class="btn btn--primary pc-btn">Conoce más aquí.</a>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <!-- Blogs relacionados -->
+      <section class="detalle-related">
+        <h2 class="detalle-related-title">Blogs relacionados</h2>
+        <div class="detalle-related-grid" id="relatedGrid"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-wrapper">
+    <svg class="footer-curve" viewBox="0 0 1440 100" preserveAspectRatio="none" fill="#3A3A3A">
+      <path d="M0 100 C166 35 427 0 720 0 C1013 0 1274 35 1440 100 Z" />
+    </svg>
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-vigilado">
+          <img src="assets/images/footer/vigilado.png" alt="Vigilado Superintendencia Financiera" />
+        </div>
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="brand-logos">
+              <img src="assets/logos/logo-qbrete-white.svg" alt="Qbrete" class="brand-logo" />
+              <span class="brand-divider" aria-hidden="true"></span>
+              <img src="assets/images/footer/capa-1.svg" alt="La Equidad Seguros" class="brand-logo-partner" />
+            </div>
+            <p class="brand-desc">Tu seguro digital para mascotas. Protección integral con tecnología y amor. Respaldado por La <strong>Equidad Seguros.</strong></p>
+            <div class="footer-socials">
+              <a href="#" class="footer-social" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg></a>
+              <a href="#" class="footer-social" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg></a>
+              <a href="#" class="footer-social" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" /></svg></a>
+            </div>
+          </div>
+          <div class="footer-columns">
+            <div class="footer-col">
+              <div class="col-title">Accesos directos</div>
+              <div class="col-links">
+                <a href="index.html" class="col-link">Inicio</a>
+                <a href="comunidad.html" class="col-link">Mi comunidad</a>
+                <a href="beneficios.html" class="col-link">Beneficios</a>
+                <a href="noticias.html" class="col-link">Noticias</a>
+                <a href="preguntas-frecuentes.html" class="col-link">Preguntas frecuentes</a>
+              </div>
+            </div>
+            <div class="footer-col">
+              <div class="col-title">Servicios</div>
+              <div class="col-links">
+                <a href="servicios.html" class="col-link">Seguro para Mascotas</a>
+                <a href="servicios.html" class="col-link">Seguro para Bicicletas</a>
+              </div>
+            </div>
+            <div class="footer-col">
+              <div class="col-title">Legal</div>
+              <div class="col-links">
+                <a href="#" class="col-link">Politica de tratamientos de datos</a>
+                <a href="#" class="col-link">Políticas de cookies</a>
+              </div>
+            </div>
+            <div class="footer-col">
+              <div class="col-title">Contacto</div>
+              <div class="col-links">
+                <div class="footer-contact-item">
+                  <div class="footer-contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg></div>
+                  <a href="mailto:info@qbrete.com" class="col-link">info@qbrete.com</a>
+                </div>
+                <div class="footer-contact-item">
+                  <div class="footer-contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg></div>
+                  <a href="tel:+570000000000" class="col-link">+57 000 000 000</a>
+                </div>
+                <div class="footer-contact-item">
+                  <div class="footer-contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg></div>
+                  <span class="col-link">Bogotá, Colombia</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copyright">&copy; 2026 Qbrete. Todos los derechos reservados para Linktic S.A.S 2024</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/news-card.js"></script>
+  <script>
+    // Lee parámetros de URL (si vienen de la lista) y actualiza el detalle
+    var params = new URLSearchParams(window.location.search);
+    function escapeHTML(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    function set(id, val) {
+      if (!val) return;
+      var el = document.getElementById(id);
+      if (el) el.textContent = val;
+    }
+    // Título: resalta "ipsum" en naranja como en el Figma
+    if (params.get('title')) {
+      var el = document.getElementById('detTitle');
+      if (el) el.innerHTML = escapeHTML(params.get('title')).replace(/\bipsum\b/i, '<span class="brand-orange">$&</span>');
+    }
+    set('detLead', params.get('excerpt'));
+    set('detDate', params.get('date'));
+    if (params.get('author')) {
+      var a = params.get('author').replace(/^Autor:\s*/i, '');
+      set('detAuthor', a);
+    }
+    if (params.get('image')) {
+      var img = document.getElementById('detImage');
+      if (img) img.style.backgroundImage = "url('" + params.get('image') + "')";
+    }
+    if (params.get('chips')) {
+      var chipsWrap = document.getElementById('detChips');
+      if (chipsWrap) {
+        chipsWrap.innerHTML = params.get('chips').split(',').map(function (c) {
+          return '<span class="detalle-chip">' + c.trim() + '</span>';
+        }).join('');
+      }
+    }
+
+    // Blogs relacionados (3 cards usando el componente)
+    var RELATED = [
+      { image: 'assets/images/noticias/fig-card1.jpg', alt: 'Familia con mascota', title: 'Lorem ipsum dolor sit amet', chips: ['Mascotas', 'Cuidados', 'Familia'], excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet nibh pretium aliquet dictum.', date: 'Enero 11, 2026', author: 'Autor: Valeria Barrera Serrano', href: 'noticia-detalle.html' },
+      { image: 'assets/images/noticias/fig-card2.jpg', alt: 'Comunidad Qbrete',    title: 'Lorem ipsum dolor sit amet', chips: ['Mascotas', 'Cuidados', 'Familia'], excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet nibh pretium aliquet dictum.', date: 'Enero 11, 2026', author: 'Autor: Valeria Barrera Serrano', href: 'noticia-detalle.html' },
+      { image: 'assets/images/noticias/fig-card1.jpg', alt: 'Familia con mascota', title: 'Lorem ipsum dolor sit amet', chips: ['Mascotas', 'Cuidados', 'Familia'], excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet nibh pretium aliquet dictum.', date: 'Enero 11, 2026', author: 'Autor: Valeria Barrera Serrano', href: 'noticia-detalle.html' }
+    ];
+    NewsCard.render('#relatedGrid', RELATED);
+
+    // Entrance animations — IntersectionObserver
+    (function () {
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var sections = document.querySelectorAll('.detalle-back, .detalle-hero, .detalle-image, .detalle-article, .panels-stack, .detalle-related');
+      if (!sections.length) return;
+      if (reduceMotion) {
+        sections.forEach(function (s) { s.classList.add('is-visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+      sections.forEach(function (s) { io.observe(s); });
+    })();
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
