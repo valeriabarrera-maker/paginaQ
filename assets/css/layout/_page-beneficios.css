@@ -31,14 +31,14 @@ body {
   gap: 12px;
   padding: 0 16px;
   height: 72px;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
 }
 
 .ben-badge-icon {
   width: 40px;
   height: 40px;
   background: var(--color-brand-soft);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,7 +59,7 @@ body {
 
 .ben-page-header h1 {
   margin: 0;
-  font-family: 'Century Gothic', var(--font-body);
+  font-family: var(--font-display);
   font-size: 45px;
   font-weight: 700;
   line-height: 50px;
@@ -92,7 +92,7 @@ body {
   align-items: center;
   gap: 32px;
   background: var(--color-white);
-  border-radius: 9999px;
+  border-radius: var(--radius-pill);
   padding: 8px 12px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
 }
@@ -104,7 +104,7 @@ body {
   padding: 0 24px;
   height: 41px;
   border: none;
-  border-radius: 9999px;
+  border-radius: var(--radius-pill);
   background: transparent;
   color: var(--color-black);
   font-family: var(--font-body);

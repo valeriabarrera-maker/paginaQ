@@ -70,7 +70,7 @@
 }
 
 .news-card__title {
-  font-family: 'Century Gothic', var(--font-body);
+  font-family: var(--font-display);
   font-size: 24px;
   font-weight: 700;
   line-height: 31px;
@@ -92,7 +92,7 @@
   display: inline-flex;
   align-items: center;
   padding: 8px 16px;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   background: var(--nc-chip-bg);
   color: var(--nc-chip-color);
   font-family: var(--font-body);

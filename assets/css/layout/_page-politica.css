@@ -33,7 +33,7 @@ body {
 
 .policy-page-header h1 {
   margin: 0;
-  font-family: 'Century Gothic', var(--font-body);
+  font-family: var(--font-display);
   font-size: 56px;
   font-weight: 700;
   line-height: 60px;
@@ -44,7 +44,7 @@ body {
 
 .policy-desc {
   margin: 0;
-  font-family: 'Century Gothic', var(--font-body);
+  font-family: var(--font-display);
   font-size: 18px;
   font-weight: 700;
   line-height: 26px;
@@ -71,7 +71,7 @@ body {
 
 .policy-section h2 {
   margin: 0;
-  font-family: 'Century Gothic', var(--font-body);
+  font-family: var(--font-display);
   font-size: 24px;
   font-weight: 700;
   line-height: 31px;
@@ -116,7 +116,7 @@ body {
 .policy-meta {
   padding: 20px 24px;
   background: var(--color-brand-soft);
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 500;

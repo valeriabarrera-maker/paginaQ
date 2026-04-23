@@ -79,7 +79,7 @@
     }
 
     .products-header h2{
-      font-family: 'Century Gothic', var(--font-body);
+      font-family: var(--font-display);
       font-size: 45px;
       font-weight: 700;
       line-height: 50px;
@@ -100,7 +100,7 @@
       align-items: center;
       gap: 32px;
       background: var(--color-white);
-      border-radius: 9999px;
+      border-radius: var(--radius-pill);
       padding: 8px 12px;
       z-index: 10;
     }
@@ -111,7 +111,7 @@
       gap: 8px;
       padding: 0 24px;
       height: 41px;
-      border-radius: 9999px;
+      border-radius: var(--radius-pill);
       border: none;
       cursor: pointer;
       font-family: var(--font-body);
@@ -162,7 +162,7 @@
     }
 
     .noticias-header h2{
-      font-family: 'Century Gothic', var(--font-body);
+      font-family: var(--font-display);
       font-size: 45px;
       font-weight: 700;
       line-height: 50px;
@@ -189,7 +189,7 @@
     }
 
     .noticia-card{
-      border-radius: 32px;
+      border-radius: var(--radius-xl);
       padding: 32px;
       display: flex;
       flex-direction: column;
@@ -210,7 +210,7 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
-      border-radius: 32px;
+      border-radius: var(--radius-xl);
     }
 
     .noticia-card--1 .noticia-content{
@@ -226,7 +226,7 @@
     }
 
     .noticia-card--1 .noticia-title{
-      font-family: 'Century Gothic', var(--font-body);
+      font-family: var(--font-display);
       font-size: 24px;
       font-weight: 700;
       color: var(--color-white);
@@ -277,7 +277,7 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
-      border-radius: 32px;
+      border-radius: var(--radius-xl);
     }
 
     .noticia-card--4 .noticia-content{
@@ -460,7 +460,7 @@
     }
 
     .testimonios-left h2{
-      font-family: 'Century Gothic', var(--font-body);
+      font-family: var(--font-display);
       font-size: 45px;
       font-weight: 700;
       line-height: 50px;
@@ -501,7 +501,7 @@
 
     .testimonio-card{
       background: var(--color-white);
-      border-radius: 32px;
+      border-radius: var(--radius-xl);
       padding: 32px;
       display: flex;
       flex-direction: column;
@@ -569,7 +569,7 @@
       position: relative;
       max-width: 1240px;
       margin: 140px auto 0;
-      border-radius: 32px;
+      border-radius: var(--radius-xl);
       text-align: center;
       z-index: 1;
       padding: 32px 0;
@@ -580,7 +580,7 @@
     }
 
     .section-comunidad h2{
-      font-family: 'Century Gothic', var(--font-body);
+      font-family: var(--font-display);
       font-size: 72px;
       font-weight: 700;
       color: var(--color-black);
@@ -651,7 +651,7 @@
     }
 
     .community-gallery .gallery-img{
-      border-radius: 32px;
+      border-radius: var(--radius-xl);
       object-fit: cover;
       flex-shrink: 0;
       will-change: transform;
@@ -750,7 +750,7 @@
     }
 
     .hero-content h1{
-      font-family: 'Century Gothic', var(--font-body);
+      font-family: var(--font-display);
       font-size: 45px;
       font-weight: 700;
       line-height: 50px;
@@ -853,7 +853,7 @@
 
     .hero-card-content h2{
       margin: 0;
-      font-family: 'Century Gothic', var(--font-body);
+      font-family: var(--font-display);
       font-size: 45px;
       font-weight: 700;
       line-height: 50px;
@@ -923,7 +923,7 @@
       gap: 12px;
       background: var(--color-white);
       padding: 16px;
-      border-radius: 16px;
+      border-radius: var(--radius-md);
       box-shadow: 0 8px 10px -6px rgba(0, 0, 0, 0.1), 0 20px 25px -5px rgba(0, 0, 0, 0.1);
     }
 
@@ -1030,7 +1030,7 @@
     }
 
     .entrar-iz h2{
-      font-family: 'Century Gothic', var(--font-body);
+      font-family: var(--font-display);
       font-size: 45px;
       font-weight: 700;
       line-height: 50px;
@@ -1085,7 +1085,7 @@
       align-items: center;
       gap: 16px;
       padding: 16px 24px;
-      border-radius: 32px;
+      border-radius: var(--radius-xl);
       color: var(--color-white);
       font-family: var(--font-body);
       font-size: 18px;
@@ -1178,7 +1178,7 @@
     }
 
     .about-left h2{
-      font-family: 'Century Gothic', var(--font-body);
+      font-family: var(--font-display);
       font-size: 45px;
       font-weight: 700;
       line-height: 50px;
@@ -1228,7 +1228,7 @@
       left: 50%;
       width: 328px;
       background: var(--color-white);
-      border-radius: 24px;
+      border-radius: var(--radius-lg);
       padding: 32px;
       display: flex;
       flex-direction: column;
@@ -1277,7 +1277,7 @@
       width: 56px;
       height: 56px;
       background: linear-gradient(180deg, var(--color-brand) 0%, var(--color-brand-light) 100%);
-      border-radius: 16px;
+      border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1289,7 +1289,7 @@
     }
 
     .about-card h3{
-      font-family: 'Century Gothic', var(--font-body);
+      font-family: var(--font-display);
       font-size: 20px;
       font-weight: 700;
       line-height: 22px;
@@ -1315,7 +1315,7 @@
     .about-dot{
       width: 12px;
       height: 12px;
-      border-radius: 9999px;
+      border-radius: var(--radius-pill);
       background: #FFD4C2;
       border: none;
       cursor: pointer;
@@ -1456,7 +1456,7 @@
       .noticia-card{
         min-height: 260px;
         padding: 28px;
-        border-radius: 24px;
+        border-radius: var(--radius-lg);
       }
 
     }
@@ -1646,7 +1646,7 @@
       /* Community */
       .section-comunidad{
         margin: 80px 24px 0;
-        border-radius: 24px;
+        border-radius: var(--radius-lg);
       }
 
       .section-comunidad h2{
@@ -1966,7 +1966,7 @@
         height: 240px !important;
         width: 200px !important;
         scroll-snap-align: start;
-        border-radius: 16px;
+        border-radius: var(--radius-md);
       }
 
       .community-gallery .gallery-img:nth-child(5){
@@ -2059,7 +2059,7 @@
       .noticia-card{
         min-height: 200px;
         padding: 20px;
-        border-radius: 16px;
+        border-radius: var(--radius-md);
       }
 
       .noticia-card--1 .noticia-title{

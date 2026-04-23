@@ -103,7 +103,7 @@
 .product-card__icon {
   width: 64px;
   height: 64px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,7 +118,7 @@
 
 .product-card__chip {
   padding: 8px 16px;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
@@ -237,7 +237,7 @@
     grid-template-columns: 1fr;
     padding: 20px;
     gap: 16px;
-    border-radius: 24px;
+    border-radius: var(--radius-lg);
     top: 0 !important;
     transform: none !important;
     opacity: 1 !important;
@@ -246,12 +246,12 @@
 
   .product-panel__image {
     height: 200px;
-    border-radius: 16px;
+    border-radius: var(--radius-md);
   }
 
   .product-card {
     padding: 20px;
-    border-radius: 16px;
+    border-radius: var(--radius-md);
   }
 
   .product-card__features {

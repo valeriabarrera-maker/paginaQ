@@ -57,7 +57,7 @@
   align-items: center;
   padding: 8px 16px;
   background: var(--cc-chip-bg);
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
@@ -91,7 +91,7 @@
 }
 
 .community-card__title {
-  font-family: 'Century Gothic', var(--font-body);
+  font-family: var(--font-display);
   font-size: 24px;
   font-weight: 700;
   line-height: 31px;
