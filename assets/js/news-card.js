@@ -48,6 +48,7 @@
     if (data.category) article.setAttribute('data-category', data.category);
     article.setAttribute('role', 'article');
     if (alt) article.setAttribute('aria-label', alt);
+    if (href && href !== '#') article.setAttribute('data-href', href);
 
     var chipsHTML = chips.map(function (c) {
       return '<span class="news-card__chip">' + escapeHTML(c) + '</span>';
@@ -74,7 +75,31 @@
         '</div>' +
       '</div>';
 
+    if (href && href !== '#') attachCardNavigation(article, href);
+
     return article;
+  }
+
+  /**
+   * Hace toda la card clicable manteniendo el <a> interno como punto
+   * de foco accesible. Respeta selección de texto, modificadores
+   * (cmd/ctrl/shift → nueva pestaña) y clicks sobre elementos interactivos.
+   */
+  function attachCardNavigation(article, href) {
+    article.addEventListener('click', function (e) {
+      if (e.target.closest('a, button')) return;
+      if (window.getSelection && String(window.getSelection()).length) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) {
+        window.open(href, '_blank', 'noopener');
+      } else {
+        window.location.href = href;
+      }
+    });
+    article.addEventListener('auxclick', function (e) {
+      if (e.button !== 1) return;
+      if (e.target.closest('a, button')) return;
+      window.open(href, '_blank', 'noopener');
+    });
   }
 
   /**

@@ -35,6 +35,10 @@
   display: none;
 }
 
+.news-card[data-href] {
+  cursor: pointer;
+}
+
 .news-card__image {
   width: var(--nc-width);
   height: var(--nc-image-height);
