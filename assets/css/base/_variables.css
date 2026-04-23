@@ -6,10 +6,11 @@
 
 :root {
   /* --- Color: marca -------------------------------------------------------- */
-  --color-brand:        #FF4E00;  /* naranja principal */
-  --color-brand-dark:   #CC3E00;  /* hover / pressed */
-  --color-brand-light:  #FF8A5C;  /* acentos suaves */
-  --color-brand-soft:   #FFF2E5;  /* backgrounds pálidos */
+  --color-brand:         #FF4E00;  /* naranja principal */
+  --color-brand-dark:    #CC3E00;  /* hover / pressed */
+  --color-brand-darker:  #992F00;  /* active (pressed) */
+  --color-brand-light:   #FF8A5C;  /* acentos suaves */
+  --color-brand-soft:    #FFF2E5;  /* backgrounds pálidos */
 
   /* --- Color: acentos secundarios ----------------------------------------- */
   --color-purple:       #7E60FE;  /* product-panel mascotas */
@@ -20,12 +21,15 @@
   --color-white:        #fff;
   --color-ink:          #101828;  /* texto principal oscuro */
   --color-neutral-700:  #3A3A3A;  /* texto secundario */
+  --color-neutral-600:  #808081;  /* texto disabled */
   --color-neutral-500:  #475467;  /* texto muted */
   --color-neutral-400:  #A8A7A7;  /* placeholders / bordes */
+  --color-neutral-100:  #F9F9F9;  /* background disabled */
 
   /* --- Sombras ------------------------------------------------------------ */
   --shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-md:  0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-btn: 12px 12px 45px 0 rgba(168, 168, 168, 0.15);
 
   /* --- Radios ------------------------------------------------------------- */
   --radius-sm:    8px;
@@ -35,8 +39,10 @@
   --radius-pill: 9999px;
 
   /* --- Tipografía --------------------------------------------------------- */
-  --font-body:    'Montserrat', sans-serif;
-  --font-display: 'Century Gothic', 'Montserrat', sans-serif;
+  --font-body:       'Montserrat', sans-serif;
+  --font-display:    'Century Gothic', 'Montserrat', sans-serif;
+  --font-button:     600 16px/1.13 'Montserrat', sans-serif;
+  --font-button-sm:  600 14px/1.14 'Montserrat', sans-serif;
 
   /* --- Motion ------------------------------------------------------------- */
   --ease-out-expo:  cubic-bezier(0.22, 1, 0.36, 1);  /* estándar del proyecto */

@@ -2,7 +2,7 @@
 
 .benefit-card {
   width: 384px;
-  background: #fff;
+  background: var(--color-white);
   border-radius: 32px;
   overflow: hidden;
   display: flex;
@@ -42,30 +42,30 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  background: linear-gradient(180deg, #FF4E00 0%, #FF8A5C 100%);
+  background: linear-gradient(180deg, var(--color-brand) 0%, var(--color-brand-light) 100%);
   border-top-left-radius: 16px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 16px;
   border-bottom-left-radius: 0;
-  color: #fff;
+  color: var(--color-white);
   text-align: center;
 }
 
 .benefit-card__discount-num {
-  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-family: 'Century Gothic', var(--font-body);
   font-size: 20px;
   font-weight: 700;
   line-height: 22px;
-  color: #fff;
+  color: var(--color-white);
   text-align: center;
 }
 
 .benefit-card__discount-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
-  color: #fff;
+  color: var(--color-white);
   text-align: center;
 }
 
@@ -95,11 +95,11 @@
 
 .benefit-card__date {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
-  color: #000;
+  color: var(--color-black);
   text-align: right;
 }
 
@@ -113,21 +113,21 @@
 
 .benefit-card__title {
   margin: 0;
-  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-family: 'Century Gothic', var(--font-body);
   font-size: 20px;
   font-weight: 700;
   line-height: 22px;
-  color: #000;
+  color: var(--color-black);
   text-align: center;
 }
 
 .benefit-card__text {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
-  color: #000;
+  color: var(--color-black);
   text-align: center;
 }
 
@@ -140,16 +140,16 @@
 
 .benefit-card__code {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 18px;
   font-weight: 600;
   line-height: 28px;
-  color: #000;
+  color: var(--color-black);
   text-align: center;
 }
 
 .benefit-card__code-value {
-  color: #FF4E00;
+  color: var(--color-brand);
   font-weight: 700;
 }
 
@@ -166,7 +166,7 @@
 }
 
 .benefit-card__share:hover {
-  color: #FF4E00;
+  color: var(--color-brand);
 }
 
 /* Grid */

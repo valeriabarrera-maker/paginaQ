@@ -9,7 +9,7 @@
   --sc-width: 384px;
   --sc-min-height: 638px;
   --sc-radius: 32px;
-  --sc-bg: #FFFFFF;
+  --sc-bg: var(--color-white);
   --sc-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
   --sc-shadow-hover: 0 8px 40px rgba(0, 0, 0, 0.12);
 
@@ -20,10 +20,10 @@
   --sc-body-padding: 24px;
   --sc-body-gap: 32px;
 
-  --sc-accent: #FF4E00;
-  --sc-accent-gradient: linear-gradient(180deg, #FF4E00, #FF8A5C);
-  --sc-chip-bg: linear-gradient(135deg, #FFF2E5 10%, #FFFFFF 70%);
-  --sc-check-bg: linear-gradient(to top, #FFF2E5 10%, #FFFFFF 70%);
+  --sc-accent: var(--color-brand);
+  --sc-accent-gradient: linear-gradient(180deg, var(--color-brand), var(--color-brand-light));
+  --sc-chip-bg: linear-gradient(135deg, var(--color-brand-soft) 10%, var(--color-white) 70%);
+  --sc-check-bg: linear-gradient(to top, var(--color-brand-soft) 10%, var(--color-white) 70%);
 }
 
 /* ========== CARD ========== */
@@ -88,7 +88,7 @@
   padding: 8px 16px;
   background: var(--sc-chip-bg);
   border-radius: 16px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
   color: var(--sc-accent);
@@ -110,19 +110,19 @@
 }
 
 .service-card__title {
-  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-family: 'Century Gothic', var(--font-body);
   font-size: 24px;
   font-weight: 700;
   line-height: 31px;
-  color: #000;
+  color: var(--color-black);
 }
 
 .service-card__desc {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
-  color: #000;
+  color: var(--color-black);
 }
 
 /* ========== FEATURES LIST ========== */
@@ -136,10 +136,10 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 400;
-  color: #000;
+  color: var(--color-black);
 }
 
 .service-card__check {

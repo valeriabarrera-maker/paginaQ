@@ -17,12 +17,12 @@
   --nc-info-gap: 16px;
   --nc-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
   --nc-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.12);
-  --nc-chip-bg: #FFF2E5;
-  --nc-chip-color: #FF4E00;
-  --nc-title-color: #000;
-  --nc-text-color: #000;
+  --nc-chip-bg: var(--color-brand-soft);
+  --nc-chip-color: var(--color-brand);
+  --nc-title-color: var(--color-black);
+  --nc-text-color: var(--color-black);
   /* Ángulo derivado de gradientTransform de Figma: ~99° (casi horizontal, leve descenso) */
-  --nc-arrow-gradient: linear-gradient(99deg, #FF8A5C 0%, #FF4E00 70%);
+  --nc-arrow-gradient: linear-gradient(99deg, var(--color-brand-light) 0%, var(--color-brand) 70%);
 
   width: var(--nc-width);
   height: var(--nc-height);
@@ -49,7 +49,7 @@
   width: var(--nc-body-width);
   height: var(--nc-body-height);
   margin: calc(-1 * var(--nc-body-overlap)) auto 0;
-  background: #fff;
+  background: var(--color-white);
   border-radius: var(--nc-radius);
   padding: var(--nc-body-padding);
   display: flex;
@@ -59,8 +59,8 @@
   box-shadow: var(--nc-shadow);
   position: relative;
   z-index: 1;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.35s var(--ease-out-expo),
+              box-shadow 0.35s var(--ease-out-expo);
 }
 
 .news-card__info {
@@ -70,7 +70,7 @@
 }
 
 .news-card__title {
-  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-family: 'Century Gothic', var(--font-body);
   font-size: 24px;
   font-weight: 700;
   line-height: 31px;
@@ -95,7 +95,7 @@
   border-radius: 16px;
   background: var(--nc-chip-bg);
   color: var(--nc-chip-color);
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 600;
   line-height: 14px;
@@ -103,7 +103,7 @@
 }
 
 .news-card__desc {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 18px;
   font-weight: 400;
   line-height: 26px;
@@ -129,7 +129,7 @@
 
 .news-card__date,
 .news-card__author {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
@@ -145,7 +145,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--color-white);
   text-decoration: none;
   flex-shrink: 0;
   transition: transform 0.2s ease;
@@ -170,8 +170,8 @@
   opacity: 0;
   transform: translateY(10px);
   transition:
-    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.9s var(--ease-out-quint),
+    transform 0.9s var(--ease-out-quint);
   will-change: opacity, transform;
 }
 

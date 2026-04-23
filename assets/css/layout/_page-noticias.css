@@ -4,33 +4,7 @@
    ========================================== */
 
 body {
-  background: #fff;
-}
-
-.page-wrapper {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 10px 100px 0;
-  position: relative;
-}
-
-.brand-orange {
-  color: #FF4E00;
-}
-
-.deco-vector {
-  position: absolute;
-  top: -10px;
-  right: 10px;
-  width: 479px;
-  height: 885px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.deco-vector path {
-  fill: #FF4E00;
-  fill-opacity: 0.2;
+  background: var(--color-white);
 }
 
 .news-main {
@@ -63,7 +37,7 @@ body {
 .news-badge-icon {
   width: 40px;
   height: 40px;
-  background: #FFF2E5;
+  background: var(--color-brand-soft);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -76,31 +50,31 @@ body {
 }
 
 .news-badge span {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 18px;
   font-weight: 600;
   line-height: 28px;
-  color: #101828;
+  color: var(--color-ink);
 }
 
 .news-page-header h1 {
   margin: 0;
-  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-family: 'Century Gothic', var(--font-body);
   font-size: 45px;
   font-weight: 700;
   line-height: 50px;
-  color: #000;
+  color: var(--color-black);
   text-align: center;
   max-width: 1000px;
 }
 
 .news-desc {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 18px;
   font-weight: 400;
   line-height: 26px;
-  color: #000;
+  color: var(--color-black);
   text-align: center;
   max-width: 1000px;
 }
@@ -117,7 +91,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 32px;
-  background: #fff;
+  background: var(--color-white);
   border-radius: 9999px;
   padding: 8px 12px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
@@ -134,8 +108,8 @@ body {
   border: none;
   border-radius: 9999px;
   background: transparent;
-  color: #000;
-  font-family: 'Montserrat', sans-serif;
+  color: var(--color-black);
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
@@ -144,8 +118,8 @@ body {
 }
 
 .news-tab.active {
-  background: linear-gradient(to bottom, #FF4E00 0%, #FF8A5C 100%);
-  color: #fff;
+  background: linear-gradient(to bottom, var(--color-brand) 0%, var(--color-brand-light) 100%);
+  color: var(--color-white);
 }
 
 /* ===== NEWS GRID ===== */
@@ -165,8 +139,8 @@ body {
 .news-list .news-tabs {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.7s var(--ease-out-expo),
+              transform 0.7s var(--ease-out-expo);
   will-change: opacity, transform;
 }
 

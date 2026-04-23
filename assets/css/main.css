@@ -18,6 +18,7 @@
 @import "components/_card-product.css";
 
 /* ---- Layout (páginas) ---- */
+@import "layout/_shared.css";
 @import "layout/_page-home.css";
 @import "layout/_page-servicios.css";
 @import "layout/_page-comunidad.css";

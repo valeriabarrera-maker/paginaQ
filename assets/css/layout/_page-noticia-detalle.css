@@ -10,8 +10,8 @@
 
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(180deg, #fff 51%, #FFF7ED 100%);
+  font-family: var(--font-body);
+  background: linear-gradient(180deg, var(--color-white) 51%, #FFF7ED 100%);
   overflow-x: hidden;
 }
 
@@ -31,7 +31,7 @@ body {
   pointer-events: none;
   z-index: 0;
 }
-.detalle-deco path { fill: #FF4E00; fill-opacity: 0.2; }
+.detalle-deco path { fill: var(--color-brand); fill-opacity: 0.2; }
 
 .detalle-main {
   display: flex;
@@ -45,13 +45,13 @@ body {
 
 /* ===== BOTÓN REGRESAR — usa .btn .btn--ghost del sistema (button.css)
    Figma "Botón sombreado" 723:4827: 144×40, padding 10/20, radius 16, gap 12,
-   bg transparente, texto orange-main #FF4E00, sombra solo en hover.
+   bg transparente, texto orange-main var(--color-brand), sombra solo en hover.
    ========================================== */
 .detalle-back {
   align-self: flex-start;
-  color: var(--orange-main);
+  color: var(--color-brand);
 }
-.detalle-back:hover { color: var(--orange-dark); }
+.detalle-back:hover { color: var(--color-brand-dark); }
 .detalle-back svg { width: 18px; height: 18px; }
 
 /* ===== HERO (título + desc + chips) — centrado horizontal
@@ -66,22 +66,22 @@ body {
 }
 .detalle-title {
   margin: 0;
-  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-family: 'Century Gothic', var(--font-body);
   font-size: 45px;
   font-weight: 700;
   line-height: 50px;
-  color: #000;
+  color: var(--color-black);
   max-width: 983px;
   text-align: center;
 }
-.detalle-title .brand-orange { color: #FF4E00; }
+.detalle-title .brand-orange { color: var(--color-brand); }
 .detalle-lead {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 18px;
   font-weight: 400;
   line-height: 26px;
-  color: #000;
+  color: var(--color-black);
   max-width: 591px;
   text-align: center;
 }
@@ -97,9 +97,9 @@ body {
   align-items: center;
   padding: 8px 16px;
   border-radius: 16px;
-  background: linear-gradient(to top, #FFF2E5 10%, #fff 70%);
-  color: #FF4E00;
-  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(to top, var(--color-brand-soft) 10%, var(--color-white) 70%);
+  color: var(--color-brand);
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
@@ -146,7 +146,7 @@ body {
   align-items: center;
   gap: 32px;
   padding: 32px;
-  background: #fff;
+  background: var(--color-white);
   border-radius: 32px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
 }
@@ -161,31 +161,31 @@ body {
 }
 .detalle-side-date {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
-  color: #000;
+  color: var(--color-black);
 }
 .detalle-side-name {
   margin: 0;
-  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-family: 'Century Gothic', var(--font-body);
   font-size: 24px;
   font-weight: 700;
   line-height: 31px;
-  color: #000;
+  color: var(--color-black);
 }
 .detalle-side-role {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
-  color: #000;
+  color: var(--color-black);
 }
 
 /* Share — Figma 718:3663: 3 botones 36×36 con borde + icono embebidos en el SVG
-   (Iconoir facebook/whatsapp/X con stroke #FF4E00 y radius 12 dentro del path) */
+   (Iconoir facebook/whatsapp/X con stroke var(--color-brand) y radius 12 dentro del path) */
 .detalle-share {
   display: flex;
   gap: 12px;
@@ -216,28 +216,28 @@ body {
 }
 .detalle-subtitle {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 28px;
   font-weight: 700;
   line-height: 32px;
-  color: #000;
+  color: var(--color-black);
 }
 .detalle-intro {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 18px;
   font-weight: 400;
   line-height: 26px;
-  color: #000;
+  color: var(--color-black);
 }
 
 /* Body largo */
 .detalle-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 18px;
   font-weight: 400;
   line-height: 26px;
-  color: #000;
+  color: var(--color-black);
 }
 .detalle-body p { margin: 0 0 16px; }
 .detalle-body p:last-child { margin-bottom: 0; }
@@ -263,11 +263,11 @@ body {
 }
 .detalle-related-title {
   margin: 0;
-  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-family: 'Century Gothic', var(--font-body);
   font-size: 24px;
   font-weight: 700;
   line-height: 31px;
-  color: #000;
+  color: var(--color-black);
 }
 .detalle-related-grid {
   display: grid;
@@ -290,8 +290,8 @@ body {
 .detalle-related .detalle-related-grid {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.7s var(--ease-out-expo),
+              transform 0.7s var(--ease-out-expo);
   will-change: opacity, transform;
 }
 
@@ -315,8 +315,8 @@ body {
 .detalle-related .news-card {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.7s var(--ease-out-expo),
+              transform 0.7s var(--ease-out-expo);
 }
 
 .detalle-related.is-visible .news-card                    { opacity: 1; transform: none; transition-delay: 0.25s; }

@@ -25,10 +25,10 @@
   --cc-info-gap: 16px;
   --cc-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
   --cc-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.12);
-  --cc-chip-bg: linear-gradient(to top, #FFF2E5 10%, #fff 70%);
-  --cc-chip-color: #FF4E00;
-  --cc-title-color: #000;
-  --cc-desc-color: #000;
+  --cc-chip-bg: linear-gradient(to top, var(--color-brand-soft) 10%, var(--color-white) 70%);
+  --cc-chip-color: var(--color-brand);
+  --cc-title-color: var(--color-black);
+  --cc-desc-color: var(--color-black);
 
   width: var(--cc-width);
   height: var(--cc-height);
@@ -58,7 +58,7 @@
   padding: 8px 16px;
   background: var(--cc-chip-bg);
   border-radius: 16px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
@@ -70,7 +70,7 @@
   width: var(--cc-body-width);
   height: var(--cc-body-height);
   margin: calc(-1 * var(--cc-body-overlap)) auto 0;
-  background: #fff;
+  background: var(--color-white);
   border-radius: var(--cc-radius);
   padding: var(--cc-body-padding);
   display: flex;
@@ -80,8 +80,8 @@
   box-shadow: var(--cc-shadow);
   position: relative;
   z-index: 1;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.35s var(--ease-out-expo),
+              box-shadow 0.35s var(--ease-out-expo);
 }
 
 .community-card__info {
@@ -91,7 +91,7 @@
 }
 
 .community-card__title {
-  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-family: 'Century Gothic', var(--font-body);
   font-size: 24px;
   font-weight: 700;
   line-height: 31px;
@@ -100,7 +100,7 @@
 }
 
 .community-card__desc {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
@@ -120,10 +120,10 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
-  color: #000;
+  color: var(--color-black);
 }
 
 .community-card__members-icon {
@@ -147,8 +147,8 @@
   opacity: 0;
   transform: translateY(10px);
   transition:
-    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.9s var(--ease-out-quint),
+    transform 0.9s var(--ease-out-quint);
   will-change: opacity, transform;
 }
 

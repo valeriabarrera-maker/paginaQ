@@ -7,48 +7,48 @@
 /* ========== VARIABLES POR VARIANTE ========== */
 /* Default (fallback): naranja */
 .product-panel {
-  --pc-panel-bg: linear-gradient(135deg, #FF4E00 0%, #CC3E00 100%);
+  --pc-panel-bg: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
   --pc-panel-padding: 32px;
   --pc-panel-radius: 32px;
   --pc-panel-gap: 32px;
 
-  --pc-card-bg: #FFFFFF;
+  --pc-card-bg: var(--color-white);
   --pc-card-border: #F5F5F5;
   --pc-card-radius: 24px;
   --pc-card-padding: 36px;
   --pc-card-gap: 16px;
   --pc-card-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
 
-  --pc-accent: #FF4E00;
-  --pc-accent-hover: #CC3E00;
-  --pc-accent-text: #FFFFFF;
+  --pc-accent: var(--color-brand);
+  --pc-accent-hover: var(--color-brand-dark);
+  --pc-accent-text: var(--color-white);
 
-  --pc-chip-bg: #FFF2E5;
+  --pc-chip-bg: var(--color-brand-soft);
   --pc-chip-color: var(--pc-accent);
-  --pc-icon-bg: #FFF2E5;
-  --pc-check-bg: #FFF2E5;
+  --pc-icon-bg: var(--color-brand-soft);
+  --pc-check-bg: var(--color-brand-soft);
 }
 
 /* Mascotas — morado/violeta */
 .product-panel--mascotas {
   --pc-panel-bg: linear-gradient(135deg, #A086F9 1%, #885FFF 55%);
-  --pc-accent: #7E60FE;
+  --pc-accent: var(--color-purple);
   --pc-accent-hover: #6B4EEB;
-  --pc-chip-bg: linear-gradient(to top, #FFF2E5 10%, #FFFFFF 70%);
-  --pc-chip-color: #7E60FE;
-  --pc-icon-bg: linear-gradient(to top, #FFF2E5 10%, #FFFFFF 70%);
-  --pc-check-bg: linear-gradient(to top, #FFF2E5 10%, #FFFFFF 70%);
+  --pc-chip-bg: linear-gradient(to top, var(--color-brand-soft) 10%, var(--color-white) 70%);
+  --pc-chip-color: var(--color-purple);
+  --pc-icon-bg: linear-gradient(to top, var(--color-brand-soft) 10%, var(--color-white) 70%);
+  --pc-check-bg: linear-gradient(to top, var(--color-brand-soft) 10%, var(--color-white) 70%);
 }
 
 /* Bicicletas — azul */
 .product-panel--bicicletas {
-  --pc-panel-bg: linear-gradient(160deg, #546AFF 0%, #1E3D8B 100%);
-  --pc-accent: #1E3D8B;
+  --pc-panel-bg: linear-gradient(160deg, #546AFF 0%, var(--color-accent-blue) 100%);
+  --pc-accent: var(--color-accent-blue);
   --pc-accent-hover: #162F6E;
-  --pc-chip-bg: #FFF2E5;
-  --pc-chip-color: #1E3D8B;
-  --pc-icon-bg: #FFF2E5;
-  --pc-check-bg: #FFF2E5;
+  --pc-chip-bg: var(--color-brand-soft);
+  --pc-chip-color: var(--color-accent-blue);
+  --pc-icon-bg: var(--color-brand-soft);
+  --pc-check-bg: var(--color-brand-soft);
 }
 
 /* ========== PANEL (contenedor) ========== */
@@ -119,7 +119,7 @@
 .product-card__chip {
   padding: 8px 16px;
   border-radius: 16px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
@@ -136,20 +136,20 @@
 
 .product-card__title {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 28px;
   font-weight: 700;
   line-height: 32px;
-  color: #000;
+  color: var(--color-black);
 }
 
 .product-card__desc {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
-  color: #000;
+  color: var(--color-black);
 }
 
 /* ---- Features list ---- */
@@ -163,10 +163,10 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 22px;
-  color: #000;
+  color: var(--color-black);
 }
 
 .product-card__check {

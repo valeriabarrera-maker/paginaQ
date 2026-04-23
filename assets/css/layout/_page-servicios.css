@@ -16,7 +16,7 @@
 }
 
 body {
-  background: linear-gradient(155deg, #ffffff 0%, #fff7ed 100%);
+  background: linear-gradient(155deg, var(--color-white) 0%, #fff7ed 100%);
 }
 
 /* ===== SCROLL PROGRESS ===== */
@@ -25,32 +25,14 @@ body {
   top: 0;
   left: 0;
   height: 3px;
-  background: #FF4E00;
+  background: var(--color-brand);
   z-index: 9999;
   transition: width 0.1s;
 }
 
-/* ===== WRAPPER ===== */
+/* ===== WRAPPER (override del padding vs _shared.css) ===== */
 .page-wrapper {
-  position: relative;
-  max-width: 1440px;
-  margin: 0 auto;
   padding: 10px 100px;
-}
-
-.deco-vector {
-  position: absolute;
-  top: -10px;
-  right: 10px;
-  width: 479px;
-  height: 885px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.deco-vector path {
-  fill: #FF4E00;
-  fill-opacity: 0.2;
 }
 
 /* ===== MAIN SECTION ===== */
@@ -85,7 +67,7 @@ body {
 .badge-icon {
   width: 40px;
   height: 40px;
-  background: #FFF2E5;
+  background: var(--color-brand-soft);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -98,10 +80,10 @@ body {
 }
 
 .page-header-badge span {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 18px;
   font-weight: 600;
-  color: #101828;
+  color: var(--color-ink);
   line-height: 28px;
 }
 
@@ -110,17 +92,17 @@ body {
   font-size: 45px;
   font-weight: 700;
   line-height: 50px;
-  color: #000;
+  color: var(--color-black);
   text-align: center;
   max-width: 1000px;
 }
 
 .page-header .subtitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 18px;
   font-weight: 400;
   line-height: 26px;
-  color: #000;
+  color: var(--color-black);
   text-align: center;
   max-width: 998px;
   margin: 0 auto;
@@ -128,7 +110,7 @@ body {
 
 /* ===== HOW IT WORKS ===== */
 .how-it-works {
-  background: #fff;
+  background: var(--color-white);
   border-radius: 32px;
   padding: 48px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
@@ -150,15 +132,15 @@ body {
   font-size: 45px;
   font-weight: 700;
   line-height: 50px;
-  color: #000;
+  color: var(--color-black);
 }
 
 .how-header p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 18px;
   font-weight: 400;
   line-height: 26px;
-  color: #000;
+  color: var(--color-black);
 }
 
 .steps-container {
@@ -176,7 +158,7 @@ body {
   right: auto;
   width: 874px;
   height: 1px;
-  background: linear-gradient(90deg, #FF4E00, #FF8A5C);
+  background: linear-gradient(90deg, var(--color-brand), var(--color-brand-light));
   z-index: 0;
 }
 
@@ -195,7 +177,7 @@ body {
 .step-icon {
   width: 96px;
   height: 96px;
-  background: linear-gradient(180deg, #FF4E00, #FF8A5C);
+  background: linear-gradient(180deg, var(--color-brand), var(--color-brand-light));
   border-radius: 24px;
   display: flex;
   align-items: center;
@@ -222,7 +204,7 @@ body {
   font-size: 24px;
   font-weight: 700;
   line-height: 31px;
-  color: #FF4E00;
+  color: var(--color-brand);
 }
 
 .step-text h3 {
@@ -230,15 +212,15 @@ body {
   font-size: 24px;
   font-weight: 700;
   line-height: 31px;
-  color: #000;
+  color: var(--color-black);
 }
 
 .step-text p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
-  color: #000;
+  color: var(--color-black);
 }
 
 /* ===== SERVICES GRID ===== */
@@ -261,15 +243,15 @@ body {
   font-size: 40px;
   font-weight: 700;
   line-height: 50px;
-  color: #000;
+  color: var(--color-black);
 }
 
 .services-header p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   font-size: 18px;
   font-weight: 400;
   line-height: 26px;
-  color: #000;
+  color: var(--color-black);
 }
 
 .services-grid {
