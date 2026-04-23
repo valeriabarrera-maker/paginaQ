@@ -5,6 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Qbrete - Tu seguro reinventado</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="assets/favicon/site.webmanifest" />
+  <link rel="shortcut icon" href="favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -43,7 +49,7 @@
             <h1><span class="brand-orange">Qbrete:</span> la forma más fácil de comprar seguros por internet</h1>
             <p class="subtitle"><strong>Qbrete es la plataforma de La Equidad Seguros</strong> que hace más simple la venta de seguros por internet, con <strong>procesos ágiles, respaldo confiable y asistencia</strong> virtual cuando la necesitas.</p>
             <div class="hero-buttons">
-              <a href="#" class="btn btn--primary btn--lg">Conoce nuestros seguros <svg class="btn__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a href="servicios.html" class="btn btn--primary btn--lg">Conoce nuestros seguros <svg class="btn__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="hero-stats">
               <div class="stat">
@@ -149,7 +155,7 @@
           <span class="logo-divider" aria-hidden="true"></span>
           <img src="assets/logos/logo-equidad-gray.svg" alt="La Equidad Seguros" class="logo-partner" />
         </div>
-        <a href="#" class="btn btn--outline">Conoce nuestros seguros <svg class="btn__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="servicios.html" class="btn btn--outline">Conoce nuestros seguros <svg class="btn__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
 
       <!-- entrar_de: entra de derecha a izquierda -->
@@ -290,7 +296,7 @@
     <section class="section-comunidad">
       <h2>Una comunidad con apoyo real para tu <span>día a día</span></h2>
       <p class="comunidad-subtitle">En Mi Comunidad encuentras contenido, redes de apoyo y experiencias compartidas para acompañarte más allá del seguro. Porque en Qbrete creemos en una protección más cercana, útil y conectada contigo.</p>
-      <a href="#" class="btn btn--secondary">
+      <a href="comunidad.html" class="btn btn--secondary">
         Ir a mi Comunidad
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round" />
@@ -1478,6 +1484,52 @@
           updateTarget();
         }, 300);
       });
+    })();
+  </script>
+
+  <script>
+    // --- Hero stats count-up (pareja de .com-stats en comunidad.html) ---
+    (function () {
+      var hero = document.querySelector('.hero');
+      if (!hero) return;
+      var nums = hero.querySelectorAll('.hero-stats .stat-number');
+      if (!nums.length) return;
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      function startCountUp() {
+        nums.forEach(function (el, i) {
+          var text = el.textContent.trim();
+          var match = text.match(/^(\d+)(.*)$/);
+          if (!match) return;
+          var target = parseInt(match[1], 10);
+          var suffix = match[2];
+          var duration = 1400;
+          var delay = 550 + i * 100;
+          setTimeout(function () {
+            var start = performance.now();
+            el.classList.add('is-counting');
+            function tick(now) {
+              var t = Math.min((now - start) / duration, 1);
+              var eased = 1 - Math.pow(1 - t, 3);
+              el.textContent = Math.round(eased * target) + suffix;
+              if (t < 1) requestAnimationFrame(tick);
+              else el.textContent = target + suffix;
+            }
+            requestAnimationFrame(tick);
+          }, delay);
+        });
+      }
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            startCountUp();
+            io.unobserve(hero);
+          }
+        });
+      }, { threshold: 0.2 });
+      io.observe(hero);
     })();
   </script>
 
