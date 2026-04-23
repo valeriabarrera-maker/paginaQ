@@ -128,58 +128,63 @@
       font-weight: 600;
     }
 
-    /* ===== FAQ LIST ===== */
+    /* ===== FAQ LIST — Figma 574:3094
+       Lista vertical de items tipo card (tarjeta blanca, radius 24, shadow suave).
+       ========================================== */
     .faq-list {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: stretch;
       gap: 16px;
       width: 100%;
-      max-width: 880px;
+      max-width: 1240px;
       margin: 0 auto;
     }
 
     .faq-item {
       width: 100%;
       background: #fff;
-      border: 1px solid #E5E5E5;
-      border-radius: 16px;
+      border: 1px solid #F2F2F2;
+      border-radius: 24px;
       overflow: hidden;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .faq-item:hover {
+      box-shadow: 0 6px 34px rgba(0, 0, 0, 0.08);
     }
 
     .faq-item.open {
-      border-color: #FF4E00;
-      box-shadow: 0 4px 20px rgba(255, 78, 0, 0.08);
+      box-shadow: 0 6px 34px rgba(0, 0, 0, 0.08);
     }
 
     .faq-question {
       width: 100%;
-      padding: 20px 24px;
+      padding: 24px 32px;
       background: transparent;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 24px;
       text-align: left;
       font-family: 'Montserrat', sans-serif;
       font-size: 18px;
       font-weight: 600;
       line-height: 26px;
       color: #101828;
+      transition: color 0.2s ease;
     }
 
-    .faq-question:hover {
-      color: #FF4E00;
-    }
+    .faq-question:hover { color: #FF4E00; }
 
     .faq-chevron {
       flex-shrink: 0;
       width: 24px;
       height: 24px;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
       color: #FF4E00;
     }
 
@@ -191,12 +196,12 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.4s ease, padding 0.4s ease;
-      padding: 0 24px;
+      padding: 0 32px;
     }
 
     .faq-item.open .faq-answer {
-      max-height: 500px;
-      padding: 0 24px 20px;
+      max-height: 800px;
+      padding: 0 32px 24px;
     }
 
     .faq-answer p {
@@ -205,7 +210,11 @@
       font-size: 16px;
       font-weight: 400;
       line-height: 24px;
-      color: #475467;
+      color: #000;
+    }
+
+    .faq-answer p + p {
+      margin-top: 16px;
     }
 
     /* ===== CTA — No encontraste tu respuesta ===== */
@@ -263,6 +272,7 @@
     .faq-list.is-visible .faq-item:nth-of-type(5)       { transition-delay: 0.42s; }
     .faq-list.is-visible .faq-item:nth-of-type(6)       { transition-delay: 0.50s; }
     .faq-list.is-visible .faq-item:nth-of-type(7)       { transition-delay: 0.58s; }
+    .faq-list.is-visible .faq-item:nth-of-type(n+8)     { transition-delay: 0.60s; }
 
     .faq-cta.is-visible { opacity: 1; transform: none; transition-delay: 0.10s; }
 
@@ -366,88 +376,227 @@
             </svg>
           </button>
           <div class="faq-answer">
-            <p>Qbrete es la plataforma digital de La Equidad Seguros que te permite contratar y gestionar seguros de mascotas y bicicletas de forma 100% online, con una experiencia clara, rápida y pensada para ti.</p>
+            <p>Es la tienda en línea que ofrece soluciones de seguros y asistencias digitales de La Equidad Seguros Generales Organismo Cooperativo y La Equidad Seguros de Vida Organismo Cooperativo.</p>
           </div>
         </article>
 
         <article class="faq-item">
           <button class="faq-question" type="button" aria-expanded="false">
-            <span>¿Cómo contrato un seguro en Qbrete?</span>
+            <span>¿Quién es La Equidad Seguros?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
           <div class="faq-answer">
-            <p>Solo necesitas elegir el producto que quieras (mascotas o bicicletas), completar unos datos básicos, seleccionar el plan que mejor se adapte a ti y realizar el pago. Todo el proceso toma menos de 5 minutos.</p>
+            <p>La Equidad Seguros es un organismo cooperativo colombiano constituido por dos aseguradoras: La Equidad Seguros Generales Organismo Cooperativo La Equidad Seguros de Vida Organismo Cooperativo, la cual incluye la Administradora de Riesgos Laborales.</p>
+            <p>Su compromiso con la protección de los usuarios va más allá de ofrecer servicios de calidad en el campo de los seguros, hasta llegar a hacerlos partícipes directos de su gestión y resultados.</p>
           </div>
         </article>
 
         <article class="faq-item">
           <button class="faq-question" type="button" aria-expanded="false">
-            <span>¿Qué cubre el seguro para mascotas?</span>
+            <span>¿En dónde puedo adquirir el producto?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
           <div class="faq-answer">
-            <p>Nuestros planes cubren consultas veterinarias, urgencias, cirugías, hospitalización y responsabilidad civil, entre otros beneficios. El detalle específico depende del plan que elijas.</p>
+            <p>En nuestra página Web www.Qbrete.com</p>
           </div>
         </article>
 
         <article class="faq-item">
           <button class="faq-question" type="button" aria-expanded="false">
-            <span>¿Qué cubre el seguro para bicicletas?</span>
+            <span>¿Quiénes son nuestros Aliados Comerciales para la publicidad de este producto?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
           <div class="faq-answer">
-            <p>Protege tu bici contra robo, daños por accidente y responsabilidad civil frente a terceros. También incluye asistencia mecánica y legal según el plan contratado.</p>
+            <p>Busca la Q en los establecimientos de comercio vinculados con La Equidad Seguros Generales Organismo Cooperativo y La Equidad Seguros de Vida Organismo Cooperativo, y podrás acceder a nuestra página Web. www.Qbrete.com, recuerda que solo en esta página web podrás entregar tu información personal y financiera.</p>
           </div>
         </article>
 
         <article class="faq-item">
           <button class="faq-question" type="button" aria-expanded="false">
-            <span>¿Cómo reporto un siniestro?</span>
+            <span>¿A quién puedo entregar mi información personal y financiera?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
           <div class="faq-answer">
-            <p>Puedes reportar un siniestro directamente desde la sección "Reporta tu siniestro" en nuestro sitio, llamando a nuestra línea de atención o escribiéndonos a info@qbrete.com. Te acompañamos durante todo el proceso.</p>
+            <p>Si aceptas el tratamiento de tus datos personales, solo deberás ingresar esta información en los formularios habilitados en la página web www.Qbrete.com</p>
           </div>
         </article>
 
         <article class="faq-item">
           <button class="faq-question" type="button" aria-expanded="false">
-            <span>¿Puedo cancelar mi seguro en cualquier momento?</span>
+            <span>¿Existe algún cobro adicional a la prima de seguro por la gestión de pólizas de seguro a través de la página Web www.Qbrete.com?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
           <div class="faq-answer">
-            <p>Sí, puedes solicitar la cancelación de tu póliza en cualquier momento desde tu cuenta o contactándonos. Si lo haces dentro del período de retracto, se aplica la devolución completa según la ley.</p>
+            <p>No, el único pago que debes hacer es la prima de seguro en nuestra página Web www.Qbrete.com, ninguna persona está autorizada para recibir dinero.</p>
           </div>
         </article>
 
         <article class="faq-item">
           <button class="faq-question" type="button" aria-expanded="false">
-            <span>¿Qué métodos de pago aceptan?</span>
+            <span>¿Qué encuentro en Qbrete?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
           <div class="faq-answer">
-            <p>Aceptamos tarjetas de crédito y débito, PSE y otras pasarelas de pago seguras. Todas las transacciones son procesadas con cifrado SSL para garantizar tu seguridad.</p>
+            <p>Recuerda que Qbrete es la tienda en línea de La Equidad Seguros que ofrece soluciones de protección digital de La Equidad Seguros Generales Organismo Cooperativo y La Equidad Seguros de Vida Organismo Cooperativo.</p>
+            <p>En nuestra tienda en línea podrás encontrar las diferentes protecciones para ti y tu familia.</p>
           </div>
         </article>
-      </section>
 
-      <!-- CTA — No encontraste tu respuesta -->
-      <section class="faq-cta">
-        <h2>¿No <span class="brand-orange">encontraste</span> tu respuesta?</h2>
-        <p>Escríbenos y un asesor Qbrete te atenderá personalmente.</p>
-        <a href="#" class="btn btn--primary">Contáctanos <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Qué es seguro?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Es un instrumento financiero que protege el impacto económico que puedan sufrir las personas como consecuencia de la ocurrencia de un suceso futuro e incierto que pueda poner en peligro su vida o sus bienes.</p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Qué es asistencia?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Son servicios que permiten hacer uso del seguro sin necesidad que exista un siniestro, complementa la protección y ayudan al asegurado en situaciones de inconvenientes o emergencias.</p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Qué significa prima en seguros?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Es el valor del seguro que se encuentra señalado en la carátula de la póliza, el cual podrá variar anualmente, éste será informado previo a adquirir la protección.</p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Dónde los encuentro?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Ofrecemos productos 100% digitales que encuentras en la página web www.Qbrete.com, en donde podrás adquirir las protecciones para ti y tu familia.</p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Cómo y en donde reclamo por mi seguro?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Qbrete ofrece productos de fácil adquisición y reclamación, podrás solicitar la afectación de tu cobertura en nuestra página Web www.Qbrete.com, y a través de nuestros canales de atención desde Bogotá puedes marcar al (601) 7460392, nuestra línea gratuita 01800 091 9538 o desde tu celular (Movistar, Claro y Tigo) marca #324, recuerda que podrás aportar la documentación que se sugiere en el clausulado de tu producto.</p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿En cuánto tiempo me dan respuesta de mi siniestro?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Te pagaremos en los términos indicados en tu clausulado del producto, sin que en ningún momento superemos treinta (30) días, una vez radicada la información que nos permita validar la afectación de tu cobertura.</p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Qué pasa si quiero revocar anticipadamente mi seguro?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Podrás solicitar la revocación de tu seguro, marcando al (601) 7460392, nuestra línea gratuita 01800 091 9538 o desde tu celular (Movistar, Claro y Tigo) marca #324.</p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Cuáles son los medios de pago?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Podrás utilizar PSE o tarjeta de crédito, recuerda que tu protección solo se expedirá cuando obtengamos el respectivo pago de la prima, la póliza, el clausulado y la factura electrónica te serán enviados al correo electrónico registrado.</p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Dónde me contacto si tengo alguna inquietud?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Marcando al (601) 7460392, nuestra línea gratuita 01800 091 9538 o desde tu celular (Movistar, Claro y Tigo) marca #324.</p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Qué pasa si la tienda en la que obtuve la publicidad del producto ya no existe?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Los Aliados apoyan nuestra publicidad del producto, pero recuerda que quién te brinda la protección es La Equidad Seguros Generales Organismo o La Equidad Seguros de Vida Organismo Cooperativo, por lo tanto, puedes encontrar toda la información a través de nuestra página Web www.Qbrete.com, en donde puedes adquirir el producto y solicitar la indemnización de tu protección.</p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Dónde está Equidad Seguros?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Nos podrás ubicar en nuestra página Web www.laequidadseguros.coop</p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>¿Por qué contratar un seguro con Qbrete?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Es importante estar protegidos para que puedas disfrutar lo que amas y te gusta hacer. Los productos de Qbrete son de sencilla adquisición y reclamación, cuentas en todo momento con la protección de La Equidad Seguros Generales Organismo Cooperativo y La Equidad Seguros de Vida Organismo Cooperativo.</p>
+          </div>
+        </article>
       </section>
 
     </main>
@@ -542,7 +691,7 @@
     // Entrance animations — IntersectionObserver
     (function () {
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var sections = document.querySelectorAll('.faq-page-header, .faq-list, .faq-cta');
+      var sections = document.querySelectorAll('.faq-page-header, .faq-list');
       if (!sections.length) return;
       if (reduceMotion) {
         sections.forEach(function (s) { s.classList.add('is-visible'); });
