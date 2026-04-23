@@ -3,7 +3,7 @@
    Extraído de beneficios.html (Fase 3.b)
    ========================================== */
 
-body {
+body.page-beneficios {
   background: var(--color-white);
 }
 
@@ -179,11 +179,11 @@ body {
 
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
-  .page-wrapper { padding: 10px 40px 0; }
+  body.page-beneficios .page-wrapper { padding: 10px 40px 0; }
 }
 
 @media (max-width: 767px) {
-  .page-wrapper { padding: 10px 16px 0; }
+  body.page-beneficios .page-wrapper { padding: 10px 16px 0; }
 
   .ben-main {
     gap: 48px;

@@ -15,7 +15,7 @@
   font-weight: 700;
 }
 
-body {
+body.page-servicios {
   background: linear-gradient(155deg, var(--color-white) 0%, #fff7ed 100%);
 }
 
@@ -31,7 +31,7 @@ body {
 }
 
 /* ===== WRAPPER (override del padding vs _shared.css) ===== */
-.page-wrapper {
+body.page-servicios .page-wrapper {
   padding: 10px 100px;
 }
 
@@ -275,7 +275,7 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1023px) {
-  .page-wrapper {
+  body.page-servicios .page-wrapper {
     padding: 10px 60px;
   }
 
@@ -285,7 +285,7 @@ body {
 }
 
 @media (max-width: 767px) {
-  .page-wrapper {
+  body.page-servicios .page-wrapper {
     padding: 10px 24px;
   }
 

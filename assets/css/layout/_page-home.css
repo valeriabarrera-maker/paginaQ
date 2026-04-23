@@ -4,7 +4,7 @@
    y scroll-behavior están en base/_reset.css.
    ========================================== */
 
-    body{
+    body.page-home{
       font-family: var(--font-body);
       background: linear-gradient(155deg, var(--color-white) 0%, #fff7ed 100%);
       min-height: 100vh;
@@ -26,11 +26,12 @@
       will-change: transform;
     }
 
-    /* ===== WRAPPER ===== */
-    .page-wrapper{
+    /* ===== WRAPPER (override: home no usa padding lateral vs _shared.css) ===== */
+    body.page-home .page-wrapper{
       position: relative;
       max-width: 1440px;
       margin: 0 auto;
+      padding: 0;
     }
 
     /* ===== FLOWING LINE ===== */

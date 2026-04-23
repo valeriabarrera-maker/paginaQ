@@ -7,7 +7,7 @@
    ========================================== */
 
 /* ===== Overrides de base ===== */
-body {
+body.page-politica {
   background: var(--color-white);
 }
 
@@ -157,11 +157,11 @@ body {
 
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
-  .page-wrapper { padding: 10px 40px 0; }
+  body.page-politica .page-wrapper { padding: 10px 40px 0; }
 }
 
 @media (max-width: 767px) {
-  .page-wrapper { padding: 10px 16px 0; }
+  body.page-politica .page-wrapper { padding: 10px 16px 0; }
 
   .policy-main {
     gap: 48px;

@@ -3,7 +3,7 @@
    Extraído de comunidad.html (Fase 3.b)
    ========================================== */
 
-body {
+body.page-comunidad {
   font-family: 'Inter', sans-serif;
   background: linear-gradient(155deg, var(--color-white) 0%, #fff7ed 100%);
 }
@@ -262,7 +262,8 @@ body {
   padding: 160px 0;
 }
 
-.footer {
+/* Scope: solo en comunidad (donde existe .com-events) el footer solapa -80px */
+body.page-comunidad .footer {
   margin-top: -80px !important;
 }
 
@@ -414,7 +415,7 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1023px) {
-  .page-wrapper { padding: 10px 40px; }
+  body.page-comunidad .page-wrapper { padding: 10px 40px; }
 
   .com-about-inner {
     flex-direction: column;
@@ -445,7 +446,7 @@ body {
 }
 
 @media (max-width: 767px) {
-  .page-wrapper { padding: 10px 16px; }
+  body.page-comunidad .page-wrapper { padding: 10px 16px; }
 
   .deco-vector { display: none; }
 

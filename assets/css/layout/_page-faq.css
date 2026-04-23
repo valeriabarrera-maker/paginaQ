@@ -3,7 +3,7 @@
    Extraído de preguntas-frecuentes.html (Fase 3.b)
    ========================================== */
 
-body {
+body.page-faq {
   background: var(--color-white);
 }
 
@@ -241,11 +241,11 @@ body {
 
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
-  .page-wrapper { padding: 10px 40px 0; }
+  body.page-faq .page-wrapper { padding: 10px 40px 0; }
 }
 
 @media (max-width: 767px) {
-  .page-wrapper { padding: 10px 16px 0; }
+  body.page-faq .page-wrapper { padding: 10px 16px 0; }
 
   .faq-main {
     gap: 48px;
