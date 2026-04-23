@@ -203,7 +203,7 @@
     .noticia-card--1{
       flex: none;
       width: calc((200% - 24px) / 3);
-      background: url('assets/images/noticias/noticia1-bg.jpg') center/cover no-repeat;
+      background: url('../../images/noticias/noticia1-bg.jpg') center/cover no-repeat;
     }
 
     .noticia-card--1::after{
@@ -270,7 +270,7 @@
 
     .noticia-card--4{
       flex: 1;
-      background: url('assets/images/noticias/noticia4-bg.jpg') center/cover no-repeat;
+      background: url('../../images/noticias/noticia4-bg.jpg') center/cover no-repeat;
     }
 
     .noticia-card--4::after{
@@ -889,11 +889,11 @@
     }
 
     .hero-card--comunidad .hero-card-image{
-      background-image: url('assets/images/home-cards/card-comunidad.png');
+      background-image: url('../../images/home-cards/card-comunidad.png');
     }
 
     .hero-card--beneficios .hero-card-image{
-      background-image: url('assets/images/home-cards/card-beneficios.png');
+      background-image: url('../../images/home-cards/card-beneficios.png');
     }
 
     /* Hero Image */

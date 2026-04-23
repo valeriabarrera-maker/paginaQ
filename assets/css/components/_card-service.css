@@ -171,19 +171,19 @@
    Uso: <div class="service-card service-card--mascotas">
 ================================================================*/
 .service-card--mascotas {
-  --sc-image-bg: url('../images/products/service-mascotas.png') center/cover no-repeat;
+  --sc-image-bg: url('../../images/products/service-mascotas.png') center/cover no-repeat;
 }
 
 .service-card--bicicletas {
-  --sc-image-bg: url('../images/products/service-bicicletas.png') center/cover no-repeat;
+  --sc-image-bg: url('../../images/products/service-bicicletas.png') center/cover no-repeat;
 }
 
 .service-card--hogar {
-  --sc-image-bg: url('../images/products/service-hogar.png') center/cover no-repeat;
+  --sc-image-bg: url('../../images/products/service-hogar.png') center/cover no-repeat;
 }
 
 .service-card--veterinario {
-  --sc-image-bg: url('../images/products/service-veterinario.png') center/cover no-repeat;
+  --sc-image-bg: url('../../images/products/service-veterinario.png') center/cover no-repeat;
 }
 
 /* ========== RESPONSIVE ========== */
