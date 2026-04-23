@@ -69,7 +69,7 @@
   will-change: transform;
 }
 
-.product-panel .product-image {
+.product-panel__image {
   width: 100%;
   height: calc(100% + 2 * var(--pc-panel-padding));
   margin-top: calc(-1 * var(--pc-panel-padding));
@@ -93,14 +93,14 @@
 }
 
 /* ---- Header: icon + chip ---- */
-.product-card .pc-header {
+.product-card__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
 }
 
-.product-card .pc-icon {
+.product-card__icon {
   width: 64px;
   height: 64px;
   border-radius: 8px;
@@ -111,12 +111,12 @@
   background: var(--pc-icon-bg);
 }
 
-.product-card .pc-icon svg {
+.product-card__icon-img {
   width: 40px;
   height: 40px;
 }
 
-.product-card .pc-chip {
+.product-card__chip {
   padding: 8px 16px;
   border-radius: 16px;
   font-family: 'Montserrat', sans-serif;
@@ -128,13 +128,13 @@
 }
 
 /* ---- Content ---- */
-.product-card .pc-content {
+.product-card__content {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.product-card h3 {
+.product-card__title {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-size: 28px;
@@ -143,7 +143,7 @@
   color: #000;
 }
 
-.product-card .pc-desc {
+.product-card__desc {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
@@ -153,13 +153,13 @@
 }
 
 /* ---- Features list ---- */
-.product-card .pc-features {
+.product-card__features {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.product-card .pc-feature {
+.product-card__feature {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -169,7 +169,7 @@
   color: #000;
 }
 
-.pc-feature .pc-check {
+.product-card__check {
   width: 22px;
   height: 22px;
   border-radius: 50%;
@@ -180,7 +180,7 @@
   background: var(--pc-check-bg);
 }
 
-.pc-check svg {
+.product-card__check-icon {
   width: 14px;
   height: 14px;
 }
@@ -189,13 +189,13 @@
    Toma de button.css como base (.btn .btn--primary)
    y usa los colores de la variante del panel.
 */
-.product-card .pc-btn {
+.product-card__cta {
   width: 100%;
   background-color: var(--pc-accent);
   color: var(--pc-accent-text);
 }
 
-.product-card .pc-btn:hover {
+.product-card__cta:hover {
   background-color: var(--pc-accent-hover);
 }
 
@@ -210,7 +210,7 @@
     gap: 20px;
   }
 
-  .product-panel .product-image {
+  .product-panel__image {
     height: 240px;
     order: 1;
   }
@@ -219,11 +219,11 @@
     padding: 24px;
   }
 
-  .product-card h3 {
+  .product-card__title {
     font-size: 24px;
   }
 
-  .product-card .pc-desc {
+  .product-card__desc {
     font-size: 15px;
   }
 }
@@ -244,7 +244,7 @@
     scroll-snap-align: center;
   }
 
-  .product-panel .product-image {
+  .product-panel__image {
     height: 200px;
     border-radius: 16px;
   }
@@ -254,11 +254,11 @@
     border-radius: 16px;
   }
 
-  .product-card .pc-features {
+  .product-card__features {
     gap: 12px;
   }
 
-  .product-card .pc-btn {
+  .product-card__cta {
     padding: 14px;
     min-height: 48px;
   }

@@ -1,0 +1,223 @@
+/* ==========================================
+   Layout — Política de tratamiento de datos
+   Extraído de politica-tratamiento-datos.html (Fase 3.b)
+   Nota: tag-nested selectors (h1/h2/h3/p/li) sobre clases scopeadas
+         se mantienen para contenido prosaico. BEM puro total requeriría
+         anotar cada tag del artículo con clase explícita.
+   ========================================== */
+
+/* ===== Overrides de base ===== */
+body {
+  background: #fff;
+}
+
+/* ===== Wrapper y decoración ===== */
+.page-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 10px 100px 0;
+  position: relative;
+}
+
+.brand-orange {
+  color: #FF4E00;
+}
+
+.deco-vector {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  width: 479px;
+  height: 885px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.deco-vector path {
+  fill: #FF4E00;
+  fill-opacity: 0.2;
+}
+
+/* ===== Layout principal ===== */
+.policy-main {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  margin-top: 70px;
+  padding-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Page header ===== */
+.policy-page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.policy-page-header h1 {
+  margin: 0;
+  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 60px;
+  color: #000;
+  text-align: center;
+  max-width: 1240px;
+}
+
+.policy-desc {
+  margin: 0;
+  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #000;
+  text-align: center;
+  max-width: 820px;
+}
+
+/* ===== Content ===== */
+.policy-content {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.policy-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.policy-section h2 {
+  margin: 0;
+  font-family: 'Century Gothic', 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 31px;
+  color: #101828;
+}
+
+.policy-section h3 {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  color: #101828;
+}
+
+.policy-section p {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #000;
+}
+
+.policy-section ul,
+.policy-section ol {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.policy-section li {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #475467;
+}
+
+.policy-meta {
+  padding: 20px 24px;
+  background: #FFF2E5;
+  border-radius: 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #101828;
+}
+
+/* ===== Animación entrada on-load ===== */
+@keyframes policyFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.policy-page-header h1,
+.policy-page-header .policy-desc,
+.policy-content .policy-section {
+  animation: policyFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.policy-page-header h1           { animation-delay: 0.05s; }
+.policy-page-header .policy-desc { animation-delay: 0.15s; }
+
+.policy-content .policy-section:nth-of-type(1) { animation-delay: 0.25s; }
+.policy-content .policy-section:nth-of-type(2) { animation-delay: 0.32s; }
+.policy-content .policy-section:nth-of-type(3) { animation-delay: 0.39s; }
+.policy-content .policy-section:nth-of-type(4) { animation-delay: 0.46s; }
+.policy-content .policy-section:nth-of-type(5) { animation-delay: 0.53s; }
+.policy-content .policy-section:nth-of-type(6) { animation-delay: 0.60s; }
+.policy-content .policy-section:nth-of-type(n+7) { animation-delay: 0.65s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .policy-page-header h1,
+  .policy-page-header .policy-desc,
+  .policy-content .policy-section {
+    animation: none;
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .page-wrapper { padding: 10px 40px 0; }
+}
+
+@media (max-width: 767px) {
+  .page-wrapper { padding: 10px 16px 0; }
+
+  .policy-main {
+    gap: 48px;
+    margin-top: 40px;
+  }
+
+  .policy-page-header h1 {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .policy-desc {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .policy-section h2 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .policy-section h3 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .policy-section p,
+  .policy-section li {
+    font-size: 15px;
+    line-height: 22px;
+  }
+}

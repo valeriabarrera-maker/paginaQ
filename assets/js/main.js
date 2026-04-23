@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (header) {
-      header.classList.toggle('is-scrolled', scrollY > 60);
+      header.classList.toggle('header--scrolled', scrollY > 60);
     }
   }, { passive: true });
 
@@ -96,20 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── 7. HAMBURGER MENU TOGGLE ──
-  const hamburgerBtn = document.querySelector('.hamburger-btn');
+  const hamburgerBtn = document.querySelector('.header__hamburger');
   const mobileNav = document.getElementById('mobileNav');
-  const mobileNavClose = document.querySelector('.mobile-nav-close');
+  const mobileNavClose = document.querySelector('.mobile-nav__close');
 
   if (hamburgerBtn && mobileNav) {
     hamburgerBtn.addEventListener('click', () => {
-      mobileNav.classList.add('is-open');
+      mobileNav.classList.add('mobile-nav--open');
       hamburgerBtn.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
       if (mobileNavClose) mobileNavClose.focus();
     });
 
     const closeNav = () => {
-      mobileNav.classList.remove('is-open');
+      mobileNav.classList.remove('mobile-nav--open');
       hamburgerBtn.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
       hamburgerBtn.focus();
@@ -118,13 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileNavClose) mobileNavClose.addEventListener('click', closeNav);
 
     // Close when clicking a link
-    mobileNav.querySelectorAll('a').forEach(link => {
+    mobileNav.querySelectorAll('.mobile-nav__link').forEach(link => {
       link.addEventListener('click', closeNav);
     });
 
     // Close on Escape
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) closeNav();
+      if (e.key === 'Escape' && mobileNav.classList.contains('mobile-nav--open')) closeNav();
     });
   }
 

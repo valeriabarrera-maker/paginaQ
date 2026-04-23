@@ -46,7 +46,7 @@
 }
 
 /* ========== IMAGE AREA ========== */
-.service-card-image {
+.service-card__image {
   position: relative;
   height: var(--sc-image-height);
   padding: var(--sc-image-padding);
@@ -58,14 +58,14 @@
   border-radius: var(--sc-radius) var(--sc-radius) 0 0;
 }
 
-.service-card-image-top {
+.service-card__image-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
 /* ---- Icon box ---- */
-.service-icon-box {
+.service-card__icon {
   width: 48px;
   height: 48px;
   background: var(--sc-accent-gradient);
@@ -75,15 +75,14 @@
   justify-content: center;
 }
 
-.service-icon-box svg,
-.service-icon-box img {
+.service-card__icon-img {
   width: 30px;
   height: 30px;
   display: block;
 }
 
 /* ---- Chip label (e.g., "Popular") ---- */
-.service-chip {
+.service-card__chip {
   display: inline-flex;
   align-items: center;
   padding: 8px 16px;
@@ -96,7 +95,7 @@
 }
 
 /* ========== BODY ========== */
-.service-card-body {
+.service-card__body {
   padding: var(--sc-body-padding);
   display: flex;
   flex-direction: column;
@@ -104,13 +103,13 @@
   flex: 1;
 }
 
-.service-card-info {
+.service-card__info {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.service-card-info h3 {
+.service-card__title {
   font-family: 'Century Gothic', 'Montserrat', sans-serif;
   font-size: 24px;
   font-weight: 700;
@@ -118,7 +117,7 @@
   color: #000;
 }
 
-.service-card-info > p {
+.service-card__desc {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -127,13 +126,13 @@
 }
 
 /* ========== FEATURES LIST ========== */
-.service-features {
+.service-card__features {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.service-feature {
+.service-card__feature {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -143,7 +142,7 @@
   color: #000;
 }
 
-.service-feature .check {
+.service-card__check {
   width: 22px;
   height: 22px;
   flex-shrink: 0;
@@ -154,14 +153,15 @@
   justify-content: center;
 }
 
-.service-feature .check svg {
+.service-card__check-icon {
   width: 14px;
   height: 14px;
 }
 
 /* ========== CTA BUTTON (within service-card) ========== */
-.service-card .btn {
-  width: 100%;
+/* Combinar con .btn .btn--primary .btn--block en el HTML.
+   .btn--block ya aporta width:100%; aquí solo empujamos al fondo del body flex. */
+.service-card__cta {
   margin-top: auto;
 }
 

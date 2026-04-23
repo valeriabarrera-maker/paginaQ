@@ -1,11 +1,12 @@
 /* ==========================================
-   QBRETE — Button Component
-   Estilos provenientes del Storybook oficial
-   (Storybook_1.5_qb_ht_lin/qbrete-design-system.html)
+   QBRETE — Button Component (BEM)
+   Bloque: .btn
+   Elemento: .btn__icon
+   Modificadores: .btn--primary/secondary/tertiary/outline/ghost/sm/lg/block
    ========================================== */
 
 :root {
-  /* --- Colores --- */
+  /* --- Colores (consumidas también por noticia-detalle.css) --- */
   --blanco: #FFFFFF;
   --orange-main: #FF4E00;
   --orange-dark: #CC3E00;
@@ -15,7 +16,7 @@
   --gray-30: #A8A7A7;
   --gray-50: #808081;
 
-  /* --- Tipografía de botón --- */
+  /* --- Tipografía --- */
   --font-boton: 600 16px/1.13 'Montserrat', sans-serif;
   --font-boton-3: 600 14px/1.14 'Montserrat', sans-serif;
   --font-boton-regular: 500 16px/1.13 'Montserrat', sans-serif;
@@ -30,8 +31,7 @@
   --shadow-light-1: 12px 12px 45px 0px rgba(168, 168, 168, 0.15);
 }
 
-/* ========== BASE (Storybook .qb-btn) ========== */
-.qb-btn,
+/* ========== BLOQUE ========== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -49,52 +49,55 @@
   appearance: none;
 }
 
-/* Tamaño small — Storybook .qb-btn-s */
-.qb-btn-s,
+/* ========== ELEMENTO ========== */
+.btn__icon {
+  flex-shrink: 0;
+}
+
+/* ========== MODIFICADORES — Tamaño y layout ========== */
 .btn--sm {
   font: var(--font-boton-3);
   padding: 8px 20px;
   border-radius: var(--radius-lg);
 }
 
-/* ========== PRIMARY — Storybook .qb-btn-primary ========== */
-.qb-btn-primary,
+.btn--lg {
+  padding: 14px 24px;
+}
+
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+/* ========== MODIFICADORES — Variante primary ========== */
 .btn--primary {
   background: var(--orange-main);
   color: var(--blanco);
 }
 
-.qb-btn-primary:hover,
 .btn--primary:hover {
   background: var(--orange-dark);
   box-shadow: var(--shadow-light-1);
 }
 
-.qb-btn-primary.pressed,
-.qb-btn-primary:active,
-.btn--primary.pressed,
 .btn--primary:active {
   background: var(--orange-darker);
 }
 
-.qb-btn-primary.disabled,
-.qb-btn-primary:disabled,
-.btn--primary.disabled,
 .btn--primary:disabled {
   background: var(--gray-30);
   color: var(--gray-50);
   cursor: not-allowed;
 }
 
-/* ========== SECONDARY — Storybook .qb-btn-secondary ========== */
-.qb-btn-secondary,
+/* ========== MODIFICADORES — Variante secondary ========== */
 .btn--secondary {
   background: var(--blanco);
   color: var(--orange-main);
   border: var(--stroke-1) solid var(--orange-main);
 }
 
-.qb-btn-secondary:hover,
 .btn--secondary:hover {
   background: var(--blanco);
   color: var(--orange-dark);
@@ -102,9 +105,6 @@
   box-shadow: var(--shadow-light-1);
 }
 
-.qb-btn-secondary.disabled,
-.qb-btn-secondary:disabled,
-.btn--secondary.disabled,
 .btn--secondary:disabled {
   background: var(--gray-lightest);
   color: var(--gray-50);
@@ -112,16 +112,7 @@
   cursor: not-allowed;
 }
 
-/* ========== TERTIARY — Sistema de Diseño Qbrete (27870:12661) ==========
-   Size M: 44h, padding 12/20, radius 16, gap 8
-   Size S: 34h, padding 8/16, radius 12, gap 8
-   Font: 16px Montserrat SemiBold
-   Default: border 1px #FF4E00, color #FF4E00, bg transparent
-   Hover:   border 1px #CC3E00, color #CC3E00, bg #FFFFFF
-   Pressed: border 1px #992F00, color #992F00, bg transparent
-   Disable: border 1px #A8A7A7, color #A8A7A7, bg #FFFFFF
-=====================================================================*/
-.qb-btn-tertiary,
+/* ========== MODIFICADORES — Variante tertiary / outline ========== */
 .btn--tertiary,
 .btn--outline {
   height: 44px;
@@ -134,7 +125,6 @@
   border: var(--stroke-1) solid var(--orange-main);
 }
 
-.qb-btn-tertiary:hover,
 .btn--tertiary:hover,
 .btn--outline:hover {
   background: var(--blanco);
@@ -142,22 +132,14 @@
   border-color: var(--orange-dark);
 }
 
-.qb-btn-tertiary.pressed,
-.qb-btn-tertiary:active,
-.btn--tertiary.pressed,
 .btn--tertiary:active,
-.btn--outline.pressed,
 .btn--outline:active {
   background: transparent;
   color: var(--orange-darker);
   border-color: var(--orange-darker);
 }
 
-.qb-btn-tertiary.disabled,
-.qb-btn-tertiary:disabled,
-.btn--tertiary.disabled,
 .btn--tertiary:disabled,
-.btn--outline.disabled,
 .btn--outline:disabled {
   background: var(--blanco);
   color: var(--gray-30);
@@ -165,8 +147,6 @@
   cursor: not-allowed;
 }
 
-/* Size S — 34h, padding 8/16, radius 12 */
-.qb-btn-tertiary.qb-btn-s,
 .btn--tertiary.btn--sm,
 .btn--outline.btn--sm {
   height: 34px;
@@ -174,38 +154,18 @@
   border-radius: 12px;
 }
 
-/* ========== SHADOW / GHOST — Storybook .qb-btn-shadow ========== */
-.qb-btn-shadow,
+/* ========== MODIFICADORES — Variante ghost ========== */
 .btn--ghost {
   background: transparent;
   color: var(--orange-dark);
 }
 
-.qb-btn-shadow:hover,
 .btn--ghost:hover {
   background: var(--blanco);
   box-shadow: var(--shadow-light-1);
 }
 
-.qb-btn-shadow.disabled,
-.btn--ghost.disabled {
+.btn--ghost:disabled {
   color: var(--gray-50);
   cursor: not-allowed;
-}
-
-/* ========== MODIFICADORES ========== */
-.btn--block {
-  display: flex;
-  width: 100%;
-}
-
-.btn--lg {
-  padding: 14px 24px;
-}
-
-/* Íconos dentro del botón */
-.qb-btn svg,
-.btn svg,
-.btn .btn-icon svg {
-  flex-shrink: 0;
 }

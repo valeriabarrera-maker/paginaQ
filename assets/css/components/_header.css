@@ -1,11 +1,15 @@
-/* ===== HEADER — Componente transversal ===== */
-/* Selectores con #header-root para alta especificidad y aislamiento total */
+/* ==========================================
+   QBRETE — Header Component (BEM)
+   Bloques: .header, .mobile-nav
+   El <div id="header-root"> es solo hook de JS (no se usa para estilos).
+   ========================================== */
 
 html {
   scrollbar-gutter: stable;
 }
 
-#header-root {
+/* ========== HOOK — Wrapper inyectado ========== */
+.header-root {
   position: sticky;
   top: 0;
   z-index: 100;
@@ -18,7 +22,8 @@ html {
   line-height: 1.4;
 }
 
-#header-root .header {
+/* ========== BLOQUE .header ========== */
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,29 +41,29 @@ html {
   box-sizing: border-box;
 }
 
-/* Scroll state — glassmorphism, same height */
-#header-root .header.is-scrolled {
+/* Modifier: scrolled (glassmorphism) */
+.header--scrolled {
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
 }
 
-/* Logo */
-#header-root .header .logo {
+/* ========== Elementos — Logo ========== */
+.header__logo {
   flex-shrink: 0;
   display: flex;
   align-items: center;
 }
 
-#header-root .header .logo img {
+.header__logo-img {
   width: 88px;
   height: 32px;
   display: block;
 }
 
-/* Navigation */
-#header-root .header nav {
+/* ========== Elementos — Navegación ========== */
+.header__nav {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -67,14 +72,14 @@ html {
   overflow: hidden;
 }
 
-#header-root .header nav .nav-links {
+.header__nav-list {
   display: inline-flex;
   align-items: center;
   gap: 32px;
   padding: 14px 24px 8px;
 }
 
-#header-root .header nav a {
+.header__link {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 600;
@@ -86,13 +91,18 @@ html {
   transition: color 0.2s ease;
 }
 
-#header-root .header nav a .nav-label {
+.header__link:hover,
+.header__link--active {
+  color: #FF4E00;
+}
+
+.header__link-label {
   position: relative;
   display: inline-block;
   padding-bottom: 11px;
 }
 
-#header-root .header nav a .nav-label .nav-underline {
+.header__link-underline {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -101,27 +111,19 @@ html {
   overflow: visible;
 }
 
-#header-root .header nav a .nav-label .nav-underline path {
+.header__link-underline path {
   stroke-dasharray: 60;
   stroke-dashoffset: 60;
   transition: stroke-dashoffset 0.5s cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-#header-root .header nav a:hover .nav-label .nav-underline path,
-#header-root .header nav a.active .nav-label .nav-underline path {
+.header__link:hover .header__link-underline path,
+.header__link--active .header__link-underline path {
   stroke-dashoffset: 0;
 }
 
-#header-root .header nav a.active {
-  color: #FF4E00;
-}
-
-#header-root .header nav a:hover {
-  color: #FF4E00;
-}
-
-/* CTA Button — header layout overrides (base styles come from button.css) */
-#header-root .header .btn {
+/* ========== Elementos — CTA (override layout del .btn global) ========== */
+.header__cta {
   flex-shrink: 0;
   min-width: 98px;
   height: 42px;
@@ -130,8 +132,8 @@ html {
   white-space: nowrap;
 }
 
-/* Hamburger button */
-#header-root .hamburger-btn {
+/* ========== Elementos — Hamburger ========== */
+.header__hamburger {
   display: none;
   width: 44px;
   height: 44px;
@@ -145,8 +147,10 @@ html {
   flex-shrink: 0;
 }
 
-/* ---- Mobile Nav Overlay ---- */
-#header-root .mobile-nav {
+/* ==========================================
+   BLOQUE .mobile-nav (overlay)
+   ========================================== */
+.mobile-nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -167,12 +171,12 @@ html {
   overflow: auto;
 }
 
-#header-root .mobile-nav.is-open {
+.mobile-nav--open {
   transform: translateY(0);
   visibility: visible;
 }
 
-#header-root .mobile-nav a {
+.mobile-nav__link {
   font-family: 'Montserrat', sans-serif;
   font-size: 22px;
   font-weight: 600;
@@ -182,22 +186,19 @@ html {
   white-space: nowrap;
 }
 
-#header-root .mobile-nav a:hover {
+.mobile-nav__link:hover,
+.mobile-nav__link--active {
   color: #FF4E00;
 }
 
-#header-root .mobile-nav a.active {
-  color: #FF4E00;
-}
-
-#header-root .mobile-nav .btn {
+.mobile-nav__cta {
   margin-top: 12px;
   font-size: 18px;
   padding: 0 32px;
   height: 48px;
 }
 
-#header-root .mobile-nav-close {
+.mobile-nav__close {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -211,51 +212,51 @@ html {
   cursor: pointer;
 }
 
-/* ==============================
+/* ==========================================
    Responsive Breakpoints
-   ============================== */
+   ========================================== */
 
-/* Large desktop → standard desktop (≤1439px) */
+/* Large desktop → desktop (≤1439px) */
 @media (max-width: 1439px) {
-  #header-root {
+  .header-root {
     padding: 10px 40px 0;
   }
 
-  #header-root .header nav {
+  .header__nav {
     gap: 20px;
     margin: 0 16px;
   }
 
-  #header-root .header nav a {
+  .header__link {
     font-size: 14px;
   }
 
-  #header-root .header .btn {
+  .header__cta {
     font-size: 14px;
     padding: 0 16px;
   }
 }
 
-/* Intermediate — cramped range (≤1199px) */
+/* Intermediate — cramped (≤1199px) */
 @media (max-width: 1199px) {
-  #header-root {
+  .header-root {
     padding: 10px 28px 0;
   }
 
-  #header-root .header {
+  .header {
     padding: 0 24px;
   }
 
-  #header-root .header nav {
+  .header__nav {
     gap: 12px;
     margin: 0 12px;
   }
 
-  #header-root .header nav a {
+  .header__link {
     font-size: 13px;
   }
 
-  #header-root .header .btn {
+  .header__cta {
     font-size: 13px;
     min-width: 90px;
     height: 38px;
@@ -265,31 +266,26 @@ html {
 
 /* Tablet portrait — hamburger mode (≤1023px) */
 @media (max-width: 1023px) {
-  #header-root {
+  .header-root {
     padding: 10px 24px 0;
   }
 
-  #header-root .header {
+  .header {
     height: 64px;
     max-height: 64px;
     padding: 0 20px;
   }
 
-  #header-root .header nav {
+  .header__nav,
+  .header__cta {
     display: none;
   }
 
-  /* Hide desktop CTA — mobile nav has its own */
-  #header-root .header .btn {
-    display: none;
-  }
-
-  #header-root .hamburger-btn {
+  .header__hamburger {
     display: flex;
   }
 
-  /* Scrolled state for tablet */
-  #header-root .header.is-scrolled {
+  .header--scrolled {
     height: 56px;
     max-height: 56px;
   }
@@ -297,39 +293,38 @@ html {
 
 /* Mobile (≤767px) */
 @media (max-width: 767px) {
-  #header-root {
+  .header-root {
     padding: 8px 16px 0;
   }
 
-  #header-root .header {
+  .header {
     height: 56px;
     max-height: 56px;
     padding: 0 16px;
     border-radius: 16px;
   }
 
-  /* Scale logo for small screens */
-  #header-root .header .logo img {
+  .header__logo-img {
     width: 76px;
     height: auto;
   }
 
-  #header-root .header.is-scrolled {
+  .header--scrolled {
     height: 50px;
     max-height: 50px;
   }
 
-  #header-root .mobile-nav a {
+  .mobile-nav__link {
     font-size: 20px;
   }
 
-  #header-root .mobile-nav .btn {
+  .mobile-nav__cta {
     font-size: 16px;
     padding: 0 28px;
     height: 44px;
   }
 
-  #header-root .mobile-nav-close {
+  .mobile-nav__close {
     top: 14px;
     right: 14px;
   }

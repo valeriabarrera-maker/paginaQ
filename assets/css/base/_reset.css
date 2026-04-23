@@ -1,0 +1,28 @@
+/* ==========================================
+   Reset mínimo — paginaQ
+   Unifica box-sizing, elimina márgenes/padding por defecto,
+   establece scroll-behavior y base del body.
+   ========================================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

@@ -15,14 +15,14 @@
 }
 
 /* Media (top image area) */
-.benefit-card-media {
+.benefit-card__media {
   position: relative;
   width: 100%;
   height: 200px;
   overflow: hidden;
 }
 
-.benefit-card-img {
+.benefit-card__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -30,7 +30,7 @@
 }
 
 /* Discount badge — flush with top-left corner, diagonal rounded corners */
-.benefit-card-discount {
+.benefit-card__discount {
   position: absolute;
   top: 0;
   left: 0;
@@ -51,7 +51,7 @@
   text-align: center;
 }
 
-.benefit-card-discount-num {
+.benefit-card__discount-num {
   font-family: 'Century Gothic', 'Montserrat', sans-serif;
   font-size: 20px;
   font-weight: 700;
@@ -60,7 +60,7 @@
   text-align: center;
 }
 
-.benefit-card-discount-label {
+.benefit-card__discount-label {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -70,7 +70,7 @@
 }
 
 /* Body (bottom content area) */
-.benefit-card-body {
+.benefit-card__body {
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -78,14 +78,14 @@
   flex: 1;
 }
 
-.benefit-card-header {
+.benefit-card__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
 }
 
-.benefit-card-logo {
+.benefit-card__logo {
   height: 24px;
   width: auto;
   max-width: 110px;
@@ -93,7 +93,7 @@
   display: block;
 }
 
-.benefit-card-date {
+.benefit-card__date {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
@@ -103,7 +103,7 @@
   text-align: right;
 }
 
-.benefit-card-details {
+.benefit-card__details {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -111,7 +111,7 @@
   flex: 1;
 }
 
-.benefit-card-title {
+.benefit-card__title {
   margin: 0;
   font-family: 'Century Gothic', 'Montserrat', sans-serif;
   font-size: 20px;
@@ -121,7 +121,7 @@
   text-align: center;
 }
 
-.benefit-card-text {
+.benefit-card__text {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
@@ -131,14 +131,14 @@
   text-align: center;
 }
 
-.benefit-card-footer {
+.benefit-card__footer {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
 }
 
-.benefit-card-code {
+.benefit-card__code {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
@@ -148,12 +148,12 @@
   text-align: center;
 }
 
-.benefit-card-code strong {
+.benefit-card__code-value {
   color: #FF4E00;
   font-weight: 700;
 }
 
-.benefit-card-share {
+.benefit-card__share {
   border: none;
   background: transparent;
   color: #706F6E;
@@ -165,12 +165,12 @@
   transition: color 0.2s ease;
 }
 
-.benefit-card-share:hover {
+.benefit-card__share:hover {
   color: #FF4E00;
 }
 
 /* Grid */
-.benefit-cards-grid {
+.benefit-list {
   display: grid;
   grid-template-columns: repeat(3, 384px);
   gap: 32px;
@@ -180,13 +180,13 @@
 
 /* Responsive */
 @media (max-width: 1280px) {
-  .benefit-cards-grid {
+  .benefit-list {
     grid-template-columns: repeat(2, 384px);
   }
 }
 
 @media (max-width: 820px) {
-  .benefit-cards-grid {
+  .benefit-list {
     grid-template-columns: 1fr;
   }
 

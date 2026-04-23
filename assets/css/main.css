@@ -1,0 +1,28 @@
+/* ==========================================
+   paginaQ — CSS bundle
+   Orden: base (tokens+reset) → components → layout
+   ========================================== */
+
+/* ---- Base ---- */
+@import "base/_variables.css";
+@import "base/_reset.css";
+
+/* ---- Components ---- */
+@import "components/_button.css";
+@import "components/_header.css";
+@import "components/_footer.css";
+@import "components/_card-service.css";
+@import "components/_card-benefit.css";
+@import "components/_card-community.css";
+@import "components/_card-news.css";
+@import "components/_card-product.css";
+
+/* ---- Layout (páginas) ---- */
+@import "layout/_page-home.css";
+@import "layout/_page-servicios.css";
+@import "layout/_page-comunidad.css";
+@import "layout/_page-beneficios.css";
+@import "layout/_page-noticia-detalle.css";
+@import "layout/_page-noticias.css";
+@import "layout/_page-faq.css";
+@import "layout/_page-politica.css";

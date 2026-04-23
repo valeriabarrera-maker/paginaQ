@@ -5,7 +5,7 @@
    Usa BEM: clases community-card__* renderizadas por community-card.js
    ========================================== */
 
-.com-cards-grid {
+.community-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -126,7 +126,7 @@
   color: #000;
 }
 
-.community-card__members svg {
+.community-card__members-icon {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
@@ -157,10 +157,10 @@
   transform: none;
 }
 
-.com-cards-grid > .community-card:nth-child(1).is-visible { transition-delay: 0.30s; }
-.com-cards-grid > .community-card:nth-child(2).is-visible { transition-delay: 0.45s; }
-.com-cards-grid > .community-card:nth-child(3).is-visible { transition-delay: 0.60s; }
-.com-cards-grid > .community-card:nth-child(4).is-visible { transition-delay: 0.75s; }
+.community-list > .community-card:nth-child(1).is-visible { transition-delay: 0.30s; }
+.community-list > .community-card:nth-child(2).is-visible { transition-delay: 0.45s; }
+.community-list > .community-card:nth-child(3).is-visible { transition-delay: 0.60s; }
+.community-list > .community-card:nth-child(4).is-visible { transition-delay: 0.75s; }
 
 /* Responsive */
 @media (max-width: 1023px) {
@@ -172,7 +172,7 @@
 }
 
 @media (max-width: 767px) {
-  .com-cards-grid {
+  .community-list {
     flex-direction: column;
     align-items: center;
   }
