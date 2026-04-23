@@ -286,7 +286,7 @@ body.page-noticia-detalle {
 .detalle-article .detalle-side,
 .detalle-article .detalle-content-lead,
 .detalle-article .detalle-body,
-.panels-stack,
+.detalle-main .panels-stack,
 .detalle-related .detalle-related-title,
 .detalle-related .detalle-related-grid {
   opacity: 0;
@@ -308,7 +308,7 @@ body.page-noticia-detalle {
 .detalle-article.is-visible .detalle-content-lead { opacity: 1; transform: none; transition-delay: 0.20s; }
 .detalle-article.is-visible .detalle-body         { opacity: 1; transform: none; transition-delay: 0.30s; }
 
-.panels-stack.is-visible { opacity: 1; transform: none; transition-delay: 0.10s; }
+.detalle-main .panels-stack.is-visible { opacity: 1; transform: none; transition-delay: 0.10s; }
 
 .detalle-related.is-visible .detalle-related-title { opacity: 1; transform: none; transition-delay: 0.05s; }
 .detalle-related.is-visible .detalle-related-grid  { opacity: 1; transform: none; transition-delay: 0.15s; }
@@ -333,7 +333,7 @@ body.page-noticia-detalle {
   .detalle-article .detalle-side,
   .detalle-article .detalle-content-lead,
   .detalle-article .detalle-body,
-  .panels-stack,
+  .detalle-main .panels-stack,
   .detalle-related .detalle-related-title,
   .detalle-related .detalle-related-grid,
   .detalle-related .news-card {
