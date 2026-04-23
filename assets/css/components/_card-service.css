@@ -156,6 +156,7 @@
 .service-card__check-icon {
   width: 14px;
   height: 14px;
+  color: var(--color-brand);
 }
 
 /* ========== CTA BUTTON (within service-card) ========== */

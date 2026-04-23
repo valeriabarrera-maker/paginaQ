@@ -13,7 +13,7 @@
     { label: 'Reporta tu siniestro', href: '#' },
   ];
 
-  const SVG_UNDERLINE = `<svg class="header__link-underline" viewBox="0 0 48 6" fill="none" preserveAspectRatio="none"><path d="M1.5 4.5C8.08537 3.19828 26.3049 0.813533 46.5 1.68829" stroke="#FF4E00" stroke-width="3" stroke-linecap="round"/></svg>`;
+  const SVG_UNDERLINE = `<svg class="header__link-underline" viewBox="0 0 48 6" fill="none" preserveAspectRatio="none"><path d="M1.5 4.5C8.08537 3.19828 26.3049 0.813533 46.5 1.68829" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>`;
 
   const HAMBURGER_SVG = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>`;
 

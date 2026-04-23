@@ -198,6 +198,7 @@ body {
   justify-content: center;
   text-decoration: none;
   border-radius: 12px;
+  color: var(--color-brand);
   transition: transform 0.2s ease;
 }
 .detalle-share-btn:hover { transform: scale(1.08); }

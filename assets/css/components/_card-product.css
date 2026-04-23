@@ -114,6 +114,7 @@
 .product-card__icon-img {
   width: 40px;
   height: 40px;
+  color: var(--pc-accent);
 }
 
 .product-card__chip {
@@ -183,6 +184,7 @@
 .product-card__check-icon {
   width: 14px;
   height: 14px;
+  color: var(--pc-accent);
 }
 
 /* ---- Botón CTA dentro del product-card ----
