@@ -50,7 +50,9 @@
       overflow: visible;
     }
 
-    /* ===== PRODUCTS SECTION — STACKED SLIDING CARDS ===== */
+    /* ===== PRODUCTS SECTION — STACKED SLIDING CARDS =====
+       Altura total = 1 viewport de scroll (dwell + slide) + 100vh del
+       sticky. El JS calcula progress = scrolled / (sectionH - vh).     */
     .section-products{
       position: relative;
       z-index: 1;
@@ -58,16 +60,13 @@
       margin-top: 140px;
     }
 
-    .products-sticky{
-      position: sticky;
-      top: 0;
-      height: 100vh;
+    .products-intro{
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 0 100px;
+      padding: 40px 100px 0;
       gap: 32px;
+      box-sizing: border-box;
     }
 
     .products-header{
@@ -143,11 +142,16 @@
       color: var(--color-black);
     }
 
-    /* Panels Stack */
+    /* Panels Stack — sticky con top calculado para que el centro de la
+       card quede en el centro del viewport (50vh - mitad de la altura).
+       margin-top: 32px da el gap entre tabs y card en el estado inicial. */
     .panels-stack{
-      position: relative;
+      position: sticky;
+      top: calc(50vh - 281px);
       width: 1240px;
+      max-width: calc(100% - 200px);
       height: 562px;
+      margin: 32px auto 0;
     }
 
     /* ===== NOTICIAS SECTION ===== */
@@ -1412,8 +1416,8 @@
         width: 370px;
       }
 
-      .products-sticky{
-        padding: 0 60px;
+      .products-intro{
+        padding: 40px 60px 0;
       }
 
       .panels-stack{
@@ -1635,8 +1639,8 @@
         height: 200vh;
       }
 
-      .products-sticky{
-        padding: 0 40px;
+      .products-intro{
+        padding: 40px 40px 0;
       }
 
       .products-header h2{
@@ -1647,6 +1651,7 @@
         width: 100%;
         height: 80vh;
         max-height: 700px;
+        top: calc(50vh - 40vh);
       }
 
       /* Community */
@@ -1885,10 +1890,8 @@
         height: auto;
       }
 
-      .products-sticky{
-        position: relative;
-        height: auto;
-        padding: 60px 16px;
+      .products-intro{
+        padding: 60px 16px 32px;
       }
 
       .products-header h2{
@@ -1911,8 +1914,13 @@
       }
 
       .panels-stack{
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        max-width: none;
         width: calc(100% + 32px);
-        margin-left: -16px;
+        margin: 0 0 0 -16px;
         height: auto;
         display: flex;
         flex-direction: row;

@@ -195,7 +195,7 @@
 
     <!-- NUESTROS SEGUROS — Stacked Sliding Cards -->
     <section class="section-products" id="sectionProducts">
-      <div class="products-sticky">
+      <div class="products-intro">
         <div class="products-header">
           <h2>Seguros por internet con el<br>respaldo de <span style="color: #ff6600;">La Equidad Seguros</span></h2>
           <p class="products-subtitle">Descubre una forma más simple de proteger lo que más te importa. En Qbrete encuentras opciones como<br>seguro de mascotas y seguro para bicicletas, con una experiencia 100% digital, clara y pensada para ti.</p>
@@ -211,8 +211,9 @@
             Bicicletas
           </button>
         </div>
+      </div>
 
-        <div class="panels-stack" id="panelsStack">
+      <div class="panels-stack" id="panelsStack">
           <!-- Panel 1: Mascotas -->
           <div class="product-panel product-panel--mascotas" data-panel="0">
             <img src="assets/images/products/product-mascotas-img.png" class="product-panel__image" alt="Seguro para Mascotas" />
@@ -289,7 +290,6 @@
             </div>
           </div>
         </div>
-      </div>
     </section>
 
     <!-- COMUNIDAD -->
@@ -887,6 +887,11 @@
     const panelsStackEl = document.getElementById('panelsStack');
     const productTabs = document.querySelectorAll('.products-tab');
     const numCards = stackPanels.length;
+    // Fracción del scroll total que card 1 permanece sola, centrada y
+    // visible antes de que card 2 empiece a entrar desde abajo.
+    // section-products = 200vh, viewport = 100vh → scroll total = 100vh.
+    // DWELL 0.6 → 60vh con card 1 sola antes del slide de 40vh.
+    const CARD_DWELL = 0.6;
     let currentActiveTab = 0;
 
     function updateTabs(index) {
@@ -917,6 +922,7 @@
             panel.style.transform = `translateY(${viewH}px)`;
             panel.style.zIndex = i + 1;
           }
+          panel.style.opacity = '1';
         });
         updateTabs(0);
         return;
@@ -928,21 +934,29 @@
       let visibleCard = 0;
 
       stackPanels.forEach((panel, i) => {
+        panel.style.opacity = '1';
+
         if (i === 0) {
           panel.style.transform = 'translateY(0)';
           panel.style.zIndex = 1;
           return;
         }
 
-        const sliceSize = 1 / (numCards - 1);
-        const cardStart = (i - 1) * sliceSize;
-        const cardEnd = i * sliceSize;
+        // Slide phase: cada card posterior ocupa una fracción igual del
+        // rango de scroll posterior al DWELL. Para 2 cards: card 2 se
+        // desliza de progress=CARD_DWELL a progress=1.
+        const sliceSize = (1 - CARD_DWELL) / (numCards - 1);
+        const cardStart = CARD_DWELL + (i - 1) * sliceSize;
+        const cardEnd = CARD_DWELL + i * sliceSize;
 
         const clamped = Math.max(cardStart, Math.min(progress, cardEnd));
         const localProgress = (clamped - cardStart) / (cardEnd - cardStart);
 
-        // Card slides up from just below the stack (panel height)
-        const translateY = panelH * (1 - localProgress);
+        // Card parte totalmente fuera del viewport (abajo) y se desliza
+        // hasta translateY(0) para quedar encima del panel anterior.
+        // Durante el DWELL, localProgress = 0 → card queda oculta abajo.
+        const startOffset = viewH + panelH;
+        const translateY = startOffset * (1 - localProgress);
 
         panel.style.transform = `translateY(${translateY}px)`;
         panel.style.zIndex = i + 1;
