@@ -58,7 +58,7 @@
   left: 0;
   width: 100%;
   max-width: 1240px;
-  height: auto;
+  height: 100%;
   padding: var(--pc-panel-padding);
   border-radius: var(--pc-panel-radius);
   display: grid;
@@ -71,9 +71,7 @@
 
 .product-panel__image {
   width: 100%;
-  height: calc(100% + 2 * var(--pc-panel-padding));
-  margin-top: calc(-1 * var(--pc-panel-padding));
-  margin-bottom: calc(-1 * var(--pc-panel-padding));
+  height: 100%;
   border-radius: 0;
   object-fit: cover;
   order: 1;
