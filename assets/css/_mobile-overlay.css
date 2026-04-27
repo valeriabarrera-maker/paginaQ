@@ -478,6 +478,41 @@
     margin: 0 !important;
   }
 
+  /* `.hero-content` (slide 0) y `.hero-card-content` (slides 1 y 2):
+     override del patrón centrado general — alineados a la izquierda
+     en mobile. h1/h2, subtítulos, botones y stats arrancan desde el
+     borde izquierdo. Mismo padding/gap interno que slide 0 para
+     que los 3 slides se vean uniformes. */
+  body.page-home .hero-content,
+  body.page-home .hero-card-content {
+    align-items: flex-start !important;
+    text-align: left !important;
+    gap: var(--space-md) !important;     /* 16px — igual que slide 0 */
+    padding: 0 !important;
+  }
+  body.page-home .hero-content h1,
+  body.page-home .hero-content .subtitle,
+  body.page-home .hero-card-content h2,
+  body.page-home .hero-card-content p {
+    margin-inline: 0 !important;
+    text-align: left !important;
+  }
+  body.page-home .hero-content .hero-buttons,
+  body.page-home .hero-content .hero-stats {
+    justify-content: flex-start !important;
+  }
+  body.page-home .hero-card-cta {
+    align-self: flex-start !important;
+  }
+
+  /* `.hero` sin margen lateral propio — el page-wrapper ya aporta
+     los 16px laterales del proyecto. Antes el hero añadía otros 16px
+     más, dando 32px total al lateral en mobile. */
+  body.page-home .hero {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
   /* Header de noticias: separación con la grilla de cards */
   .noticias-header {
     margin-bottom: var(--space-lg) !important;  /* 32px */
