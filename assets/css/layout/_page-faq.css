@@ -10,7 +10,7 @@ body.page-faq {
 .faq-main {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: var(--space-section);
   margin-top: 70px;
   padding-bottom: 0;
   position: relative;
@@ -22,7 +22,7 @@ body.page-faq {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 21px;
+  gap: 20px;
 }
 
 .faq-badge {

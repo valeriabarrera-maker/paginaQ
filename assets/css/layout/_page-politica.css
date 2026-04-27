@@ -15,7 +15,7 @@ body.page-politica {
 .policy-main {
   display: flex;
   flex-direction: column;
-  gap: 64px;
+  gap: var(--space-section);
   margin-top: 70px;
   padding-bottom: 0;
   position: relative;

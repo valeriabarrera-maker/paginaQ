@@ -26,12 +26,17 @@
       will-change: transform;
     }
 
-    /* ===== WRAPPER (override: home no usa padding lateral vs _shared.css) ===== */
+    /* ===== WRAPPER (override: home no usa padding lateral vs _shared.css) =====
+       Scopeado a desktop: en mobile el overlay aplica 16px laterales. */
     body.page-home .page-wrapper{
       position: relative;
       max-width: 1440px;
       margin: 0 auto;
-      padding: 0;
+    }
+    @media (min-width: 1024px) {
+      body.page-home .page-wrapper{
+        padding: 0;
+      }
     }
 
     /* ===== FLOWING LINE ===== */
@@ -142,16 +147,23 @@
       color: var(--color-black);
     }
 
-    /* Panels Stack — sticky con top calculado para que el centro de la
-       card quede en el centro del viewport (50vh - mitad de la altura).
-       margin-top: 32px da el gap entre tabs y card en el estado inicial. */
+    /* Panels Stack — sticky con los paneles apilados en la misma
+       grid-area. Cada panel conserva su altura natural (relative),
+       y la grid-area del .panels-stack toma la altura del panel
+       más alto. El JS sigue animando translateY para el slide. */
     body.page-home .panels-stack{
       position: sticky;
       top: calc(50vh - 281px);
       width: 1240px;
       max-width: calc(100% - 200px);
-      height: 562px;
       margin: 32px auto 0;
+      display: grid;
+      grid-template-areas: "stack";
+    }
+
+    body.page-home .panels-stack > .product-panel{
+      grid-area: stack;
+      align-self: stretch;
     }
 
     /* ===== NOTICIAS SECTION ===== */
@@ -255,7 +267,7 @@
       font-family: 'Inter', sans-serif;
       font-size: 20px;
       color: var(--color-white);
-      line-height: 32.5px;
+      line-height: 32px;
       letter-spacing: -0.45px;
     }
 
@@ -710,7 +722,10 @@
     }
 
     .entrar-iz .btn--outline{
-      margin: 32px 32px 32px 0;
+      align-self: flex-start;
+      width: max-content;
+      max-width: 100%;
+      margin: 32px 0;
     }
 
     /* ===== HERO ===== */
@@ -752,6 +767,10 @@
       opacity: 0;
       visibility: hidden;
       transform: translateX(-80px);
+      /* Refactor: gap del contenedor en lugar de margin-bottom × 4 */
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
     }
 
     .hero-content h1{
@@ -760,7 +779,6 @@
       font-weight: 700;
       line-height: 50px;
       color: var(--color-black);
-      margin-bottom: 32px;
     }
 
     .hero-content .subtitle{
@@ -769,7 +787,6 @@
       font-weight: 400;
       color: var(--color-black);
       line-height: 26px;
-      margin-bottom: 32px;
     }
 
     .hero-content .subtitle strong{
@@ -779,13 +796,11 @@
     .hero-buttons{
       display: flex;
       gap: 10px;
-      margin-bottom: 32px;
     }
 
     .hero-stats{
       display: flex;
-      gap: 32px;
-      margin-bottom: 32px;
+      gap: var(--space-lg);
     }
 
     .hero-stats .stat{
@@ -1025,6 +1040,10 @@
       opacity: 0;
       transform: translateX(-120%);
       transition: opacity 0.9s var(--ease-out-quint), transform 0.9s var(--ease-out-quint);
+      /* Refactor: gap del contenedor en lugar de margin-bottom × 3 */
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
     }
 
     .entrar-iz.animate-in{
@@ -1045,7 +1064,7 @@
       font-weight: 700;
       line-height: 50px;
       color: var(--color-black);
-      margin: 0 0 32px 0;
+      margin: 0;
     }
 
     .entrar-iz h2 span{
@@ -1058,7 +1077,7 @@
       font-weight: 400;
       color: var(--color-black);
       line-height: 26px;
-      margin: 0 0 32px 0;
+      margin: 0;
     }
 
     .entrar-iz .razones-subtitle strong{
@@ -1069,7 +1088,6 @@
       display: flex;
       align-items: center;
       gap: 20px;
-      margin-bottom: 32px;
     }
 
     .entrar-iz .razones-logos .logo-q{
@@ -1507,7 +1525,7 @@
       .about-left{
         flex: none;
         width: 100%;
-        padding: 0 40px;
+        padding: 0 16px;
       }
 
       .about-left h2{
@@ -1525,7 +1543,7 @@
 
       /* Hero: stack vertically */
       .hero{
-        margin: 40px 40px 0;
+        margin: 40px 16px 0;
       }
 
       .hero-slide,
@@ -1600,7 +1618,7 @@
 
       /* Razones: stack */
       .razones-section{
-        margin: 80px 40px 0;
+        margin: 80px 16px 0;
         flex-direction: column;
         gap: 32px;
         align-items: center;
@@ -1640,7 +1658,7 @@
       }
 
       .products-intro{
-        padding: 40px 40px 0;
+        padding: 40px 16px 0;
       }
 
       .products-header h2{
@@ -1649,14 +1667,12 @@
 
       body.page-home .panels-stack{
         width: 100%;
-        height: 80vh;
-        max-height: 700px;
-        top: calc(50vh - 40vh);
+        height: auto;
       }
 
       /* Community */
       .section-comunidad{
-        margin: 80px 24px 0;
+        margin: 80px 16px 0;
         border-radius: var(--radius-lg);
       }
 
@@ -1669,7 +1685,7 @@
       }
 
       .community-gallery-wrapper{
-        margin: 0 -24px;
+        margin: 0 -16px;
         min-height: 300px;
       }
 
@@ -1711,7 +1727,7 @@
         flex-direction: column;
         align-items: center;
         gap: 32px;
-        padding: 60px 24px;
+        padding: 60px 16px;
       }
 
       .testimonios-left{
@@ -1737,10 +1753,21 @@
         opacity: 0.5;
       }
 
+      /* About — override 768-1023 (sin esto hereda 140 desktop) */
+      .section-about{
+        margin: 80px auto 0;
+        padding: 40px 0;
+      }
+
+      /* Testimonios — gap intermedio entre desktop (32) y mobile (20) */
+      .testimonios-track{
+        gap: 24px;
+      }
+
       /* Noticias */
       .section-noticias{
         margin: 80px auto 0;
-        padding: 0 24px;
+        padding: 0 16px;
       }
 
       .noticias-header h2{
@@ -1790,7 +1817,6 @@
 
       .hero-content h1{
         font-size: 28px;
-        margin-bottom: 20px;
       }
 
       .hero-card-content h2{
@@ -1805,7 +1831,6 @@
 
       .hero-content .subtitle{
         font-size: 15px;
-        margin-bottom: 24px;
       }
 
       .hero-buttons{
@@ -1858,7 +1883,6 @@
 
       .entrar-iz h2{
         font-size: 26px;
-        margin-bottom: 16px;
       }
 
       .entrar-iz .razones-subtitle{
@@ -1891,7 +1915,7 @@
       }
 
       .products-intro{
-        padding: 60px 16px 32px;
+        padding: 48px 16px 32px;
       }
 
       .products-header h2{
@@ -1919,8 +1943,8 @@
         left: auto;
         transform: none;
         max-width: none;
-        width: calc(100% + 32px);
-        margin: 0 0 0 -16px;
+        width: 100%;
+        margin: 0;
         height: auto;
         display: flex;
         flex-direction: row;
@@ -1994,7 +2018,7 @@
       /* Testimonials */
       .section-testimonios{
         flex-direction: column;
-        padding: 48px 16px;
+        padding: 60px 16px;
         gap: 24px;
       }
 
@@ -2078,6 +2102,13 @@
 
       .noticia-card--1 .noticia-title{
         font-size: 20px;
+      }
+
+      /* Reservar espacio para el icon-link circular (44×44 absolute top-right)
+         para que el título no choque con él en 360-414. */
+      .noticia-card--1 .noticia-content,
+      .noticia-card--4 .noticia-content{
+        padding-right: 56px;
       }
 
       .noticia-card--2 .noticia-quote, 

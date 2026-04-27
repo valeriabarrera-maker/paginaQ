@@ -299,7 +299,7 @@ body.page-comunidad .footer {
 .com-events-badge {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   width: fit-content;
 }
 

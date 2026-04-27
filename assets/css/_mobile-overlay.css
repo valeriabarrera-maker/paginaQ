@@ -1,0 +1,762 @@
+/* ==========================================================================
+   QBRETE — Mobile overlay (≤1023px)
+
+   Capa aislada: todas las reglas viven dentro de @media (max-width: 1023px).
+   Importada al final de main.css, gana en source order sobre cualquier
+   regla existente sin necesidad de !important agresivo.
+
+   Desktop (≥1024px) NO se toca. Todo componente mobile-only se oculta
+   explícitamente al final con @media (min-width: 1024px).
+
+   Ejes cubiertos (numerados como en el plan): 1 base, 2 layout,
+   3 tipografía, 4 drawer refinement, 5 animación gating, 6 touch,
+   7 accesibilidad, 8 UX extras, 9 imágenes.
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+
+  /* ==============================================================
+     1. BASE MOBILE — safe-area, anti-zoom inputs, text-size-adjust
+     ============================================================== */
+  :root {
+    --m-safe-top:    env(safe-area-inset-top, 0px);
+    --m-safe-right:  env(safe-area-inset-right, 0px);
+    --m-safe-bottom: env(safe-area-inset-bottom, 0px);
+    --m-safe-left:   env(safe-area-inset-left, 0px);
+    --m-touch-min:   44px;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Anti-zoom iOS al enfocar input (requiere ≥16px). */
+  input, select, textarea {
+    font-size: max(16px, 1rem);
+  }
+
+  /* ==============================================================
+     2. LAYOUT MOBILE — padding fluido, safe-area, anti-overflow
+     ============================================================== */
+  .page-wrapper {
+    padding-left:  max(16px, var(--m-safe-left));
+    padding-right: max(16px, var(--m-safe-right));
+  }
+
+  /* Defensa anti-overflow para elementos con width fijo que asoman
+     en 360px. No afecta desktop. .panels-stack queda excluido porque
+     el carrusel mobile usa width: 100% sin negativos (ver fix más abajo). */
+  .section-products,
+  [class*="__container"],
+  [class*="__wrapper"] {
+    max-width: 100%;
+  }
+
+  /* Decorativo del hero: simplificar / reducir en móvil */
+  .deco-vector {
+    width: clamp(220px, 55vw, 360px);
+    height: auto;
+    right: -5%;
+    top: -20px;
+    opacity: 0.7;
+  }
+
+  /* Flowing line SVG grande del home — off en mobile (decorativo + coste) */
+  .flowing-line {
+    display: none;
+  }
+
+  /* Community gallery — base ≤1023: las 5 imgs en una sola fila con
+     overlaps y alturas variables (igual que desktop, escalado).
+     Override en ≤767: solo se ven las 3 del medio (img2, img3, img4)
+     porque las 5 a ese ancho quedan demasiado pequeñas. */
+  .community-gallery-wrapper {
+    margin: 0 !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+  .community-gallery {
+    /* 5 imgs: total visible = 5W − 4·(0.082W) ≈ 4.672W */
+    --img-w: clamp(60px, calc((100vw - 36px) / 4.672), 200px);
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0 !important;
+    padding: 16px 0 !important;
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+  }
+  .community-gallery .gallery-img {
+    width: var(--img-w) !important;
+    margin-left: calc(var(--img-w) * -0.082) !important;
+    flex-shrink: 0 !important;
+    object-fit: cover !important;
+    scroll-snap-align: none !important;
+    display: block !important;
+  }
+  .community-gallery .gallery-img:first-child {
+    margin-left: 0 !important;
+  }
+  .community-gallery .gallery-img:nth-child(1) {
+    height: calc(var(--img-w) * 1.1475) !important;
+  }
+  .community-gallery .gallery-img:nth-child(2) {
+    height: calc(var(--img-w) * 1.3934) !important;
+  }
+  .community-gallery .gallery-img:nth-child(3) {
+    height: calc(var(--img-w) * 0.9836) !important;
+  }
+  .community-gallery .gallery-img:nth-child(4) {
+    height: calc(var(--img-w) * 1.3934) !important;
+  }
+  .community-gallery .gallery-img:nth-child(5) {
+    height: calc(var(--img-w) * 1.5574) !important;
+  }
+  /* ≤767px: solo las 3 del medio, formula 3W − 2·(0.082W) ≈ 2.836W */
+  @media (max-width: 767px) {
+    .community-gallery {
+      --img-w: clamp(90px, calc((100vw - 36px) / 2.836), 244px);
+    }
+    .community-gallery .gallery-img:nth-child(1),
+    .community-gallery .gallery-img:nth-child(5) {
+      display: none !important;
+    }
+    /* img2 pasa a ser la primera visible — sin margin negativo */
+    .community-gallery .gallery-img:nth-child(2) {
+      margin-left: 0 !important;
+    }
+  }
+  /* Trail decorativo del fondo de la galería: fuera en mobile */
+  .dog-trail {
+    display: none !important;
+  }
+
+  /* Servicios — `.how-it-works`: en mobile la flexbox column del
+     `.steps-container` no centraba los cards (default align-items
+     flex-start) y `.step-card` tenía width:341px fijo que se
+     desbordaba en 360px. Forzamos centrado y ancho responsive. */
+  body.page-servicios .steps-container,
+  .steps-container {
+    align-items: center !important;
+  }
+  .step-card {
+    width: 100% !important;
+    max-width: 341px !important;
+  }
+  .step-text {
+    width: 100% !important;
+    max-width: 305px !important;
+    text-align: center !important;
+  }
+
+  /* Comunidad — `.com-about-left` h1 (con `.brand-orange`): alineado
+     a la izquierda en mobile, igual que desktop. Defensivo — el
+     layout side-by-side se rompe en mobile pero el título sigue
+     siendo "de columna izquierda". */
+  body.page-comunidad .com-about-left,
+  body.page-comunidad .com-about-left h1,
+  body.page-comunidad .com-about-left .com-desc {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Comunidad — `.page-wrapper` lateral 16px en todo mobile.
+     _page-comunidad.css usaba 40px en 768-1023 (un sobrante del
+     diseño desktop) que hacía que el h1 "Mi Comunidad" quedara
+     muy adentro respecto al borde. Lo unificamos al estándar 16px
+     del resto del proyecto. */
+  body.page-comunidad .page-wrapper {
+    padding-left: max(16px, var(--m-safe-left)) !important;
+    padding-right: max(16px, var(--m-safe-right)) !important;
+  }
+
+  /* Comunidad — `.com-stats` horizontal en mobile (como desktop).
+     _page-comunidad.css ≤767 los apilaba en columna; los devolvemos
+     a fila con wrap para que respiren si el ancho no alcanza. */
+  .com-stats {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: clamp(12px, 3vw, 24px) !important;
+  }
+  .com-stat,
+  .com-stat:nth-child(2),
+  .com-stat:nth-child(3) {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  /* Comunidad — `.com-about-right` / `.com-about-images`: misma
+     diagramación que desktop (2 filas con par portrait+landscape,
+     alineadas a flex-end / flex-start respectivamente). En ≤767
+     _page-comunidad.css apilaba todo en columna y las imgs eran
+     100% ancho — perdíamos el diseño. Forzamos fila y damos a cada
+     img un flex-grow proporcional a su ancho desktop + aspect-ratio
+     fijo, así escalan sin distorsión. */
+  .com-about-images-row {
+    flex-direction: row !important;
+    gap: clamp(8px, 2vw, 16px) !important;
+    min-height: 0 !important;
+  }
+  .com-about-images img.portrait {
+    flex: 197 1 0 !important;
+    width: auto !important;
+    height: auto !important;
+    aspect-ratio: 197 / 300 !important;
+    min-width: 0 !important;
+  }
+  .com-about-images img.landscape {
+    flex: 379 1 0 !important;
+    width: auto !important;
+    height: auto !important;
+    aspect-ratio: 379 / 245 !important;
+    min-width: 0 !important;
+  }
+  .com-about-images img.landscape-2 {
+    flex: 381 1 0 !important;
+    width: auto !important;
+    height: auto !important;
+    aspect-ratio: 381 / 245 !important;
+    min-width: 0 !important;
+  }
+  .com-about-images img.portrait-2 {
+    flex: 195 1 0 !important;
+    width: auto !important;
+    height: auto !important;
+    aspect-ratio: 195 / 300 !important;
+    min-width: 0 !important;
+  }
+
+  /* Comunidad — fix spacing en tablet portrait y abajo.
+     Desktop deja 100px de margin y 160px de padding; en ≤1023 se
+     reducen a valores mobile razonables. La regla original en
+     _page-comunidad.css solo tenía override a ≤767, dejando el
+     rango 768-1023 con los valores desktop intactos (roto). */
+  .com-communities {
+    margin-top: clamp(48px, 10vw, 100px);
+  }
+  .com-events {
+    margin-top: clamp(48px, 10vw, 100px);
+    padding: clamp(80px, 14vw, 120px) 0;
+    position: relative;
+  }
+  /* Fondo de com-events en mobile: pseudo-elemento full-bleed con
+     curva sutil (~4% dip) — misma estrategia que testimonios. El
+     SVG original tenía 12% de dip y cortaba contenido; ahora con
+     4% + padding generoso el contenido siempre queda adentro. */
+  body.page-comunidad .com-events .com-events-bg {
+    display: none !important;
+  }
+  /* Replicar comportamiento desktop: footer solapa -80px sobre
+     `.com-events` y la sección tiene padding-bottom de 160px →
+     la card queda dentro y la curva del footer "muerde" la sección
+     sin dejar gap visible extra. */
+  body.page-comunidad .footer {
+    margin-top: -80px !important;
+  }
+  body.page-comunidad .com-events {
+    padding-bottom: 160px !important;
+  }
+  /* `.com-events-inner`: en mobile la columna hereda align-items:
+     center del desktop → `.com-events-left` quedaba centrado en el
+     ancho del contenedor con texto izquierda dentro de su caja
+     (lo que visualmente se lee como centrado). Lo extendemos a
+     100% y forzamos text-align: left para badge/h2/p. */
+  body.page-comunidad .com-events-inner {
+    align-items: stretch !important;
+  }
+  body.page-comunidad .com-events-left {
+    width: 100% !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+  body.page-comunidad .com-events-left h2,
+  body.page-comunidad .com-events-left p,
+  body.page-comunidad .com-events-badge {
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+  /* Card del evento: altura adaptable a contenido en mobile.
+     Desktop fija `.com-event-footer { height: 42px }` y ancho 596px;
+     en mobile esos valores cortan/desbordan el contenido. */
+  body.page-comunidad .com-event-card {
+    width: 100% !important;
+    max-width: 596px !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+  body.page-comunidad .com-event-footer {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+  body.page-comunidad .com-events::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100vw !important;
+    height: 100% !important;
+    background-color: var(--color-brand-soft) !important;
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 200' preserveAspectRatio='none'><path d='M 0 0 C 360 8 1080 8 1440 0 L 1440 200 C 1080 192 360 192 0 200 Z' fill='black'/></svg>") !important;
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 200' preserveAspectRatio='none'><path d='M 0 0 C 360 8 1080 8 1440 0 L 1440 200 C 1080 192 360 192 0 200 Z' fill='black'/></svg>") !important;
+    -webkit-mask-size: 100% 100% !important;
+    mask-size: 100% 100% !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* Margins entre secciones del home: reducir en mobile.
+     El page-home tenía 80px en 768-1023 y 60px en ≤767 — ambos se
+     sienten grandes. Aquí los unificamos via clamp fluido (48-64px). */
+  body.page-home .razones-section,
+  body.page-home .section-comunidad,
+  body.page-home .section-noticias,
+  body.page-home .section-about,
+  body.page-home .section-products,
+  body.page-home .section-testimonios {
+    margin-top: clamp(48px, 8vw, 64px) !important;
+  }
+  body.page-home .section-testimonios {
+    padding-top: clamp(48px, 10vw, 80px) !important;
+    padding-bottom: clamp(48px, 10vw, 80px) !important;
+  }
+  /* Fondo de testimonios en mobile: forma de lente sutil (~4% dip)
+     vs el SVG original (12% dip) que se veía exagerado en pantallas
+     chicas. Implementado como pseudo-elemento full-bleed con
+     mask-image (SVG inline) y background-color brand-soft. */
+  body.page-home .section-testimonios .testimonios-bg {
+    display: none !important;
+  }
+  body.page-home .section-testimonios::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100vw !important;
+    height: 100% !important;
+    background-color: var(--color-brand-soft) !important;
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 200' preserveAspectRatio='none'><path d='M 0 0 C 360 8 1080 8 1440 0 L 1440 200 C 1080 192 360 192 0 200 Z' fill='black'/></svg>") !important;
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 200' preserveAspectRatio='none'><path d='M 0 0 C 360 8 1080 8 1440 0 L 1440 200 C 1080 192 360 192 0 200 Z' fill='black'/></svg>") !important;
+    -webkit-mask-size: 100% 100% !important;
+    mask-size: 100% 100% !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+  }
+  /* Hero conserva su top más reducido por ser el primero */
+  body.page-home .hero {
+    margin-top: clamp(24px, 5vw, 40px) !important;
+  }
+
+  /* Razones-section padding interno (desktop tiene 72px arriba/abajo).
+     En mobile es excesivo: lo reducimos para no duplicar con el
+     margin-top de la siguiente sección. */
+  body.page-home .razones-section {
+    padding: var(--space-lg) 0 !important;  /* 32px arriba/abajo */
+  }
+
+  /* ==============================================================
+     3. TIPOGRAFÍA MOBILE — clamp en títulos, <br> off, centrado hero
+     ============================================================== */
+  h1 {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    line-height: 1.15;
+  }
+  h2 {
+    font-size: clamp(1.5rem, 6.5vw, 2.25rem);
+    line-height: 1.15;
+  }
+  h3 {
+    font-size: clamp(1.125rem, 4.5vw, 1.5rem);
+    line-height: 1.25;
+  }
+
+  /* Los <br> forzados del desktop rompen el wrap natural en 360px.
+     Se ocultan sólo dentro de titulares — no afecta párrafos. */
+  h1 br, h2 br, h3 br {
+    display: none;
+  }
+
+  /* Títulos hero/sección: centrados en mobile, con max-width en ch
+     para evitar líneas demasiado largas y quedarlos balanceados. */
+  h1, h2 {
+    text-align: center;
+    margin-inline: auto;
+    max-width: 22ch;
+  }
+
+  /* Cuerpo: lectura cómoda */
+  p {
+    line-height: 1.5;
+  }
+
+  /* Subtítulos/lead típicos en hero/sección — limitar ancho y centrar.
+     Ampliado para cubrir los subtítulos no-BEM del home: about-desc,
+     razones-subtitle, hero-content .subtitle, section-subtitle. */
+  .products-subtitle,
+  .comunidad-subtitle,
+  .noticias-header p,
+  .about-desc,
+  .razones-subtitle,
+  .section-subtitle,
+  .hero-content .subtitle,
+  [class*="__subtitle"] {
+    max-width: 38ch;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  /* Home — patrón unificado de titulares de sección en mobile:
+     mismo font-size fluido y line-height que .section-comunidad h2.
+     Esto sustituye la regla global h1/h2 (line-height 1.15) para
+     todos los titulares principales del home. */
+  .section-comunidad h2,
+  .hero-content h1,
+  .entrar-iz h2,
+  .products-header h2,
+  .noticias-header h2,
+  .about-left h2 {
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1.1;
+  }
+
+  /* Botones centrados en columnas de sección (entrar/about).
+     width:max-content asegura que el botón quede del ancho de su
+     contenido y no se estire en mobile (algunos overrides de
+     desktop o reglas globales pueden empujarlo a 100%). */
+  .entrar-iz .btn--outline,
+  .about-left .btn {
+    align-self: center !important;
+    width: max-content !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+  }
+
+  /* ===== Patrón uniforme de titular de sección en mobile =====
+     Inspirado en .section-comunidad (desktop): flex column,
+     align-items: center, gap: 16px, sin márgenes en titulares.
+     Aplica a todos los hero/header de sección del home.        */
+  .hero-content,
+  .entrar-iz,
+  .about-left,
+  .products-intro,
+  .products-header,
+  .noticias-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--space-md) !important;       /* 16px — patrón comunidad */
+    text-align: center !important;
+  }
+
+  /* Eliminar márgenes residuales en titulares y subtítulos.
+     El gap del contenedor se encarga del spacing. */
+  .hero-content h1,
+  .hero-content .subtitle,
+  .entrar-iz h2,
+  .entrar-iz .razones-subtitle,
+  .about-left h2,
+  .about-left .about-desc,
+  .about-left .about-sub,
+  .products-header h2,
+  .products-header .products-subtitle,
+  .noticias-header h2,
+  .noticias-header p {
+    margin: 0 !important;
+  }
+
+  /* Header de noticias: separación con la grilla de cards */
+  .noticias-header {
+    margin-bottom: var(--space-lg) !important;  /* 32px */
+  }
+
+  /* Products-intro: padding-top 0 en mobile.
+     El margin-top de section-products ya separa de la sección anterior;
+     duplicarlo aquí generaba ~96px de aire entre razones y el h2 de
+     productos. */
+  .products-intro {
+    padding-top: 0 !important;
+  }
+
+  /* ==============================================================
+     4. DRAWER REFINEMENT — safe-area, 44×44, animación
+     (el CSS base ya vive en _header.css; aquí sólo refuerzos)
+     ============================================================== */
+  .mobile-nav {
+    padding:
+      calc(var(--m-safe-top) + 56px)
+      max(24px, var(--m-safe-right))
+      calc(var(--m-safe-bottom) + 24px)
+      max(24px, var(--m-safe-left));
+    transition-duration: 280ms;
+    overscroll-behavior: contain;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-nav { transition-duration: 0ms; }
+  }
+
+  .mobile-nav__link {
+    min-height: var(--m-touch-min);
+    display: inline-flex;
+    align-items: center;
+    padding: 0 12px;
+  }
+
+  .mobile-nav__close {
+    top:   calc(var(--m-safe-top) + 16px);
+    right: calc(var(--m-safe-right) + 16px);
+    width:  var(--m-touch-min);
+    height: var(--m-touch-min);
+  }
+
+  /* Hook que usa el JS: bloquea scroll del body mientras drawer abierto */
+  body.is-menu-open {
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  /* ==============================================================
+     5. ANIMATION GATING — degrada scrollytelling del home en mobile
+     El JS inline del index sigue corriendo pero sus transforms no
+     se aplican porque el panel pasa a position relative con
+     transform:none !important (CSS gana sobre style inline sin
+     !important).
+     ============================================================== */
+
+  /* Sticky wrapper del home: desactivado */
+  .products-sticky,
+  body.page-home .panels-stack {
+    position: static !important;
+    height: auto !important;
+    top: auto !important;
+    transform: none !important;
+  }
+
+  /* Section-products en desktop tiene height:200vh para el scrollytelling.
+     En mobile lo desactivamos (sticky off, panels en flujo) → la altura
+     fija deja ~100vh de aire vacío. Forzamos auto. */
+  body.page-home .section-products {
+    height: auto !important;
+  }
+
+  /* En mobile los paneles fluyen en columna, no apilados con grid-area.
+     align-items: center alinea cada card al centro horizontal del
+     contenedor (las cards no toman 100% — tienen width propio en el
+     componente, ver _card-product.css mobile). */
+  body.page-home .panels-stack {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 24px !important;
+    grid-template-areas: none !important;
+    padding: 0 !important;
+  }
+
+  body.page-home .panels-stack > .product-panel {
+    position: relative !important;
+    grid-area: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    max-width: calc(100vw - 32px) !important;
+    flex: 0 0 auto !important;
+    margin-inline: auto !important;
+  }
+
+  /* Reveal on scroll: respeta prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal],
+    .reveal-on-scroll,
+    [class*="fade-in"] {
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+  }
+
+  /* ==============================================================
+     6. TOUCH INTERACTION — manipulación, feedback, targets
+     ============================================================== */
+  a, button, [role="button"], summary, .btn {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Targets táctiles mínimos en elementos clave */
+  .btn,
+  nav a,
+  .mobile-nav__close,
+  .header__hamburger {
+    min-height: var(--m-touch-min);
+  }
+
+  /* Neutralizar hover-stuck: en pantallas sin cursor, los :hover
+     quedan pegados tras un tap. Anular transforms/shadows residuales. */
+  @media (hover: none) {
+    .btn:hover,
+    a:hover {
+      transform: none !important;
+      filter: none !important;
+    }
+  }
+
+  /* Feedback inmediato al tap */
+  .btn:active,
+  .mobile-nav__link:active {
+    transform: scale(0.98);
+    transition: transform 80ms linear;
+  }
+
+  /* ==============================================================
+     7. ACCESSIBILITY — focus visible
+     ============================================================== */
+  :focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* ==============================================================
+     8. UX EXTRAS — sticky CTA (home), back-to-top, scroll progress,
+     footer accordion. Los elementos los inyecta mobile.js; aquí
+     solo el estilo.
+     ============================================================== */
+
+  /* Indicador de progreso de scroll (2-3px) */
+  .m-scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-brand), var(--color-brand-light));
+    z-index: 999;
+    pointer-events: none;
+    transition: width 80ms linear;
+  }
+
+  /* Botón volver arriba */
+  .m-back-to-top {
+    position: fixed;
+    right:  max(16px, var(--m-safe-right));
+    bottom: calc(var(--m-safe-bottom) + 84px); /* por encima de sticky CTA si existe */
+    width:  48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-brand);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 200ms var(--ease-out-quint),
+                transform 200ms var(--ease-out-quint);
+    z-index: 40;
+    border: 0;
+  }
+  body:not(.page-home) .m-back-to-top {
+    bottom: calc(var(--m-safe-bottom) + 16px); /* sin sticky CTA, más bajo */
+  }
+  .m-back-to-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  /* Footer accordion — los botones y paneles los crea mobile.js
+     convirtiendo h3/h4 + siguiente sibling en toggle/panel. */
+  .footer [data-accordion-toggle] {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 0;
+    font: inherit;
+    font-weight: 600;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+    min-height: var(--m-touch-min);
+  }
+  .footer [data-accordion-panel] {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 280ms var(--ease-out-quint);
+  }
+  .footer [data-accordion-panel][data-open="true"] {
+    max-height: 800px;
+  }
+  .footer [data-accordion-toggle] .m-chevron {
+    flex-shrink: 0;
+    transition: transform 200ms var(--ease-out-quint);
+  }
+  .footer [data-accordion-toggle][aria-expanded="true"] .m-chevron {
+    transform: rotate(180deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer [data-accordion-panel],
+    .footer [data-accordion-toggle] .m-chevron,
+    .m-back-to-top,
+    .m-scroll-progress {
+      transition: none !important;
+    }
+  }
+
+  /* ==============================================================
+     9. IMÁGENES — anti-overflow básico
+     (srcset/loading/width/height se aplicarán página a página en
+     fase 2 como follow-up; documentado).
+     ============================================================== */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+}
+
+/* ==========================================================================
+   Desktop (≥1024px) — ocultar componentes mobile-only
+   Los elementos inyectados por mobile.js quedan en el DOM pero invisibles.
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .m-back-to-top,
+  .m-scroll-progress {
+    display: none !important;
+  }
+
+  /* Footer accordion: botones se convierten en "headings visuales"
+     (display inline) y los paneles quedan siempre abiertos.
+     En mobile.js sólo creamos estos elementos si es mobile, pero si
+     alguien redimensiona y se queda el markup, esta regla lo neutraliza. */
+  .footer [data-accordion-toggle] {
+    pointer-events: none;
+    cursor: default;
+  }
+  .footer [data-accordion-toggle] .m-chevron {
+    display: none;
+  }
+  .footer [data-accordion-panel] {
+    max-height: none !important;
+  }
+}

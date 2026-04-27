@@ -27,3 +27,8 @@
 @import "layout/_page-noticias.css";
 @import "layout/_page-faq.css";
 @import "layout/_page-politica.css";
+
+/* ---- Mobile overlay (≤1023px) ----
+   Capa aislada, cargada al final para ganar por source order.
+   No toca desktop (≥1024). Ver _mobile-overlay.css. */
+@import "_mobile-overlay.css";

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Card Test — product-panel</title>
+  <!-- Solo los estilos mínimos para renderizar la card:
+       tokens + reset + button (CTA usa .btn) + el componente -->
+  <link rel="stylesheet" href="assets/css/base/_variables.css">
+  <link rel="stylesheet" href="assets/css/base/_reset.css">
+  <link rel="stylesheet" href="assets/css/components/_button.css">
+  <link rel="stylesheet" href="assets/css/components/_card-product.css">
+  <style>
+    /* Layout local sólo de esta página de prueba */
+    body {
+      font-family: var(--font-body, system-ui);
+      background: linear-gradient(155deg, #fff 0%, #fff7ed 100%);
+      padding: 40px 20px;
+      color: #111;
+    }
+    .test-page {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+    .test-page h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0;
+    }
+    .test-page h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+    .test-page p.hint {
+      margin: 0;
+      color: #555;
+      font-size: 14px;
+    }
+    .test-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    /* Wrapper de la card: sin altura, se ajusta al contenido del panel. */
+    .stage {
+      position: relative;
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    /* Cards lado a lado: ambas se estiran al mismo alto (del más alto)
+       gracias al align-items: stretch por defecto del grid. */
+    .side-by-side {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 1023px) {
+      .side-by-side {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .meta {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: #111;
+      color: #0f0;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-page">
+
+    <header>
+      <h1>Test aislado — <code>.product-panel</code></h1>
+      <p class="hint">
+        Redimensiona el navegador para probar los breakpoints:
+        <strong>1200 · 1024 · 900 · 767 · 480</strong>.
+        Viewport actual: <span class="meta" id="vp">—</span>
+      </p>
+    </header>
+
+    <!-- ========= TEST 1: variante MASCOTAS (morada) sola ========= -->
+    <section class="test-section">
+      <h2>1. Variante <code>--mascotas</code> (morada) — sola</h2>
+      <div class="stage">
+        <div class="product-panel product-panel--mascotas">
+          <img src="assets/images/products/product-mascotas-img.png" class="product-panel__image" alt="Mascotas" />
+          <div class="product-card">
+            <div class="product-card__header">
+              <div class="product-card__icon">
+                <svg class="product-card__icon-img" viewBox="0 0 40 40" fill="none"><path d="M20 36s13.3-6.7 13.3-16.7V8.3L20 2.7 6.7 8.3v11c0 10 13.3 16.7 13.3 16.7z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="product-card__chip">Popular</span>
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">Seguro Garritas</h3>
+              <p class="product-card__desc">Seguro de mascotas con asistencia y bienestar para su día a día.</p>
+              <div class="product-card__features">
+                <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Gastos veterinarios por accidente o enfermedad.</div>
+                <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Consulta veterinaria en casa.</div>
+                <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Gastos de cremación o entierro.</div>
+              </div>
+              <a href="#" class="btn btn--primary product-card__cta">Conoce más aquí.</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= TEST 2: variante BICICLETAS (azul) sola ========= -->
+    <section class="test-section">
+      <h2>2. Variante <code>--bicicletas</code> (azul) — sola</h2>
+      <div class="stage">
+        <div class="product-panel product-panel--bicicletas">
+          <img src="assets/images/products/product-bicicletas-img.png" class="product-panel__image" alt="Bicicletas" />
+          <div class="product-card">
+            <div class="product-card__header">
+              <div class="product-card__icon">
+                <svg class="product-card__icon-img" viewBox="0 0 40 40" fill="none"><path d="M20 36s13.3-6.7 13.3-16.7V8.3L20 2.7 6.7 8.3v11c0 10 13.3 16.7 13.3 16.7z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="product-card__chip">Popular</span>
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">Seguro Enruta</h3>
+              <p class="product-card__desc">Seguro para bicicletas con respaldo para cada trayecto.</p>
+              <div class="product-card__features">
+                <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Cobertura por hurto calificado en el plan Elite.</div>
+                <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Protección por invalidez total y permanente.</div>
+                <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Cobertura por muerte por accidente.</div>
+                <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Reembolso de gastos médicos por accidente.</div>
+                <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Cobertura por pérdida de piezas dentales.</div>
+              </div>
+              <a href="#" class="btn btn--primary product-card__cta">Conoce más aquí.</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= TEST 3: morada + azul lado a lado ==========
+         Cada card se ajusta a SU propio contenido. La morada
+         (3 features) será más baja que la azul (5 features). -->
+    <section class="test-section">
+      <h2>3. Morada + azul lado a lado — <em>cada una con su altura natural</em></h2>
+      <div class="side-by-side">
+        <div class="stage">
+          <div class="product-panel product-panel--mascotas">
+            <img src="assets/images/products/product-mascotas-img.png" class="product-panel__image" alt="Mascotas" />
+            <div class="product-card">
+              <div class="product-card__header">
+                <div class="product-card__icon">
+                  <svg class="product-card__icon-img" viewBox="0 0 40 40" fill="none"><path d="M20 36s13.3-6.7 13.3-16.7V8.3L20 2.7 6.7 8.3v11c0 10 13.3 16.7 13.3 16.7z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="product-card__chip">Popular</span>
+              </div>
+              <div class="product-card__content">
+                <h3 class="product-card__title">Seguro Garritas</h3>
+                <p class="product-card__desc">Descripción corta.</p>
+                <div class="product-card__features">
+                  <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Feature 1.</div>
+                  <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Feature 2.</div>
+                  <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Feature 3.</div>
+                </div>
+                <a href="#" class="btn btn--primary product-card__cta">CTA</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="product-panel product-panel--bicicletas">
+            <img src="assets/images/products/product-bicicletas-img.png" class="product-panel__image" alt="Bicicletas" />
+            <div class="product-card">
+              <div class="product-card__header">
+                <div class="product-card__icon">
+                  <svg class="product-card__icon-img" viewBox="0 0 40 40" fill="none"><path d="M20 36s13.3-6.7 13.3-16.7V8.3L20 2.7 6.7 8.3v11c0 10 13.3 16.7 13.3 16.7z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="product-card__chip">Popular</span>
+              </div>
+              <div class="product-card__content">
+                <h3 class="product-card__title">Seguro Enruta</h3>
+                <p class="product-card__desc">Descripción corta.</p>
+                <div class="product-card__features">
+                  <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Feature 1.</div>
+                  <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Feature 2.</div>
+                  <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Feature 3.</div>
+                  <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Feature 4.</div>
+                  <div class="product-card__feature"><div class="product-card__check"><svg class="product-card__check-icon" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="currentColor" stroke-width="1.56" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Feature 5.</div>
+                </div>
+                <a href="#" class="btn btn--primary product-card__cta">CTA</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Muestra el tamaño del viewport para saber qué breakpoint está activo.
+    const vp = document.getElementById('vp');
+    const update = () => vp.textContent = `${window.innerWidth} x ${window.innerHeight}`;
+    update();
+    window.addEventListener('resize', update);
+  </script>
+</body>
+</html>

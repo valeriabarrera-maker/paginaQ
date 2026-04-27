@@ -18,6 +18,9 @@ html {
 
 body {
   font-family: var(--font-body, 'Montserrat', sans-serif);
+  /* Floor de line-height para cualquier texto sin override explícito.
+     Los componentes que necesitan otro valor lo declaran arriba. */
+  line-height: 1.5;
   min-height: 100vh;
   overflow-x: hidden;
 }

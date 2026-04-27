@@ -39,7 +39,7 @@ body.page-servicios .page-wrapper {
 .main-section {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: var(--space-section);
   margin-top: 70px;
   position: relative;
   z-index: 1;
@@ -50,7 +50,7 @@ body.page-servicios .page-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 21px;
+  gap: 20px;
 }
 
 .page-header-badge {

@@ -53,4 +53,21 @@
 
   /* --- Layout ------------------------------------------------------------- */
   --container-max: 1240px;
+
+  /* --- Spacing ------------------------------------------------------------
+     Escala 8pt. Cada token con su uso típico (sólo se listan los valores
+     que ya se repetían ≥9 veces en el codebase, según auditoría).
+     Adopción gradual: nuevo código usa estos tokens; legacy CSS se
+     migra cuando se tocan los archivos.                                  */
+  --space-xs:        8px;    /* gaps de chips/badges, separación de iconos */
+  --space-sm:       12px;    /* gaps internos finos */
+  --space-md:       16px;    /* padding/margin estándar de cards */
+  --space-md-plus:  24px;    /* gap entre párrafos, padding interior */
+  --space-lg:       32px;    /* padding cards grandes, gap heros */
+  --space-xl:       40px;    /* gap secciones internas */
+  --space-2xl:      48px;    /* mobile main gap, padding 2x */
+  --space-section:  80px;    /* gap entre secciones del main (estándar) */
+  --space-main-top: 70px;    /* margin-top del main (estándar) */
+  --space-wrapper-x: 100px;  /* padding horizontal del wrapper desktop */
+  --space-section-home: 140px; /* separación entre secciones del home (mayor que el resto) */
 }

@@ -2,6 +2,13 @@
    QBRETE — Product Panel Component
    Sistema de tarjetas de producto con variantes
    tematizadas mediante CSS custom properties.
+
+   Dimensiones: el panel siempre ocupa 100% × 100% de su
+   contenedor (.panels-stack). Así, morada y azul comparten
+   tamaño exacto: cuando la azul entra sobre la morada en
+   el stack animado del home, cubre la morada por completo.
+   `overflow: hidden` evita que cualquier contenido interno
+   rompa ese contrato visual.
    ========================================== */
 
 /* ========== VARIABLES POR VARIANTE ========== */
@@ -51,11 +58,15 @@
   --pc-check-bg: var(--color-brand-soft);
 }
 
-/* ========== PANEL (contenedor) ========== */
+/* ========== PANEL (contenedor) ==========
+   `height: 100%` hace que el panel llene la altura de su
+   contenedor (.panels-stack, .stage, etc). En el stack del
+   home esto combinado con `align-self: stretch` garantiza
+   que morada se estire al tamaño de azul.
+   `grid-template-rows: 1fr` hace que el contenido interno
+   (imagen y card) también llene esa altura. */
 .product-panel {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   max-width: 1240px;
   height: 100%;
@@ -63,23 +74,33 @@
   border-radius: var(--pc-panel-radius);
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
   gap: var(--pc-panel-gap);
   background: var(--pc-panel-bg);
   box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.15);
   will-change: transform;
+  box-sizing: border-box;
 }
 
 .product-panel__image {
   width: 100%;
   height: 100%;
+  min-height: 0;
+  align-self: stretch;
   border-radius: 0;
   object-fit: cover;
+  object-position: center;
   order: 1;
 }
 
-/* ========== CARD (contenido blanco) ========== */
+/* ========== CARD (contenido blanco) ==========
+   `height: 100%` y `align-self: stretch` garantizan que la
+   card blanca llene siempre la altura del panel morado/azul
+   (menos el padding del panel). */
 .product-card {
   order: 2;
+  align-self: stretch;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--pc-card-gap);
@@ -88,6 +109,9 @@
   border: 1px solid var(--pc-card-border);
   border-radius: var(--pc-card-radius);
   box-shadow: var(--pc-card-shadow);
+  min-height: 0;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 /* ---- Header: icon + chip ---- */
@@ -126,11 +150,16 @@
   color: var(--pc-chip-color);
 }
 
-/* ---- Content ---- */
+/* ---- Content ----
+   flex:1 hace que el bloque de contenido llene la altura
+   disponible de la card (útil cuando la card se estira para
+   emparejar la card hermana más larga). */
 .product-card__content {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  flex: 1;
+  min-height: 0;
 }
 
 .product-card__title {
@@ -188,9 +217,13 @@
 /* ---- Botón CTA dentro del product-card ----
    Toma de button.css como base (.btn .btn--primary)
    y usa los colores de la variante del panel.
-*/
+   margin-top: auto empuja el botón al fondo del contenedor,
+   dejando espacio flexible arriba cuando la card se estira.
+   El flex gap de 20px asegura un mínimo de 20px entre
+   el contenido y el botón. */
 .product-card__cta {
   width: 100%;
+  margin-top: auto;
   background-color: var(--pc-accent);
   color: var(--pc-accent-text);
 }
@@ -199,67 +232,357 @@
   background-color: var(--pc-accent-hover);
 }
 
-/* ========== RESPONSIVE ========== */
+/* ==========================================
+   RESPONSIVE — escala fluida por breakpoint
+   El panel conserva 100% × 100% del contenedor
+   para que morada y azul sean idénticas en tamaño.
+   Solo cambian: padding, tipografía, distribución
+   del grid interno e íconos.
+   ========================================== */
 
-@media (max-width: 1023px) {
+/* ---- Desktop medio (1200px) ---- */
+@media (max-width: 1200px) {
   .product-panel {
-    width: 100%;
-    height: 100%;
-    grid-template-columns: 1fr;
-    padding: 20px;
-    gap: 20px;
-  }
-
-  .product-panel__image {
-    height: 240px;
-    order: 1;
-  }
-
-  .product-card {
-    padding: 24px;
+    --pc-panel-padding: 28px;
+    --pc-panel-gap: 24px;
+    --pc-card-padding: 30px;
   }
 
   .product-card__title {
-    font-size: 24px;
-  }
-
-  .product-card__desc {
-    font-size: 15px;
+    font-size: 26px;
+    line-height: 30px;
   }
 }
 
+/* ---- Tablet landscape / desktop pequeño (1024px) ----
+   Padding más compacto, tipografía reducida.
+   Se mantiene el grid de 2 columnas. */
+@media (max-width: 1024px) {
+  .product-panel {
+    --pc-panel-padding: 24px;
+    --pc-panel-gap: 20px;
+    --pc-panel-radius: 28px;
+    --pc-card-padding: 24px;
+    --pc-card-gap: 14px;
+  }
+
+  .product-card__header {
+    gap: 12px;
+  }
+
+  .product-card__icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .product-card__icon-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .product-card__title {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .product-card__desc {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .product-card__features {
+    gap: 10px;
+  }
+
+  .product-card__feature {
+    font-size: 14px;
+    line-height: 20px;
+    gap: 12px;
+  }
+}
+
+/* ---- Tablet portrait (900px) ----
+   Cambio a 1 columna: imagen arriba, card abajo.
+   Fila de imagen acotada entre 150px y 30% del panel
+   para dejar espacio al contenido de la card azul
+   (5 features) sin que desborde. */
+@media (max-width: 900px) {
+  .product-panel {
+    grid-template-columns: 1fr;
+    /* Fila de imagen fija + fila de card que llena lo restante
+       (1fr) para que la card se estire cuando el panel está
+       más alto por el stretch del stack. */
+    grid-template-rows: 280px 1fr;
+    --pc-panel-padding: 18px;
+    --pc-panel-gap: 14px;
+    --pc-card-padding: 20px;
+    --pc-card-gap: 12px;
+  }
+
+  .product-panel__image {
+    border-radius: var(--pc-card-radius);
+  }
+
+  .product-card__header {
+    gap: 10px;
+  }
+
+  .product-card__icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .product-card__icon-img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .product-card__title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .product-card__desc {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .product-card__features {
+    gap: 8px;
+  }
+
+  .product-card__feature {
+    font-size: 13px;
+    line-height: 18px;
+    gap: 10px;
+  }
+}
+
+/* ---- Mobile (767px) ----
+   El panel sale del stack absoluto y pasa a posición relativa
+   con altura auto. Contenido fluido con aspect-ratio en la imagen.
+   Las reglas de ancho del carrusel (flex item) están scopeadas a
+   `body.page-home` para no afectar a otras páginas como detalle. */
 @media (max-width: 767px) {
   .product-panel {
     position: relative;
-    flex: 0 0 calc(100vw - 48px);
-    width: calc(100vw - 48px);
+    max-width: none;
+    width: 100%;
     height: auto;
     grid-template-columns: 1fr;
-    padding: 20px;
-    gap: 16px;
+    /* Fila 1: altura fija para la imagen. Fila 2: 1fr para que
+       la card se estire si el panel está estirado por el stack. */
+    grid-template-rows: 240px 1fr;
     border-radius: var(--radius-lg);
     top: 0 !important;
     transform: none !important;
     opacity: 1 !important;
+    --pc-panel-padding: 18px;
+    --pc-panel-gap: 16px;
+    --pc-card-padding: 20px;
+  }
+
+  /* Home: panel como flex item dentro del carrusel horizontal */
+  body.page-home .product-panel {
+    flex: 0 0 calc(100vw - 48px);
+    width: calc(100vw - 48px);
     scroll-snap-align: center;
   }
 
   .product-panel__image {
-    height: 200px;
     border-radius: var(--radius-md);
   }
 
   .product-card {
-    padding: 20px;
     border-radius: var(--radius-md);
   }
 
+  .product-card__title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
   .product-card__features {
-    gap: 12px;
+    gap: 10px;
   }
 
   .product-card__cta {
     padding: 14px;
     min-height: 48px;
+  }
+}
+
+/* ---- Mobile pequeño (480px) ----
+   Ajustes finos para pantallas estrechas. */
+@media (max-width: 480px) {
+  .product-panel {
+    grid-template-rows: 200px 1fr;
+    --pc-panel-padding: 14px;
+    --pc-panel-gap: 12px;
+    --pc-card-padding: 16px;
+  }
+
+  /* Home: en el carrusel, ligeramente más ancho */
+  body.page-home .product-panel {
+    flex: 0 0 calc(100vw - 32px);
+    width: calc(100vw - 32px);
+  }
+
+  .product-card__icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .product-card__icon-img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .product-card__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .product-card__desc,
+  .product-card__feature {
+    font-size: 13px;
+    line-height: 18px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE — Variantes morada (mascotas) y azul (bicicletas)
+   Especificado por el diseño "card mobile" de Figma
+   (node 1134:9192, panel 403×917 a 435px de viewport).
+   La variante naranja (default) conserva su escala original.
+   ========================================== */
+
+/* ---- Tablet portrait y abajo (900px) ----
+   Mantiene el grid de 1 columna (imagen arriba, card abajo)
+   pero la card llena la celda restante para cumplir el
+   contrato "card llena el panel + CTA anclada al fondo". */
+@media (max-width: 900px) {
+  .product-panel--mascotas,
+  .product-panel--bicicletas {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .product-panel--mascotas .product-panel__image,
+  .product-panel--bicicletas .product-panel__image {
+    height: auto;
+    aspect-ratio: 371 / 323;
+  }
+}
+
+/* ---- Mobile (767px) ---- */
+@media (max-width: 767px) {
+  .product-panel--mascotas,
+  .product-panel--bicicletas {
+    --pc-panel-padding: 16px;
+    --pc-panel-gap: 32px;
+    --pc-panel-radius: 32px;
+    --pc-card-padding: 24px;
+    --pc-card-gap: 16px;
+    --pc-card-radius: 24px;
+  }
+
+  .product-panel--mascotas .product-card,
+  .product-panel--bicicletas .product-card {
+    border-radius: var(--pc-card-radius);
+  }
+
+  .product-panel--mascotas .product-card__header,
+  .product-panel--bicicletas .product-card__header {
+    gap: 16px;
+  }
+
+  .product-panel--mascotas .product-card__icon,
+  .product-panel--bicicletas .product-card__icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .product-panel--mascotas .product-card__icon-img,
+  .product-panel--bicicletas .product-card__icon-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .product-panel--mascotas .product-card__content,
+  .product-panel--bicicletas .product-card__content {
+    gap: 20px;
+  }
+
+  .product-panel--mascotas .product-card__title,
+  .product-panel--bicicletas .product-card__title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .product-panel--mascotas .product-card__desc,
+  .product-panel--bicicletas .product-card__desc {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .product-panel--mascotas .product-card__features,
+  .product-panel--bicicletas .product-card__features {
+    gap: 16px;
+  }
+
+  .product-panel--mascotas .product-card__feature,
+  .product-panel--bicicletas .product-card__feature {
+    font-size: 16px;
+    line-height: 22px;
+    gap: 16px;
+  }
+
+  .product-panel--mascotas .product-card__cta,
+  .product-panel--bicicletas .product-card__cta {
+    border-radius: 16px;
+    min-height: 42px;
+  }
+}
+
+/* ---- Mobile pequeño (480px) ----
+   Reducción leve de padding/tipografía manteniendo la jerarquía del
+   diseño Figma mobile. */
+@media (max-width: 480px) {
+  .product-panel--mascotas,
+  .product-panel--bicicletas {
+    --pc-panel-padding: 14px;
+    --pc-panel-gap: 24px;
+    --pc-card-padding: 20px;
+  }
+
+  .product-panel--mascotas .product-card__icon,
+  .product-panel--bicicletas .product-card__icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .product-panel--mascotas .product-card__icon-img,
+  .product-panel--bicicletas .product-card__icon-img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .product-panel--mascotas .product-card__title,
+  .product-panel--bicicletas .product-card__title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .product-panel--mascotas .product-card__desc,
+  .product-panel--bicicletas .product-card__desc {
+    font-size: 15px;
+    line-height: 21px;
+  }
+
+  .product-panel--mascotas .product-card__feature,
+  .product-panel--bicicletas .product-card__feature {
+    font-size: 15px;
+    line-height: 21px;
   }
 }

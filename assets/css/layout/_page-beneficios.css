@@ -10,7 +10,7 @@ body.page-beneficios {
 .ben-main {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: var(--space-section);
   margin-top: 70px;
   padding-bottom: 0;
   position: relative;
@@ -22,7 +22,7 @@ body.page-beneficios {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 21px;
+  gap: 20px;
 }
 
 .ben-badge {
