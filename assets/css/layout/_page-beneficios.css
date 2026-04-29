@@ -196,8 +196,8 @@ body.page-beneficios {
   }
 
   .ben-desc {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 26px;
   }
 
   .ben-tabs {
@@ -207,6 +207,6 @@ body.page-beneficios {
 
   .ben-tab {
     padding: 0 16px;
-    font-size: 13px;
+    font-size: 14px;
   }
 }

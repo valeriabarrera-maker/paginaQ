@@ -8,7 +8,9 @@
       font-family: var(--font-body);
       background: linear-gradient(155deg, var(--color-white) 0%, #fff7ed 100%);
       min-height: 100vh;
-      overflow-x: hidden;
+      /* `overflow-x: clip` (no `hidden`) — `hidden` crea containing block
+         y rompe `position: sticky` en `.header-root`. */
+      overflow-x: clip;
     }
 
     /* ===== SCROLL PROGRESS ===== */
@@ -1125,6 +1127,7 @@
       will-change: transform;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
       transition: box-shadow 0.3s;
+      transform-origin: top left;
     }
 
     .reason-card:hover{
@@ -1148,40 +1151,45 @@
       height: 24px;
     }
 
-    /* Figma positions + gradients (Figma node 574:2853) */
+    /* Figma positions + gradients + rotaciones (Figma 1221:3440) */
     .reason-card:nth-child(1){
       left: 2px;
       top: 0px;
       background: linear-gradient(90deg, var(--color-brand-light) 0%, var(--color-brand) 100%);
-      z-index: 5;
+      z-index: 1;
+      transform: rotate(0deg);
     }
 
     .reason-card:nth-child(2){
       left: 0px;
       top: 92px;
       background: linear-gradient(90deg, #EDBB88 0%, #F5A474 45.88%, var(--color-brand-light) 100%);
-      z-index: 4;
+      z-index: 3;
+      transform: rotate(-3.99deg);
     }
 
     .reason-card:nth-child(3){
       left: 6px;
       top: 161px;
       background: linear-gradient(90deg, var(--color-brand-light) 0%, var(--color-brand-dark) 100%);
-      z-index: 3;
+      z-index: 2;
+      transform: rotate(0.54deg);
     }
 
     .reason-card:nth-child(4){
       left: 7px;
       top: 256px;
       background: linear-gradient(90deg, #FF7575 0%, var(--color-brand) 35.58%);
-      z-index: 2;
+      z-index: 3;
+      transform: rotate(-5.49deg);
     }
 
     .reason-card:nth-child(5){
       left: 7px;
       top: 317px;
       background: linear-gradient(90deg, var(--color-brand-light) 75.48%, var(--color-brand) 100%), var(--color-brand-light);
-      z-index: 1;
+      z-index: 2;
+      transform: rotate(-0.40deg);
     }
 
     /* ===== ABOUT / FAQ SECTION ===== */
@@ -1638,18 +1646,12 @@
         flex: none;
         width: 100%;
         max-width: 480px;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
+        height: 397px;
+        position: relative;
       }
 
       .reason-card{
-        position: relative !important;
-        width: 100% !important;
-        left: auto !important;
-        top: auto !important;
-        transform: none !important;
+        width: calc(100% - 9px) !important;
       }
 
       /* Products */
@@ -1681,7 +1683,7 @@
       }
 
       .section-comunidad .comunidad-subtitle{
-        font-size: 16px;
+        font-size: 18px;
       }
 
       .community-gallery-wrapper{
@@ -1825,12 +1827,12 @@
       }
 
       .hero-card-content p{
-        font-size: 14px;
-        line-height: 22px;
+        font-size: 16px;
+        line-height: 24px;
       }
 
       .hero-content .subtitle{
-        font-size: 15px;
+        font-size: 18px;
       }
 
       .hero-buttons{
@@ -1848,7 +1850,15 @@
         font-size: 22px;
       }
 
-      .hero-image-wrapper,
+      .hero-image-wrapper{
+        width: 100%;
+        max-width: none;
+        height: auto;
+        aspect-ratio: 311 / 280;
+        border-radius: 24px;
+        border: none;
+      }
+
       .hero-card-image{
         width: 100%;
         max-width: 360px;
@@ -1859,10 +1869,7 @@
       .hero-image-wrapper img.hero-img{
         width: 100%;
         height: 100%;
-      }
-
-      .floating-card{
-        display: none;
+        border-radius: 24px;
       }
 
       .carousel-arrows{
@@ -1886,7 +1893,7 @@
       }
 
       .entrar-iz .razones-subtitle{
-        font-size: 15px;
+        font-size: 18px;
       }
 
       .entrar-de{
@@ -1901,7 +1908,7 @@
         min-height: 64px;
         padding: 12px 20px !important;
         border-radius: 40px !important;
-        font-size: 15px;
+        font-size: 18px;
       }
 
       .reason-card .reason-icon{
@@ -1923,7 +1930,7 @@
       }
 
       .products-header .products-subtitle{
-        font-size: 15px;
+        font-size: 18px;
       }
 
       .products-tabs{
@@ -1932,7 +1939,7 @@
       }
 
       .products-tab{
-        font-size: 13px;
+        font-size: 14px;
         padding: 0 16px;
         height: 36px;
       }
@@ -1971,7 +1978,7 @@
       }
 
       .section-comunidad .comunidad-subtitle{
-        font-size: 15px;
+        font-size: 18px;
       }
 
       .section-comunidad .comunidad-subtitle br{
@@ -2032,7 +2039,7 @@
       }
 
       .testimonios-left .section-subtitle{
-        font-size: 15px;
+        font-size: 18px;
       }
 
       .testimonios-right{
@@ -2047,8 +2054,8 @@
       }
 
       .testimonio-card blockquote{
-        font-size: 15px;
-        line-height: 1.5;
+        font-size: 18px;
+        line-height: 26px;
       }
 
       .testimonio-card .author-avatar{
@@ -2057,11 +2064,11 @@
       }
 
       .testimonio-card .author-name{
-        font-size: 16px;
+        font-size: 18px;
       }
 
       .testimonio-card .author-role{
-        font-size: 14px;
+        font-size: 18px;
       }
 
       .testimonios-bg{
@@ -2083,7 +2090,7 @@
       }
 
       .noticias-header p{
-        font-size: 15px;
+        font-size: 18px;
       }
 
       .noticias-row{
@@ -2111,10 +2118,10 @@
         padding-right: 56px;
       }
 
-      .noticia-card--2 .noticia-quote, 
-      .noticia-card--3 .noticia-quote, 
+      .noticia-card--2 .noticia-quote,
+      .noticia-card--3 .noticia-quote,
       .noticia-card--5 .noticia-quote{
-        font-size: 16px;
+        font-size: 20px;
       }
 
       .noticia-avatar{
@@ -2123,11 +2130,11 @@
       }
 
       .noticia-author-name{
-        font-size: 16px;
+        font-size: 18px;
       }
 
       .noticia-author-desc{
-        font-size: 13px;
+        font-size: 14px;
       }
 
       .noticia-icon-link{
@@ -2158,8 +2165,8 @@
       }
 
       .about-left .about-desc{
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 18px;
+        line-height: 26px;
       }
 
       .about-right{

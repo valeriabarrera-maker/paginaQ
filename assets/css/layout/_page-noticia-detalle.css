@@ -12,7 +12,9 @@ body.page-noticia-detalle {
   margin: 0;
   font-family: var(--font-body);
   background: linear-gradient(180deg, var(--color-white) 51%, #FFF7ED 100%);
-  overflow-x: hidden;
+  /* `overflow-x: clip` (no `hidden`) — `hidden` crea containing block
+     y rompe `position: sticky` en `.header-root`. */
+  overflow-x: clip;
 }
 
 .detalle-wrapper {
@@ -359,7 +361,7 @@ body.page-noticia-detalle {
   .detalle-wrapper { padding: 10px 16px 0; }
   .detalle-main { gap: 48px; margin-top: 40px; }
   .detalle-title { font-size: 28px; line-height: 34px; }
-  .detalle-lead, .detalle-intro, .detalle-body { font-size: 16px; line-height: 24px; }
+  .detalle-lead, .detalle-intro, .detalle-body { font-size: 18px; line-height: 26px; }
   .detalle-subtitle { font-size: 22px; line-height: 28px; }
   .detalle-image { height: 260px; border-radius: var(--radius-lg); }
   .detalle-related-grid { grid-template-columns: 1fr; }

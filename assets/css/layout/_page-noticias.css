@@ -181,11 +181,11 @@ body.page-noticias {
   }
 
   .news-desc {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 26px;
   }
 
   .news-grid { grid-template-columns: 1fr; }
   .news-tabs { gap: 8px; }
-  .news-tab { padding: 0 16px; font-size: 13px; }
+  .news-tab { padding: 0 16px; font-size: 14px; }
 }

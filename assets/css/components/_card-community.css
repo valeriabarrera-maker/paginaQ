@@ -169,6 +169,14 @@
     --cc-width: 100%;
     --cc-body-width: calc(100% - 32px);
     max-width: 384px;
+    height: auto;
+  }
+  /* Body altura adaptable al contenido — height fija (288px) cortaba
+     el texto en mobile cuando el ancho se reduce y la descripción
+     necesita más líneas. */
+  .community-card__body {
+    height: auto;
+    min-height: var(--cc-body-height);
   }
 }
 
@@ -176,6 +184,19 @@
   .community-list {
     flex-direction: column;
     align-items: center;
+  }
+  /* Body padding y footer gap reducidos: con `padding: 24px` + `gap: 32px`
+     el botón "Unirme" tocaba el borde derecho del body en 360px. */
+  .community-card {
+    --cc-body-padding: 20px;
+  }
+  .community-card__footer {
+    gap: 16px;
+  }
+  /* El botón en mobile no debe estirarse ni romper el layout del footer */
+  .community-card__footer .btn {
+    flex-shrink: 0;
+    padding: 10px 16px;
   }
 }
 

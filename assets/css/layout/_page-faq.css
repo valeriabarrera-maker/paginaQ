@@ -258,13 +258,13 @@ body.page-faq {
   }
 
   .faq-desc {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 26px;
   }
 
   .faq-question {
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 18px;
+    line-height: 26px;
     padding: 16px 20px;
   }
 
@@ -282,7 +282,7 @@ body.page-faq {
   }
 
   .faq-cta p {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 26px;
   }
 }

@@ -174,8 +174,8 @@ body.page-politica {
   }
 
   .policy-desc {
-    font-size: 15px;
-    line-height: 22px;
+    font-size: 18px;
+    line-height: 26px;
   }
 
   .policy-section h2 {
@@ -190,7 +190,7 @@ body.page-politica {
 
   .policy-section p,
   .policy-section li {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 22px;
   }
 }

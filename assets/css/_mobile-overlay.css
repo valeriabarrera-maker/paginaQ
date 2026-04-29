@@ -29,6 +29,16 @@
   html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    /* Anti-overflow horizontal: usamos `overflow-x: clip` en lugar
+       de `hidden` porque `hidden` crea un containing block que rompe
+       `position: sticky` en descendientes (el header se quedaría
+       sin sticky). `clip` clipa el overflow sin afectar al sticky. */
+    overflow-x: clip;
+    max-width: 100%;
+  }
+  body {
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   /* Anti-zoom iOS al enfocar input (requiere ≥16px). */
@@ -49,7 +59,22 @@
      el carrusel mobile usa width: 100% sin negativos (ver fix más abajo). */
   .section-products,
   [class*="__container"],
-  [class*="__wrapper"] {
+  [class*="__wrapper"],
+  .hero,
+  .razones-section,
+  .section-comunidad,
+  .section-noticias,
+  .section-testimonios,
+  .section-about,
+  .com-about,
+  .com-events,
+  .com-events-inner,
+  .testimonios-inner,
+  .about-container {
+    max-width: 100%;
+  }
+  /* Imágenes y media nunca exceden el ancho de su contenedor */
+  img, video, svg, iframe {
     max-width: 100%;
   }
 
@@ -165,14 +190,43 @@
     padding-right: 0 !important;
   }
 
-  /* Comunidad — `.page-wrapper` lateral 16px en todo mobile.
-     _page-comunidad.css usaba 40px en 768-1023 (un sobrante del
-     diseño desktop) que hacía que el h1 "Mi Comunidad" quedara
-     muy adentro respecto al borde. Lo unificamos al estándar 16px
-     del resto del proyecto. */
-  body.page-comunidad .page-wrapper {
+  /* Page-wrapper en mobile (matches home pattern):
+     - 768-1023: 16px lateral, 0 top/bottom
+     - ≤767: 32px en los 4 lados (regla más abajo en @media 767)
+     Aplica a todas las páginas excepto home (que tiene su propia
+     regla en @media 767). noticia-detalle usa `.detalle-wrapper`. */
+  body.page-comunidad .page-wrapper,
+  body.page-noticias .page-wrapper,
+  body.page-faq .page-wrapper,
+  body.page-beneficios .page-wrapper,
+  body.page-politica .page-wrapper,
+  body.page-servicios .page-wrapper,
+  body.page-noticia-detalle .detalle-wrapper {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
     padding-left: max(16px, var(--m-safe-left)) !important;
     padding-right: max(16px, var(--m-safe-right)) !important;
+  }
+
+  /* Main containers (.main-section / .news-main / .faq-main / .ben-main /
+     .policy-main / .detalle-main) tienen margin-top: 70px en desktop.
+     En mobile el page-wrapper aporta el espacio superior del home pattern
+     (32px ≤767, 0 en 768-1023), así que removemos el 70px del main para
+     no duplicar el espacio establecido. */
+  .main-section,
+  .news-main,
+  .faq-main,
+  .ben-main,
+  .policy-main,
+  .detalle-main {
+    margin-top: 0 !important;
+  }
+
+  /* `.com-about` (comunidad — primer bloque de contenido) tiene
+     `padding: 50px 0` en desktop. Misma lógica: removemos el padding-top
+     para que el wrapper sea la única fuente de espacio superior. */
+  body.page-comunidad .com-about {
+    padding-top: 0 !important;
   }
 
   /* Comunidad — `.com-stats` horizontal en mobile (como desktop).
@@ -505,12 +559,170 @@
     align-self: flex-start !important;
   }
 
-  /* `.hero` sin margen lateral propio — el page-wrapper ya aporta
-     los 16px laterales del proyecto. Antes el hero añadía otros 16px
-     más, dando 32px total al lateral en mobile. */
-  body.page-home .hero {
+  /* `.entrar-iz` (sección razones): override del patrón centrado.
+     Contenido alineado a la izquierda con textos justificados a la
+     izquierda en mobile. */
+  body.page-home .entrar-iz {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+  body.page-home .entrar-iz h2,
+  body.page-home .entrar-iz .razones-subtitle {
+    margin-inline: 0 !important;
+    text-align: left !important;
+  }
+  body.page-home .entrar-iz .razones-logos {
+    justify-content: flex-start !important;
+  }
+  body.page-home .entrar-iz .btn--outline {
+    align-self: flex-start !important;
+    margin-inline: 0 !important;
+  }
+
+  /* `.testimonios-left` (sección testimonios): override del centrado
+     mobile heredado de _page-home.css ≤767. Todo el contenido se
+     alinea a la izquierda y los textos quedan justificados a la
+     izquierda. */
+  body.page-home .testimonios-left {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+  body.page-home .testimonios-left h2,
+  body.page-home .testimonios-left .section-subtitle {
+    margin-inline: 0 !important;
+    text-align: left !important;
+  }
+
+  /* `.about-left` (sección FAQ del home): override del patrón
+     centrado general — alineado a la izquierda con textos
+     justificados a la izquierda en mobile. */
+  body.page-home .about-left {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+  body.page-home .about-left h2,
+  body.page-home .about-left .about-desc,
+  body.page-home .about-left .about-sub {
+    margin-inline: 0 !important;
+    text-align: left !important;
+  }
+  body.page-home .about-left .btn {
+    align-self: flex-start !important;
+    margin-inline: 0 !important;
+  }
+
+  /* Footer: en mobile todo el contenido va centrado (no a la
+     izquierda como en desktop). Aplica a brand, logos, descripción,
+     socials, columnas y copyright. */
+  .footer__inner,
+  .footer__top,
+  .footer__brand,
+  .footer__columns,
+  .footer__col,
+  .footer__bottom {
+    text-align: center !important;
+  }
+  .footer__brand,
+  .footer__col {
+    align-items: center !important;
+  }
+  .footer__brand-logos,
+  .footer__socials,
+  .footer__col-links {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .footer__brand-desc,
+  .footer__col-title,
+  .footer__col-link,
+  .footer__copyright,
+  .footer__legal {
+    text-align: center !important;
+  }
+  /* `.footer__brand-desc` con max-width fijo (320px desktop): en
+     mobile lo centramos con margin auto y le permitimos extenderse
+     un poco más si hay espacio para que no quede oprimido. */
+  .footer__brand-desc {
+    max-width: 360px !important;
+    margin-inline: auto !important;
+    margin-top: 16px !important;
+  }
+
+  /* Footer mobile: solo márgenes laterales en el contenedor exterior
+     (32px). Los hijos (brand, columnas, copyright) no añaden padding
+     ni margen lateral propio. */
+  .footer__inner {
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
+  .footer__brand,
+  .footer__columns,
+  .footer__col,
+  .footer__bottom,
+  .footer__top {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
+  }
+  /* `.footer__bottom`: spacing vertical compacto en mobile. */
+  .footer__bottom {
+    margin-top: 12px !important;
+    margin-bottom: 0 !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  /* `.footer__curve` + `.footer__body`: en mobile algunos navegadores
+     dejan una hairline (gap subpixel) entre el SVG curvo y el body
+     dark. Forzamos solape de 1px y bloque sin display inline. */
+  .footer__curve {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: -1px !important;
+    vertical-align: bottom !important;
+  }
+  .footer__body {
+    margin-top: 0 !important;
+  }
+  .footer__brand-desc,
+  .footer__col-title,
+  .footer__col-link,
+  .footer__copyright,
+  .footer__legal,
+  .footer__brand-logos,
+  .footer__socials,
+  .footer__col-links {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* `.about-dots` (carrusel FAQ): centrados en mobile.
+     El display:flex + justify-content:center vive en desktop only
+     (`@media (min-width: 1024px)` de _page-home.css), por eso en
+     mobile los dots quedaban sin centrar. Replicamos aquí. */
+  body.page-home .about-dots {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+
+  /* Color negro forzado en párrafos / textos descriptivos en mobile.
+     El tamaño se mantiene desde el CSS base (ya alineado al desktop). */
+  .hero-card-content p,
+  .about-card p,
+  .com-event-card > p,
+  .com-events-left p,
+  .com-about-left .com-desc,
+  .card-product__desc,
+  .card-service__desc,
+  .card-benefit__desc,
+  .card-community__desc,
+  .card-news__desc {
+    color: var(--color-black) !important;
   }
 
   /* Header de noticias: separación con la grilla de cards */
@@ -768,6 +980,976 @@
     height: auto;
   }
 
+}
+
+/* ==============================================================
+   HERO HOME — Pixel-perfect mobile (Figma 1195:3567)
+   Frame 54: 311×803 dentro de hero parent 375 (32px lateral).
+   Carousel Item gap 32; gap a image-wrapper 24.
+   Sólo afecta a mobile (≤767px) y al hero-slide is-active del
+   home — desktop intacto.
+   ============================================================== */
+@media (max-width: 767px) {
+  /* page-wrapper aporta 32px en los 4 lados; .hero sin margenes
+     → 375 − 64 = 311 (matches Figma 1195:3567 a 375vw). El mismo
+     padding aplica al resto de páginas para mantener un ritmo
+     consistente entre la home y las otras pantallas. */
+  body.page-home .page-wrapper,
+  body.page-comunidad .page-wrapper,
+  body.page-noticias .page-wrapper,
+  body.page-faq .page-wrapper,
+  body.page-beneficios .page-wrapper,
+  body.page-politica .page-wrapper,
+  body.page-servicios .page-wrapper,
+  body.page-noticia-detalle .detalle-wrapper {
+    padding: 32px !important;
+  }
+
+  body.page-home .hero {
+    margin: 0 !important;
+  }
+
+  /* Spacing entre secciones del home: 140px en mobile.
+     Sin márgenes laterales — el page-wrapper aporta 32px. */
+  body.page-home .razones-section,
+  body.page-home .section-products,
+  body.page-home .section-comunidad,
+  body.page-home .section-testimonios,
+  body.page-home .section-noticias,
+  body.page-home .section-about {
+    margin: 140px 0 0 !important;
+  }
+
+  body.page-home .hero-slide.is-active {
+    gap: 24px !important;
+  }
+
+  body.page-home .hero-slide.is-active .hero-content {
+    gap: 32px !important;
+  }
+
+  body.page-home .hero-slide.is-active .hero-content h1 {
+    font-family: var(--font-display);
+    font-size: 32px !important;
+    font-weight: 700;
+    line-height: 36px !important;
+    color: var(--color-black);
+    max-width: none !important;
+  }
+
+  body.page-home .hero-slide.is-active .hero-content .subtitle {
+    font-size: 18px !important;
+    line-height: 26px !important;
+    color: var(--color-black);
+    max-width: none !important;
+  }
+
+  body.page-home .hero-slide.is-active .hero-buttons {
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  body.page-home .hero-slide.is-active .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: 16px;
+  }
+
+  body.page-home .hero-slide.is-active .hero-stats {
+    gap: 32px !important;
+    justify-content: flex-start !important;
+  }
+
+  body.page-home .hero-slide.is-active .hero-stats .stat-number {
+    font-size: 28px !important;
+    line-height: 32px !important;
+  }
+
+  body.page-home .hero-slide.is-active .hero-stats .stat-label {
+    font-size: 14px !important;
+    line-height: 18px !important;
+  }
+
+  body.page-home .hero-slide.is-active .hero-image-wrapper {
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    aspect-ratio: 311 / 280 !important;
+    border-radius: 24px !important;
+    border: none !important;
+    overflow: hidden !important;
+  }
+
+  body.page-home .hero-slide.is-active .hero-image-wrapper img.hero-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 24px !important;
+    aspect-ratio: auto !important;
+  }
+
+  /* Floating cards visibles on mobile (Figma muestra ambos).
+     Versión compacta: 32px alto, padding 8/12, icon 16, texto 11. */
+  body.page-home .hero-slide.is-active .floating-card {
+    display: flex !important;
+    align-items: center !important;
+    padding: 8px 12px !important;
+    gap: 8px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    background: var(--color-white) !important;
+  }
+
+  body.page-home .hero-slide.is-active .floating-card .icon-box {
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 8px !important;
+    flex-shrink: 0;
+  }
+
+  body.page-home .hero-slide.is-active .floating-card .icon-box svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  body.page-home .hero-slide.is-active .floating-card .card-text {
+    font-size: 11px !important;
+    line-height: 13px !important;
+    font-weight: 600 !important;
+    white-space: nowrap;
+  }
+
+  body.page-home .hero-slide.is-active .floating-card.top-right {
+    top: 20px !important;
+    right: 21px !important;
+  }
+
+  body.page-home .hero-slide.is-active .floating-card.bottom-left {
+    bottom: 28px !important;
+    left: 16px !important;
+  }
+
+  /* ============================================================
+     RAZONES SECTION — Pixel-perfect mobile (Figma 1198:4144)
+     Reason Item 310×1031, VERTICAL gap 32.
+     ============================================================ */
+  body.page-home .razones-section {
+    flex-direction: column !important;
+    gap: 32px !important;
+    padding: 0 !important;
+    align-items: stretch !important;
+  }
+
+  body.page-home .entrar-iz {
+    width: 100% !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    gap: 32px !important;
+  }
+
+  body.page-home .entrar-iz h2 {
+    font-family: var(--font-display) !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    line-height: 36px !important;
+    color: var(--color-black) !important;
+    text-align: left !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  body.page-home .entrar-iz h2 span {
+    color: var(--color-brand) !important;
+  }
+
+  body.page-home .entrar-iz .razones-subtitle {
+    font-family: var(--font-body) !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    line-height: 26px !important;
+    color: var(--color-black) !important;
+    text-align: left !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  body.page-home .entrar-iz .razones-logos {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+    align-self: flex-start !important;
+  }
+
+  body.page-home .entrar-iz .razones-logos .logo-q {
+    height: 46px !important;
+    width: auto !important;
+  }
+
+  body.page-home .entrar-iz .razones-logos .logo-divider {
+    width: 1px !important;
+    height: 39px !important;
+    background: #D9D9D9 !important;
+  }
+
+  body.page-home .entrar-iz .razones-logos .logo-partner {
+    height: 50px !important;
+    width: auto !important;
+  }
+
+  body.page-home .entrar-iz .btn--outline {
+    width: 100% !important;
+    height: 44px !important;
+    padding: 12px 20px !important;
+    border-radius: 16px !important;
+    border: 1px solid var(--color-brand) !important;
+    align-self: stretch !important;
+    max-width: none !important;
+    justify-content: center !important;
+    margin-inline: 0 !important;
+  }
+
+  /* Reasons List — distribución absoluta tipo Figma (1221:3440):
+     5 cards apiladas con offsets x/y exactos (mismas posiciones
+     que desktop, son las del Figma). Container 397px alto. */
+  body.page-home .entrar-de {
+    width: 100% !important;
+    display: block !important;
+    position: relative !important;
+    height: 397px !important;
+    gap: 0 !important;
+  }
+
+  body.page-home .reason-card {
+    position: absolute !important;
+    width: calc(100% - 9px) !important;
+    height: 80px !important;
+    min-height: 80px !important;
+    padding: 16px 24px !important;
+    border-radius: 32px !important;
+    gap: 16px !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    line-height: 28px !important;
+    transform-origin: top left !important;
+  }
+
+  /* Posiciones + rotaciones de Figma 1221:3440 (Reasons List).
+     Cards 2 y 4 tilt CCW (right side up). */
+  body.page-home .reason-card:nth-child(1) {
+    left: 1px !important;
+    top: 0 !important;
+    z-index: 1 !important;
+    transform: rotate(0deg) !important;
+  }
+  body.page-home .reason-card:nth-child(2) {
+    left: 0 !important;
+    top: 92px !important;
+    z-index: 3 !important;
+    transform: rotate(-3.99deg) !important;
+  }
+  body.page-home .reason-card:nth-child(3) {
+    left: 4px !important;
+    top: 161px !important;
+    z-index: 2 !important;
+    transform: rotate(0.54deg) !important;
+  }
+  body.page-home .reason-card:nth-child(4) {
+    left: 5px !important;
+    top: 256px !important;
+    z-index: 3 !important;
+    transform: rotate(-5.49deg) !important;
+  }
+  body.page-home .reason-card:nth-child(5) {
+    left: 5px !important;
+    top: 317px !important;
+    z-index: 2 !important;
+    transform: rotate(-0.40deg) !important;
+  }
+
+  body.page-home .reason-card .reason-icon {
+    width: 48px !important;
+    height: 48px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* ============================================================
+     SECTION-PRODUCTS — Pixel-perfect mobile (Figma 1195:3568)
+     Frame 55: 311×1264, VERTICAL gap 32.
+     Carousel Item (h2+subtitle) 311×303, gap 32.
+     Frame 56 (panel container) 311×929.
+     ============================================================ */
+  body.page-home .section-products {
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+  }
+
+  body.page-home .products-intro {
+    padding: 0 !important;
+    gap: 32px !important;
+    width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  body.page-home .products-header {
+    gap: 32px !important;
+    width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  body.page-home .products-header h2 {
+    font-family: var(--font-display) !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    line-height: 36px !important;
+    color: var(--color-black) !important;
+    text-align: center !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  body.page-home .products-header h2 br {
+    display: none !important;
+  }
+
+  body.page-home .products-header h2 span {
+    color: var(--color-brand) !important;
+  }
+
+  body.page-home .products-header .products-subtitle {
+    font-family: var(--font-body) !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    line-height: 26px !important;
+    color: var(--color-black) !important;
+    text-align: center !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  /* Tabs no aparecen en Figma mobile — scroll horizontal cubre la
+     navegación entre Mascotas y Bicicletas */
+  body.page-home .products-tabs {
+    display: none !important;
+  }
+
+  body.page-home .panels-stack {
+    margin-top: 0 !important;
+    gap: 16px !important;
+    padding: 0 !important;
+  }
+
+  body.page-home .product-panel {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    --pc-panel-padding: 16px !important;
+    --pc-panel-gap: 16px !important;
+    --pc-panel-radius: 32px !important;
+    --pc-card-padding: 16px !important;
+    --pc-card-gap: 16px !important;
+    --pc-card-radius: 24px !important;
+    grid-template-rows: auto auto !important;
+    padding: 16px !important;
+    border-radius: 32px !important;
+  }
+
+  body.page-home .product-panel__image {
+    aspect-ratio: 279 / 243 !important;
+    height: auto !important;
+    border-radius: 24px !important;
+  }
+
+  body.page-home .product-card {
+    padding: 16px !important;
+    border-radius: 24px !important;
+    gap: 16px !important;
+  }
+
+  body.page-home .product-card__header {
+    gap: 16px !important;
+  }
+
+  body.page-home .product-card__icon {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  body.page-home .product-card__icon-img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  body.page-home .product-card__chip {
+    padding: 8px 16px !important;
+    border-radius: 16px !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+  }
+
+  body.page-home .product-card__content {
+    gap: 20px !important;
+  }
+
+  body.page-home .product-card__title {
+    font-size: 24px !important;
+    line-height: 31px !important;
+  }
+
+  body.page-home .product-card__desc {
+    font-size: 16px !important;
+    line-height: 22px !important;
+  }
+
+  body.page-home .product-card__features {
+    gap: 16px !important;
+  }
+
+  body.page-home .product-card__feature {
+    font-size: 16px !important;
+    line-height: 22px !important;
+    gap: 16px !important;
+  }
+
+  body.page-home .product-card__check {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  body.page-home .product-card__cta {
+    width: 100% !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 12px 20px !important;
+    border-radius: 16px !important;
+    font-size: 16px !important;
+  }
+
+  /* ============================================================
+     SECTION-COMUNIDAD — Pixel-perfect mobile (Figma 1198:4349)
+     Frame 56: 311×704, VERTICAL gap 32, counterAxisAlign CENTER.
+     ============================================================ */
+  body.page-home .section-comunidad {
+    margin: 140px 0 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 32px !important;
+    width: 100% !important;
+  }
+
+  body.page-home .section-comunidad h2 {
+    font-family: var(--font-display) !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    line-height: 36px !important;
+    color: var(--color-black) !important;
+    text-align: center !important;
+    max-width: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  body.page-home .section-comunidad h2 span {
+    color: var(--color-brand) !important;
+  }
+
+  body.page-home .section-comunidad h2 br {
+    display: none !important;
+  }
+
+  body.page-home .section-comunidad .comunidad-subtitle {
+    font-family: var(--font-body) !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    line-height: 26px !important;
+    color: var(--color-black) !important;
+    text-align: center !important;
+    max-width: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  body.page-home .section-comunidad .comunidad-subtitle br {
+    display: none !important;
+  }
+
+  body.page-home .section-comunidad .btn--secondary {
+    width: 100% !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 12px 52px !important;
+    border-radius: 16px !important;
+    border: 1px solid var(--color-brand) !important;
+    background: var(--color-white) !important;
+    color: var(--color-brand) !important;
+    font-size: 16px !important;
+    justify-content: center !important;
+    align-self: stretch !important;
+    margin: 0 !important;
+  }
+
+  /* ============================================================
+     SECTION-TESTIMONIOS — Pixel-perfect mobile (Figma 1198:4413)
+     Frame 57: 311×1322, VERTICAL gap 32.
+     Container titular 311×194 (gap 16) + Container cards 311×1096 (gap 32).
+     Fondo: SVG curvado (testimonios-bg) extendido a full-bleed,
+     fill solid peach. */
+  body.page-home .section-testimonios {
+    position: relative !important;
+    margin: 140px 0 0 !important;
+    padding: 96px 0 !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 32px !important;
+    background: transparent !important;
+    z-index: 1 !important;
+  }
+
+  /* Curva del fondo — SVG full-bleed (escapa padding del page-wrapper) */
+  body.page-home .testimonios-bg {
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100vw !important;
+    height: 100% !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+  }
+
+  body.page-home .testimonios-bg path {
+    fill: var(--color-brand-soft) !important;
+  }
+
+  /* Contenido por encima del svg curvo */
+  body.page-home .testimonios-left,
+  body.page-home .testimonios-right {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  body.page-home .testimonios-left {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    text-align: left !important;
+  }
+
+  body.page-home .testimonios-left h2 {
+    font-family: var(--font-display) !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    line-height: 36px !important;
+    color: var(--color-black) !important;
+    text-align: left !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+
+  body.page-home .testimonios-left h2 span {
+    color: var(--color-brand) !important;
+  }
+
+  body.page-home .testimonios-left h2 br {
+    display: none !important;
+  }
+
+  body.page-home .testimonios-left .section-subtitle {
+    font-family: var(--font-body) !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    line-height: 26px !important;
+    color: var(--color-black) !important;
+    text-align: left !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+
+  body.page-home .testimonios-right {
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+
+  body.page-home .testimonios-track {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+    transform: none !important;
+    width: 100% !important;
+  }
+
+  /* Esconder clones que el JS añade para auto-scroll desktop */
+  body.page-home .testimonio-card[aria-hidden="true"] {
+    display: none !important;
+  }
+
+  body.page-home .testimonio-card {
+    width: 100% !important;
+    padding: 32px !important;
+    border-radius: 32px !important;
+    background: var(--color-white) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  body.page-home .testimonio-card .stars {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 4px !important;
+    align-items: center !important;
+  }
+
+  body.page-home .testimonio-card .stars svg {
+    width: 20px !important;
+    height: 20px !important;
+    fill: var(--color-brand) !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.page-home .testimonio-card blockquote {
+    font-family: var(--font-body) !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    line-height: 26px !important;
+    color: var(--color-black) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.page-home .testimonio-card .author-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+
+  body.page-home .testimonio-card .author-avatar {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+    object-fit: cover !important;
+  }
+
+  body.page-home .testimonio-card .author-info {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  body.page-home .testimonio-card .author-name {
+    font-family: var(--font-body) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 20px !important;
+    color: var(--color-black) !important;
+  }
+
+  body.page-home .testimonio-card .author-role {
+    font-family: var(--font-body) !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 18px !important;
+    color: #565656 !important;
+  }
+
+  /* ============================================================
+     SECTION-NOTICIAS — Pixel-perfect mobile (Figma 1198:4601)
+     Frame 58: 311×1949, VERTICAL gap 32.
+     Header (gap 16) + 5 noticia cards + botón outline.
+     ============================================================ */
+  body.page-home .section-noticias {
+    margin: 140px 0 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 32px !important;
+    width: 100% !important;
+  }
+
+  /* Cuando noticias sigue a testimonios, el gap (140px) se mide
+     desde el fin del CONTENIDO de testimonios, no desde el fondo
+     curvo. Restamos el padding-bottom 96 que tiene testimonios
+     para que la suma quede en 140 desde card → header. */
+  body.page-home .section-testimonios + .section-noticias {
+    margin-top: 44px !important;
+  }
+
+  body.page-home .noticias-header {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+
+  body.page-home .noticias-header h2 {
+    font-family: var(--font-display) !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    line-height: 36px !important;
+    color: var(--color-black) !important;
+    text-align: left !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+
+  body.page-home .noticias-header h2 br {
+    display: none !important;
+  }
+
+  body.page-home .noticias-header p {
+    font-family: var(--font-body) !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    line-height: 26px !important;
+    color: var(--color-black) !important;
+    text-align: left !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+
+  /* Grid plano: las 5 cards apiladas verticalmente con gap 32 */
+  body.page-home .noticias-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+    width: 100% !important;
+  }
+
+  body.page-home .noticias-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+    width: 100% !important;
+  }
+
+  body.page-home .noticia-card {
+    width: 100% !important;
+    padding: 32px !important;
+    border-radius: 32px !important;
+    min-height: 280px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+  }
+
+  /* Cards 1 y 2 son más altas en Figma (354/355) */
+  body.page-home .noticia-card.noticia-card--1,
+  body.page-home .noticia-card.noticia-card--2 {
+    min-height: 354px !important;
+  }
+
+  body.page-home .noticia-card--1 .noticia-icon-link,
+  body.page-home .noticia-card--4 .noticia-icon-link {
+    top: 32px !important;
+    right: 32px !important;
+  }
+
+  /* Botón "Ver más noticias" — outline naranja full-width */
+  body.page-home .noticias-btn-wrap {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.page-home .noticias-btn-wrap .btn--secondary {
+    width: 100% !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 12px 52px !important;
+    border-radius: 16px !important;
+    border: 1px solid var(--color-brand) !important;
+    background: var(--color-white) !important;
+    color: var(--color-brand) !important;
+    font-size: 16px !important;
+    justify-content: center !important;
+    align-self: stretch !important;
+    margin: 0 !important;
+  }
+
+  /* ============================================================
+     SECTION-ABOUT (FAQ) — Pixel-perfect mobile (Figma 1198:4717)
+     Frame 59: 311×750, VERTICAL gap 32.
+     Container header (gap 32) + Frame 40 (carrusel card + dots).
+     ============================================================ */
+  body.page-home .section-about {
+    margin: 140px 0 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 32px !important;
+    width: 100% !important;
+  }
+
+  body.page-home .section-about .about-container {
+    flex-direction: column !important;
+    gap: 32px !important;
+    width: 100% !important;
+    align-items: stretch !important;
+  }
+
+  body.page-home .section-about .about-left {
+    width: 100% !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 32px !important;
+    text-align: left !important;
+  }
+
+  body.page-home .section-about .about-left h2 {
+    font-family: var(--font-display) !important;
+    font-size: 45px !important;
+    font-weight: 700 !important;
+    line-height: 50px !important;
+    color: var(--color-black) !important;
+    text-align: left !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+
+  body.page-home .section-about .about-left h2 span {
+    color: var(--color-brand) !important;
+  }
+
+  body.page-home .section-about .about-left h2 br {
+    display: none !important;
+  }
+
+  body.page-home .section-about .about-left .about-desc {
+    font-family: var(--font-body) !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    line-height: 26px !important;
+    color: var(--color-black) !important;
+    text-align: left !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+
+  body.page-home .section-about .about-left .btn {
+    width: 100% !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 12px 20px !important;
+    border-radius: 16px !important;
+    background: var(--color-brand) !important;
+    color: var(--color-white) !important;
+    border: none !important;
+    font-size: 16px !important;
+    justify-content: center !important;
+    align-self: stretch !important;
+    margin: 0 !important;
+  }
+
+  body.page-home .section-about .about-right {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 32px !important;
+  }
+
+  body.page-home .section-about .about-stage {
+    width: 100% !important;
+    height: 262px !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  body.page-home .section-about .about-card {
+    width: 100% !important;
+    padding: 32px !important;
+    border-radius: 32px !important;
+    background: var(--color-white) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08) !important;
+    box-sizing: border-box !important;
+  }
+
+  body.page-home .section-about .about-card-icon {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 16px !important;
+  }
+
+  body.page-home .section-about .about-card-icon svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  body.page-home .section-about .about-card h3 {
+    font-family: var(--font-body) !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    line-height: 24px !important;
+    color: var(--color-black) !important;
+    margin: 0 !important;
+  }
+
+  body.page-home .section-about .about-card p {
+    font-family: var(--font-body) !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 22px !important;
+    color: var(--color-black) !important;
+    margin: 0 !important;
+  }
+
+  /* Dots indicator: 1 activo (48×12 r6) + 2 inactivos (12×12 r6) */
+  body.page-home .section-about .about-dots {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 8px !important;
+    justify-content: center !important;
+    margin: 0 !important;
+  }
+
+  body.page-home .section-about .about-dots .about-dot {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 6px !important;
+    background: #ffd4c2 !important;
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    transition: width 0.3s ease, background 0.3s ease !important;
+  }
+
+  body.page-home .section-about .about-dots .about-dot.active {
+    width: 48px !important;
+    background: var(--color-brand) !important;
+  }
 }
 
 /* ==========================================================================
