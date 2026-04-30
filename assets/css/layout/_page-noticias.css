@@ -186,6 +186,20 @@ body.page-noticias {
   }
 
   .news-grid { grid-template-columns: 1fr; }
-  .news-tabs { gap: 8px; }
-  .news-tab { padding: 0 16px; font-size: 14px; }
+  /* Tabs en una sola fila — scroll horizontal si no caben.
+     `flex-wrap: nowrap` evita que las opciones bajen a otra línea. */
+  .news-tabs {
+    gap: 8px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .news-tabs::-webkit-scrollbar { display: none; }
+  .news-tab {
+    padding: 0 14px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
 }

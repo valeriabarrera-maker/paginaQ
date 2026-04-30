@@ -351,10 +351,37 @@ body.page-noticia-detalle {
   .detalle-wrapper { padding: 10px 40px 0; }
   .detalle-article { width: 100%; }
   .detalle-article-top { flex-direction: column; gap: 24px; }
-  .detalle-side { width: 100%; padding: 0; }
+  /* Mantener padding vertical del desktop (32px) — solo en lateral
+     se redujo para que el panel respire dentro del wrapper mobile. */
+  .detalle-side { width: 100%; padding: 32px 24px; }
   .detalle-cta { grid-template-columns: 1fr; }
   .detalle-cta-img { min-height: 300px; }
-  .detalle-related-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Cards relacionadas como carrusel horizontal en mobile/tablet —
+   el usuario desplaza para ver la siguiente card. */
+@media (max-width: 1023px) {
+  .detalle-related-grid {
+    display: flex;
+    grid-template-columns: none;
+    flex-wrap: nowrap;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 16px;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-items: stretch;
+  }
+  .detalle-related-grid::-webkit-scrollbar { display: none; }
+  .detalle-related-grid > .news-card {
+    --nc-width: 320px;
+    flex: 0 0 320px;
+    max-width: 320px;
+    scroll-snap-align: start;
+  }
 }
 
 @media (max-width: 767px) {
@@ -364,7 +391,6 @@ body.page-noticia-detalle {
   .detalle-lead, .detalle-intro, .detalle-body { font-size: 18px; line-height: 26px; }
   .detalle-subtitle { font-size: 22px; line-height: 28px; }
   .detalle-image { height: 260px; border-radius: var(--radius-lg); }
-  .detalle-related-grid { grid-template-columns: 1fr; }
 
   /* Mobile: el .product-panel pasa a posición relativa con
      altura auto, así que el .panels-stack también se adapta. */

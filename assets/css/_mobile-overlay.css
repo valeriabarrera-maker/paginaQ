@@ -1333,10 +1333,12 @@
     margin: 0 !important;
   }
 
-  /* Tabs no aparecen en Figma mobile — scroll horizontal cubre la
-     navegación entre Mascotas y Bicicletas */
+  /* Tabs visibles en mobile (igual que desktop) — `_page-home.css`
+     ya tiene los overrides de tamaño (gap 16, padding 6/8, font 14). */
   body.page-home .products-tabs {
-    display: none !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
   }
 
   body.page-home .panels-stack {
