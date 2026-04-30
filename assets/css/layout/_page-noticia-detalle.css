@@ -367,9 +367,22 @@ body.page-noticia-detalle {
     flex-wrap: nowrap;
     gap: 16px;
     overflow-x: auto;
+    /* `overflow-x: auto` fuerza overflow-y a no-visible (regla CSS:
+       cuando un eje es no-visible, el otro tampoco puede serlo).
+       Compensamos con padding vertical generoso para que la sombra
+       de las cards (offset 4 + blur 30 = ~34px hacia abajo,
+       ~26px hacia arriba) quede dentro del box y no se recorte. */
+    padding-block: 32px 40px;
+    /* Padding/margin lateral para que la sombra de la primera y última
+       card no se recorte. El blur de la sombra es 30px, así que el
+       padding interno necesita ≥32px para cubrirlo, y el margin
+       negativo equivalente saca el carrusel del page-wrapper para
+       que el primer/último card siga alineado con el contenido. */
+    padding-inline: 16px;
+    margin-block: -16px -16px;
+    margin-inline: -16px;
     scroll-snap-type: x mandatory;
-    scroll-padding: 0 16px;
-    padding-bottom: 8px;
+    scroll-padding-inline: 16px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -381,6 +394,16 @@ body.page-noticia-detalle {
     flex: 0 0 320px;
     max-width: 320px;
     scroll-snap-align: start;
+  }
+}
+
+/* ≤767: el wrapper tiene padding 32px → carrusel también 32 lateral
+   para alinear las cards con el resto del contenido. */
+@media (max-width: 767px) {
+  .detalle-related-grid {
+    padding-inline: 32px;
+    margin-inline: -32px;
+    scroll-padding-inline: 32px;
   }
 }
 
